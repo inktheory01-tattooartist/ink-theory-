@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ink Theory | Professional Tattoo Artist</title>
+  <meta name="description" content="Ink Theory — professional tattoo services, custom designs and booking worldwide.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0b;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      background:
+        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.88)),
+        radial-gradient(circle at center, #333 0%, #111 45%, #000 100%);
+    }
+
+    .hero {
+      max-width: 800px;
+    }
+
+    .logo {
+      font-size: 54px;
+      font-weight: 800;
+      letter-spacing: 5px;
+      margin-bottom: 12px;
+    }
+
+    .tagline {
+      font-size: 20px;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      margin: 6px;
+      border: 1px solid #fff;
+      border-radius: 30px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    section {
+      padding: 70px 20px;
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 35px;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 750px;
+      margin: auto;
+      color: #ccc;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .card {
+      background: #151515;
+      border: 1px solid #292929;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #bbb;
+      font-size: 15px;
+    }
+
+    .booking {
+      background: #111;
+      border-radius: 18px;
+      padding: 30px;
+      border: 1px solid #292929;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      margin-top: 7px;
+      padding: 13px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #090909;
+      color: white;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .checkbox input {
+      width: auto;
+      margin-top: 4px;
+    }
+
+    button {
+      padding: 15px;
+      border: 0;
+      border-radius: 30px;
+      background: white;
+      color: black;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact p {
+      margin: 10px 0;
+      color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid #222;
+      color: #888;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 38px;
+      }
+
+      .tagline {
+        font-size: 17px;
+      }
+
+      section {
+        padding: 55px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="hero">
+    <div class="logo">INK THEORY</div>
+    <p class="tagline">
+      Professional Tattoo Art • Custom Designs • Worldwide Booking
+    </p>
+
+    <a href="#booking" class="btn">Book a Tattoo</a>
+    <a href="#services" class="btn">View Services</a>
+  </div>
+</header>
+
+<section>
+  <h2>About Ink Theory</h2>
+  <p class="intro">
+    Welcome to Ink Theory — a professional tattoo service focused on
+    creative custom designs, clean artistry and a comfortable client
+    experience. Every tattoo is approached with attention to detail,
+    individuality and professionalism.
+  </p>
+</section>
+
+<section id="services">
+  <h2>Tattoo Services</h2>
+
+  <div class="services">
+
+    <div class="card">
+      <h3>Custom Tattoos</h3>
+      <p>Unique tattoo concepts created around your personal idea and style.</p>
+    </div>
+
+    <div class="card">
+      <h3>Fine Line</h3>
+      <p>Clean, delicate and detailed tattoo designs.</p>
+    </div>
+
+    <div class="card">
+      <h3>Lettering</h3>
+      <p>Names, quotes, dates and meaningful lettering designs.</p>
+    </div>
+
+    <div class="card">
+      <h3>Black & Grey</h3>
+      <p>Professional black and grey tattoo concepts with depth and detail.</p>
+    </div>
+
+    <div class="card">
+      <h3>Minimalist</h3>
+      <p>Simple, elegant tattoos with a clean modern appearance.</p>
+    </div>
+
+    <div class="card">
+      <h3>Cover-Up</h3>
+      <p>Discuss your existing tattoo and explore suitable cover-up options.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="booking">
+  <h2>Book With Ink Theory</h2>
+
+  <div class="booking">
+
+    <form action="mailto:ink.theory01@outlook.com"
+          method="post"
+          enctype="text/plain">
+
+      <label>
+        Full Name
+        <input type="text" name="Full Name" required>
+      </label>
+
+      <label>
+        Email Address
+        <input type="email" name="Email" required>
+      </label>
+
+      <label>
+        Phone / Telegram
+        <input type="text" name="Phone or Telegram" required>
+      </label>
+
+      <label>
+        Your Location / Address
+        <input type="text" name="Location or Address" required>
+      </label>
+
+      <label>
+        Preferred Tattoo Type
+        <select name="Tattoo Type" required>
+          <option value="">Select a tattoo type</option>
+          <option>Custom Tattoo</option>
+          <option>Fine Line</option>
+          <option>Lettering</option>
+          <option>Black & Grey</option>
+          <option>Minimalist</option>
+          <option>Cover-Up</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <label>
+        Preferred Date
+        <input type="date" name="Preferred Date" required>
+      </label>
+
+      <label>
+        Tattoo Description
+        <textarea
+          name="Tattoo Description"
+          placeholder="Describe your tattoo idea, preferred placement, approximate size and any other details."
+          required></textarea>
+      </label>
+
+      <label>
+        Health / Medical Information
+        <textarea
+          name="Health Information"
+          placeholder="Please mention any allergies, skin conditions, medical concerns, medications, or other information relevant to your tattoo appointment."></textarea>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" required>
+        <span>
+          I confirm that the information I have provided is accurate and
+          I understand that tattooing involves risks such as irritation,
+          allergic reactions and infection if proper aftercare is not followed.
+        </span>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" required>
+        <span>
+          I understand that submitting this form is a booking request and
+          does not automatically guarantee an appointment until Ink Theory
+          confirms the booking.
+        </span>
+      </label>
+
+      <button type="submit">SEND BOOKING REQUEST</button>
+
+    </form>
+
+  </div>
+</section>
+
+<section>
+  <h2>Contact Ink Theory</h2>
+
+  <div class="contact">
+    <p>📧 ink.theory01@outlook.com</p>
+    <p>💬 Telegram: @inktheory01</p>
+    <p>🌍 Professional Tattoo Services — Worldwide</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Ink Theory. All rights reserved.
+</footer>
+
+</body>
+</html>

@@ -1,31 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ink Theory | Professional Tattoo Artist</title>
+<title>Ink Theory | Professional Tattoo Artist</title>
 
-  <meta name="description" content="Ink Theory — professional tattoo artist offering custom tattoos, fine line, lettering, black & grey, minimalist and cover-up tattoos.">
-  <meta name="theme-color" content="#080808">
+<meta name="description" content="Ink Theory — professional custom tattoo artist. Custom tattoos, fine line, lettering, black and grey, minimalist and cover-up tattoos.">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #080808;
-      color: #f5f5f5;
-      line-height: 1.6;
-    }
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#070707;
+  color:#f5f5f5;
+  line-height:1.6;
+}
 
-    a {
-      color: inherit
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+/* NAVIGATION */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(0,0,0,.88);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:18px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.nav-links a:hover{
+  color:#aaa;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 20px 80px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(255,255,255,.10),transparent 30%),
+    radial-gradient(circle at 20% 80%,rgba(255,255,255,.05),transparent 30%),
+    #050505;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg,transparent 45%,rgba(255,255,255,.025) 50%,transparent 55%);
+  pointer-events:none;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:850px;
+}
+
+.small-title{
+  text-transform:uppercase;
+  letter-spacing:5px;
+  font-size:12px;
+  color:#aaa;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:clamp(55px,12vw,125px);
+  line-height:.9;
+  letter-spacing:8px;
+  font-weight:900;
+  margin-bottom:25px;
+}
+
+.hero h2{
+  font-size:clamp(18px,4vw,30px);
+  font-weight:400;
+  letter-spacing:3px;
+  margin-bottom:25px;
+}
+
+.hero p{
+  max-width:650px;
+  margin:0 auto 35px;
+  color:#bdbdbd;
+  font-size:16px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-block;
+  padding:15px 27px;
+  border:1px solid #fff;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.btn:hover{
+  background:#fff;
+  color:#000;
+}
+
+.btn.dark{
+  border-color:#444;
+  color:#ccc;
+}
+
+/* GENERAL */
+
+section{
+  padding:100px 20px;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:55px;
+}
+
+.section-title span{
+  display:block;
+  color:#777;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:11px;
+  margin-bottom:10px;
+}
+
+.section-title h2{
+  font-size:42px;
+  letter-spacing:3px;
+}
+
+/* ABOUT */
+
+.about{
+  background:#0c0c0c;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+.about-box{
+  border-left:2px solid #fff;
+  padding-left:25px;
+}
+
+.about-box h3{
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.about-box p{
+  color:#aaa;
+  margin-bottom:15px;
+}
+
+/* SERVICES */
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.service{
+  padding:35px 25px;
+  min-height:170px;
+  background:#101010;
+  border:1px solid #202020;
+  transition:.3s;
+}
+
+.service:hover{
+  transform:translateY(-5px);
+  border-color:#666;
+}
+
+.service-number{
+  color:#555;
+  font-size:13px;
+  margin-bottom:25px;
+}
+
+.service h3{
+  font-size:19px;
+  margin-bottom:10px;
+}
+
+.service p{
+  color:#888;
+  font-size:14px;
+}
+
+/* PORTFOLIO */
+
+.portfolio{
+  background:#0a0a0a;
+}
+
+.portfolio-intro{
+  text-align:center;
+  color:#888;
+  max-width:650px;
+  margin:-30px auto 50px;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.gallery

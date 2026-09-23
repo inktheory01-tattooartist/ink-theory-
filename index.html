@@ -1,501 +1,611 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ink Theory | Professional Tattoo Artist</title>
-
-<meta name="description" content="Ink Theory — professional tattoo artist creating custom, fine line, lettering, black and grey, minimalist and cover-up tattoos.">
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#080808;
-  color:#fff;
-  line-height:1.6;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-nav{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:1000;
-  background:rgba(0,0,0,.94);
-  border-bottom:1px solid #222;
-}
-
-.nav{
-  max-width:1100px;
-  margin:auto;
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo{
-  font-size:20px;
-  font-weight:900;
-  letter-spacing:4px;
-}
-
-.nav a{
-  margin-left:18px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:110px 20px 70px;
-  background:
-    radial-gradient(circle at center,#242424 0,#0d0d0d 40%,#030303 100%);
-}
-
-.hero-box{
-  max-width:850px;
-}
-
-.kicker{
-  color:#aaa;
-  font-size:12px;
-  letter-spacing:5px;
-  text-transform:uppercase;
-  margin-bottom:20px;
-}
-
-.hero h1{
-  font-size:clamp(55px,13vw,120px);
-  line-height:.88;
-  letter-spacing:8px;
-  margin-bottom:25px;
-}
-
-.hero h2{
-  font-size:clamp(18px,4vw,30px);
-  font-weight:400;
-  letter-spacing:2px;
-  margin-bottom:20px;
-}
-
-.hero p{
-  max-width:620px;
-  margin:0 auto 30px;
-  color:#aaa;
-}
-
-.buttons{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-block;
-  padding:14px 25px;
-  border:1px solid #fff;
-  text-transform:uppercase;
-  font-size:11px;
-  font-weight:bold;
-  letter-spacing:2px;
-}
-
-.btn:hover{
-  background:#fff;
-  color:#000;
-}
-
-.dark-btn{
-  border-color:#444;
-  color:#aaa;
-}
-
-section{
-  padding:85px 20px;
-}
-
-.container{
-  max-width:1100px;
-  margin:auto;
-}
-
-.title{
-  text-align:center;
-  margin-bottom:45px;
-}
-
-.title span{
-  display:block;
-  color:#777;
-  text-transform:uppercase;
-  letter-spacing:4px;
-  font-size:11px;
-  margin-bottom:8px;
-}
-
-.title h2{
-  font-size:38px;
-  letter-spacing:2px;
-}
-
-.about{
-  background:#101010;
-}
-
-.about-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:45px;
-}
-
-.about-box{
-  border-left:2px solid #fff;
-  padding-left:22px;
-}
-
-.about-box h3{
-  font-size:27px;
-  margin-bottom:15px;
-}
-
-.about p{
-  color:#aaa;
-}
-
-.services{
-  background:#080808;
-}
-
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.service{
-  background:#111;
-  border:1px solid #252525;
-  padding:28px;
-  min-height:160px;
-}
-
-.service-number{
-  color:#555;
-  margin-bottom:20px;
-}
-
-.service h3{
-  margin-bottom:8px;
-  font-size:18px;
-}
-
-.service p{
-  color:#888;
-  font-size:14px;
-}
-
-.portfolio{
-  background:#0d0d0d;
-}
-
-.portfolio-text{
-  max-width:650px;
-  margin:-20px auto 35px;
-  text-align:center;
-  color:#888;
-}
-
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-
-.card{
-  min-height:330px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:
-    radial-gradient(circle,#252525,#090909 65%);
-  border:1px solid #292929;
-}
-
-.card-number{
-  font-size:45px;
-  font-weight:bold;
-  letter-spacing:5px;
-}
-
-.card small{
-  display:block;
-  color:#777;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  margin-top:8px;
-}
-
-.featured{
-  background:#eee;
-  color:#080808;
-  text-align:center;
-}
-
-.featured p{
-  max-width:650px;
-  margin:0 auto 25px;
-  color:#555;
-}
-
-.featured .btn{
-  border-color:#111;
-}
-
-.featured .btn:hover{
-  background:#111;
-  color:#fff;
-}
-
-.booking{
-  background:#080808;
-}
-
-.form{
-  max-width:850px;
-  margin:auto;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.full{
-  grid-column:1/-1;
-}
-
-label{
-  display:block;
-  color:#aaa;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:7px;
-}
-
-input,
-select,
-textarea{
-  width:100%;
-  padding:14px;
-  background:#111;
-  color:#fff;
-  border:1px solid #292929;
-  outline:none;
-  font:inherit;
-}
-
-textarea{
-  min-height:120px;
-  resize:vertical;
-}
-
-.check{
-  display:flex;
-  gap:10px;
-  margin:13px 0;
-  color:#aaa;
-  font-size:13px;
-}
-
-.check input{
-  width:auto;
-  margin-top:5px;
-}
-
-.submit{
-  width:100%;
-  padding:17px;
-  margin-top:15px;
-  border:0;
-  background:#fff;
-  color:#000;
-  font-weight:bold;
-  letter-spacing:2px;
-  cursor:pointer;
-}
-
-#message{
-  text-align:center;
-  color:#aaa;
-  margin-top:18px;
-}
-
-.contact{
-  background:#111;
-  text-align:center;
-}
-
-.contact-grid{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-.contact-box{
-  border:1px solid #292929;
-  padding:22px;
-  min-width:210px;
-}
-
-.contact-box small{
-  display:block;
-  color:#666;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  margin-bottom:7px;
-}
-
-footer{
-  background:#030303;
-  color:#555;
-  text-align:center;
-  padding:30px 15px;
-  font-size:12px;
-}
-
-@media(max-width:750px){
-
-  .nav-links{
-    display:none;
-  }
-
-  .about-grid,
-  .services-grid,
-  .gallery,
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .full{
-    grid-column:auto;
-  }
-
-  section{
-    padding:70px 18px;
-  }
-
-  .title h2{
-    font-size:31px;
-  }
-
-  .hero h1{
-    letter-spacing:5px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ink Theory | Professional Tattoo Artist</title>
+  <meta name="description" content="Ink Theory — professional custom tattoo services. Book your tattoo consultation worldwide.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080808;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+    }
+
+    .nav-inner {
+      max-width: 1150px;
+      width: 92%;
+      margin: auto;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: #ddd;
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-book {
+      padding: 10px 16px;
+      border: 1px solid #fff;
+      border-radius: 30px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background:
+        radial-gradient(circle at center, #252525 0%, #0b0b0b 45%, #000 100%);
+      text-align: center;
+      padding: 110px 20px 70px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.8)),
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 12px,
+          rgba(255,255,255,.025) 13px
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .hero small {
+      letter-spacing: 5px;
+      color: #aaa;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(55px, 12vw, 130px);
+      line-height: .9;
+      letter-spacing: 5px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 30px;
+      color: #ccc;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 30px;
+      background: white;
+      color: black;
+      font-weight: 700;
+      border: 1px solid white;
+      transition: .25s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: white;
+    }
+
+    .btn-dark {
+      background: transparent;
+      color: white;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title span {
+      color: #888;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .section-title h2 {
+      font-size: clamp(32px, 6vw, 55px);
+      margin-top: 8px;
+    }
+
+    /* ABOUT */
+    .about {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+      color: #ccc;
+      font-size: 17px;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service {
+      border: 1px solid #272727;
+      background: #101010;
+      padding: 30px 22px;
+      border-radius: 12px;
+      transition: .25s;
+    }
+
+    .service:hover {
+      transform: translateY(-4px);
+      border-color: #555;
+    }
+
+    .service h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .service p {
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* PORTFOLIO */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .portfolio-card {
+      min-height: 260px;
+      background:
+        linear-gradient(135deg, #292929, #0d0d0d);
+      border: 1px solid #292929;
+      border-radius: 10px;
+      display: flex;
+      align-items: flex-end;
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .portfolio-card h3 {
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+
+    /* FEATURE */
+    .feature {
+      background: #111;
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+      text-align: center;
+    }
+
+    .feature h2 {
+      font-size: clamp(30px, 6vw, 60px);
+      margin-bottom: 15px;
+    }
+
+    .feature p {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #aaa;
+    }
+
+    /* BOOKING */
+    .booking-wrap {
+      max-width: 850px;
+      margin: auto;
+      background: #101010;
+      border: 1px solid #292929;
+      border-radius: 15px;
+      padding: clamp(22px, 5vw, 45px);
+    }
+
+    .form-section {
+      border-top: 1px solid #292929;
+      padding-top: 28px;
+      margin-top: 28px;
+    }
+
+    .form-section:first-child {
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .form-section h3 {
+      margin-bottom: 8px;
+      font-size: 21px;
+    }
+
+    .form-section > p {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ddd;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #333;
+      background: #080808;
+      color: white;
+      border-radius: 8px;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #777;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .required {
+      color: #aaa;
+    }
+
+    /* HEALTH */
+    .health-note {
+      background: #171717;
+      border-left: 3px solid #aaa;
+      padding: 15px;
+      margin-bottom: 25px;
+      color: #bbb;
+      font-size: 13px;
+      border-radius: 0 7px 7px 0;
+    }
+
+    .health-question {
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #242424;
+    }
+
+    .health-question:last-child {
+      border-bottom: 0;
+    }
+
+    .health-question > p {
+      font-weight: 700;
+      color: #ddd;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .choice {
+      position: relative;
+    }
+
+    .choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .choice label {
+      display: block;
+      padding: 9px 15px;
+      border: 1px solid #333;
+      border-radius: 25px;
+      color: #bbb;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      margin: 0;
+      transition: .2s;
+    }
+
+    .choice input:checked + label {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    .declaration {
+      background: #0a0a0a;
+      border: 1px solid #292929;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 15px;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 14px 0;
+      color: #ccc;
+      font-size: 13px;
+    }
+
+    .consent input {
+      width: auto;
+      margin-top: 4px;
+      accent-color: white;
+    }
+
+    .submit-area {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    #formMessage {
+      margin-top: 18px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .contact-card {
+      background: #101010;
+      border: 1px solid #292929;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      color: #999;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .contact-card a {
+      color: #ddd;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #222;
+      padding: 35px 0;
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      .nav-links a:not(.nav-book) {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      section {
+        padding: 70px 0;
+      }
+
+      .hero h1 {
+        letter-spacing: 2px;
+      }
+
+      .services-grid,
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-card {
+        min-height: 220px;
+      }
+
+      .choice-row {
+        flex-direction: column;
+      }
+
+      .choice label {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
+<!-- NAVIGATION -->
 <nav>
-  <div class="nav">
-    <a class="logo" href="#home">INK THEORY</a>
+  <div class="nav-inner">
+    <a href="#home" class="logo">INK THEORY</a>
 
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#portfolio">Portfolio</a>
-      <a href="#booking">Book</a>
+      <a href="#booking" class="nav-book">Book Now</a>
     </div>
   </div>
 </nav>
 
+
+<!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-box">
+  <div class="hero-content">
 
-    <div class="kicker">
-      Professional Tattoo Artist
-    </div>
+    <small>Professional Tattoo Artist</small>
 
-    <h1>INK<br>THEORY</h1>
-
-    <h2>Your Idea. Your Story. Your Ink.</h2>
+    <h1>INK THEORY</h1>
 
     <p>
-      Custom tattoos created with precision, creativity
-      and attention to detail.
+      Your Idea. Your Story. Your Ink.
+      Professional custom tattoo services created with precision,
+      creativity and attention to detail.
     </p>
 
-    <div class="buttons">
-      <a class="btn" href="#booking">Book A Tattoo</a>
-      <a class="btn dark-btn" href="#portfolio">View Portfolio</a>
-    </div>
+    <a href="#booking" class="btn">
+      Book a Tattoo
+    </a>
 
   </div>
 </section>
 
-<section class="about" id="about">
+
+<!-- ABOUT -->
+<section id="about">
   <div class="container">
 
-    <div class="title">
+    <div class="section-title">
       <span>About Ink Theory</span>
-      <h2>Made To Be Personal</h2>
+      <h2>Made To Mean Something.</h2>
     </div>
 
-    <div class="about-grid">
+    <div class="about">
+      <p>
+        Ink Theory is a professional tattoo service focused on creating
+        meaningful, personal and carefully designed tattoos.
+        Every piece begins with your idea and is developed with attention
+        to style, placement, detail and individuality.
+      </p>
 
-      <div class="about-box">
-        <h3>More Than A Tattoo.</h3>
+      <br>
 
-        <p>
-          Ink Theory creates tattoo artwork around your
-          personality, ideas and story.
-        </p>
-      </div>
-
-      <div>
-        <p>
-          From minimalist pieces to detailed custom artwork,
-          every design is approached with attention to
-          detail, composition and clean execution.
-        </p>
-      </div>
-
+      <p>
+        Whether you already know exactly what you want or need help
+        developing an idea, Ink Theory is here to turn your concept
+        into a tattoo you can be proud of.
+      </p>
     </div>
+
   </div>
 </section>
 
-<section class="services" id="services">
+
+<!-- SERVICES -->
+<section id="services">
   <div class="container">
 
-    <div class="title">
+    <div class="section-title">
       <span>What We Create</span>
       <h2>Services</h2>
     </div>
@@ -503,287 +613,374 @@ footer{
     <div class="services-grid">
 
       <div class="service">
-        <div class="service-number">01</div>
         <h3>Custom Tattoos</h3>
-        <p>Original concepts designed around your vision.</p>
+        <p>
+          Original tattoo concepts created around your personal idea,
+          story and preferred style.
+        </p>
       </div>
 
       <div class="service">
-        <div class="service-number">02</div>
         <h3>Fine Line</h3>
-        <p>Clean, delicate and detailed tattoo work.</p>
+        <p>
+          Clean, delicate and detailed tattoo work with an elegant finish.
+        </p>
       </div>
 
       <div class="service">
-        <div class="service-number">03</div>
-        <h3>Lettering</h3>
-        <p>Names, quotes, dates and meaningful lettering.</p>
-      </div>
-
-      <div class="service">
-        <div class="service-number">04</div>
         <h3>Black & Grey</h3>
-        <p>Detailed monochrome tattoo compositions.</p>
+        <p>
+          Strong contrast, shading and depth using black and grey tones.
+        </p>
       </div>
 
       <div class="service">
-        <div class="service-number">05</div>
+        <h3>Lettering</h3>
+        <p>
+          Names, quotes, dates and meaningful words designed to fit your style.
+        </p>
+      </div>
+
+      <div class="service">
         <h3>Minimalist</h3>
-        <p>Simple designs with clean execution.</p>
+        <p>
+          Simple, clean and intentional designs for a subtle statement.
+        </p>
       </div>
 
       <div class="service">
-        <div class="service-number">06</div>
-        <h3>Cover-Ups</h3>
-        <p>Creative designs for transforming existing tattoos.</p>
+        <h3>Cover-Up</h3>
+        <p>
+          New tattoo concepts designed to creatively transform existing work.
+        </p>
       </div>
 
     </div>
   </div>
 </section>
 
-<section class="portfolio" id="portfolio">
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
   <div class="container">
 
-    <div class="title">
+    <div class="section-title">
       <span>Selected Work</span>
       <h2>Portfolio</h2>
     </div>
 
-    <p class="portfolio-text">
-      Explore the Ink Theory style. Real tattoo artwork
-      can be added to this gallery as the portfolio grows.
-    </p>
+    <div class="portfolio-grid">
 
-    <div class="gallery">
-
-      <div class="card">
-        <div>
-          <div class="card-number">01</div>
-          <small>Custom Artwork</small>
-        </div>
+      <div class="portfolio-card">
+        <h3>Custom Work</h3>
       </div>
 
-      <div class="card">
-        <div>
-          <div class="card-number">02</div>
-          <small>Geometric Work</small>
-        </div>
+      <div class="portfolio-card">
+        <h3>Fine Line</h3>
       </div>
 
-      <div class="card">
-        <div>
-          <div class="card-number">03</div>
-          <small>Fine Line</small>
-        </div>
+      <div class="portfolio-card">
+        <h3>Black & Grey</h3>
       </div>
 
-      <div class="card">
-        <div>
-          <div class="card-number">04</div>
-          <small>Creative Designs</small>
-        </div>
+      <div class="portfolio-card">
+        <h3>Creative Designs</h3>
       </div>
 
     </div>
+
   </div>
 </section>
 
-<section class="featured">
+
+<!-- FEATURE -->
+<section class="feature">
   <div class="container">
 
-    <div class="title">
-      <span>Ink Theory</span>
-      <h2>Bring Your Idea To Life</h2>
-    </div>
+    <h2>Your Skin. Your Story.</h2>
 
     <p>
-      Tell Ink Theory what you have in mind and let's
-      create something designed specifically for you.
+      Have an idea in mind? Let's turn it into something personal,
+      clean and timeless.
     </p>
 
-    <a class="btn" href="#booking">
+    <a href="#booking" class="btn">
       Start Your Booking
     </a>
 
   </div>
 </section>
 
-<section class="booking" id="booking">
+
+<!-- BOOKING -->
+<section id="booking">
+
   <div class="container">
 
-    <div class="title">
-      <span>Appointments</span>
-      <h2>Book A Tattoo</h2>
+    <div class="section-title">
+      <span>Start Your Tattoo Journey</span>
+      <h2>Book With Ink Theory</h2>
     </div>
 
-    <form class="form" id="bookingForm">
+    <div class="booking-wrap">
 
-      <div class="form-grid">
+      <form id="bookingForm">
 
-        <div>
-          <label>Full Name</label>
-          <input name="fullName" required>
+        <!-- CLIENT INFORMATION -->
+        <div class="form-section">
+
+          <h3>Client Information</h3>
+
+          <p>
+            Please provide your details so we can contact you about your request.
+          </p>
+
+          <div class="form-group">
+            <label>
+              Full Name <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              name="fullName"
+              required
+              placeholder="Your full name"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>
+              Email Address <span class="required">*</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="you@example.com"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>
+              Phone / Telegram <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              name="phone"
+              required
+              placeholder="Phone number or Telegram username"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>
+              Location / Address <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              name="location"
+              required
+              placeholder="City, country or preferred tattoo location"
+            >
+          </div>
+
         </div>
 
-        <div>
-          <label>Email Address</label>
-          <input type="email" name="email" required>
+
+        <!-- TATTOO DETAILS -->
+        <div class="form-section">
+
+          <h3>Tattoo Details</h3>
+
+          <p>
+            Tell us about the tattoo you would like to create.
+          </p>
+
+          <div class="form-group">
+
+            <label>
+              Tattoo Type <span class="required">*</span>
+            </label>
+
+            <select name="tattooType" required>
+
+              <option value="">
+                Select tattoo type
+              </option>
+
+              <option value="Custom Tattoo">
+                Custom Tattoo
+              </option>
+
+              <option value="Fine Line">
+                Fine Line
+              </option>
+
+              <option value="Black & Grey">
+                Black & Grey
+              </option>
+
+              <option value="Lettering">
+                Lettering
+              </option>
+
+              <option value="Minimalist">
+                Minimalist
+              </option>
+
+              <option value="Cover-Up">
+                Cover-Up
+              </option>
+
+              <option value="Other">
+                Other
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Preferred Appointment Date <span class="required">*</span>
+            </label>
+
+            <input
+              type="date"
+              name="appointmentDate"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Tell Us About Your Tattoo <span class="required">*</span>
+            </label>
+
+            <textarea
+              name="description"
+              required
+              placeholder="Describe your tattoo idea, placement, approximate size, preferred style, colours and any other details..."
+            ></textarea>
+
+          </div>
+
         </div>
 
-        <div>
-          <label>Phone / Telegram</label>
-          <input name="phone" required>
-        </div>
 
-        <div>
-          <label>Location / Address</label>
-          <input name="location" required>
-        </div>
+        <!-- HEALTH & MEDICAL INFORMATION -->
+        <div class="form-section">
 
-        <div>
-          <label>Preferred Tattoo Type</label>
+          <h3>🩺 Health & Medical Information</h3>
 
-          <select name="tattooType" required>
-            <option value="">Select a service</option>
-            <option>Custom Tattoo</option>
-            <option>Fine Line</option>
-            <option>Lettering</option>
-            <option>Black & Grey</option>
-            <option>Minimalist</option>
-            <option>Cover-Up</option>
-          </select>
-        </div>
+          <p>
+            Your safety and wellbeing are important to us.
+            Please answer honestly and accurately.
+          </p>
 
-        <div>
-          <label>Preferred Appointment Date</label>
-          <input type="date" name="appointmentDate" required>
-        </div>
+          <div class="health-note">
+            This information helps your tattoo artist identify health,
+            medication, allergy or skin-related considerations that may
+            affect the tattooing process or healing. If you have concerns
+            about whether tattooing is appropriate for you, please seek
+            advice from an appropriate healthcare professional.
+          </div>
 
-        <div class="full">
-          <label>Tattoo Description</label>
 
-          <textarea
-            name="description"
-            placeholder="Tell us your tattoo idea, placement, size and important details..."
-            required></textarea>
-        </div>
+          <!-- QUESTION 1 -->
+          <div class="health-question">
 
-        <div class="full">
-          <label>Health / Medical Information</label>
+            <p>
+              1. Do you have any medical condition, allergy, or health
+              concern that you believe may affect getting a tattoo?
+            </p>
 
-          <textarea
-            name="healthInfo"
-            placeholder="Please provide any health information relevant to your tattoo appointment."></textarea>
-        </div>
+            <div class="choice-row">
 
-      </div>
+              <div class="choice">
+                <input
+                  type="radio"
+                  id="medicalNo"
+                  name="medicalCondition"
+                  value="No"
+                  required
+                >
+                <label for="medicalNo">No</label>
+              </div>
 
-      <label class="check">
-        <input type="checkbox" name="healthConsent" value="yes" required>
-        <span>I confirm that the health information I provide is accurate.</span>
-      </label>
+              <div class="choice">
+                <input
+                  type="radio"
+                  id="medicalYes"
+                  name="medicalCondition"
+                  value="Yes"
+                >
+                <label for="medicalYes">Yes</label>
+              </div>
 
-      <label class="check">
-        <input type="checkbox" name="tattooConsent" value="yes" required>
-        <span>I understand that tattooing involves risks and I consent to the tattoo procedure.</span>
-      </label>
+            </div>
 
-      <label class="check">
-        <input type="checkbox" name="bookingConsent" value="yes" required>
-        <span>I agree that Ink Theory may contact me about my booking request.</span>
-      </label>
+            <div class="form-group" style="margin-top:12px;">
+              <input
+                type="text"
+                name="medicalDetails"
+                placeholder="If yes, please provide details"
+              >
+            </div>
 
-      <button class="submit" type="submit">
-        SEND BOOKING REQUEST
-      </button>
+          </div>
 
-      <div id="message"></div>
 
-    </form>
-  </div>
-</section>
+          <!-- QUESTION 2 -->
+          <div class="health-question">
 
-<section class="contact">
-  <div class="container">
+            <p>
+              2. Do you have any known allergies or sensitivities to inks,
+              pigments, latex, adhesives, antiseptics, or skincare products?
+            </p>
 
-    <div class="title">
-      <span>Get In Touch</span>
-      <h2>Ink Theory</h2>
-    </div>
+            <div class="choice-row">
 
-    <div class="contact-grid">
+              <div class="choice">
+                <input
+                  type="radio"
+                  id="allergyNo"
+                  name="allergies"
+                  value="No"
+                  required
+                >
+                <label for="allergyNo">No</label>
+              </div>
 
-      <div class="contact-box">
-        <small>Email</small>
-        <a href="mailto:ink.theory01@outlook.com">
-          ink.theory01@outlook.com
-        </a>
-      </div>
+              <div class="choice">
+                <input
+                  type="radio"
+                  id="allergyYes"
+                  name="allergies"
+                  value="Yes"
+                >
+                <label for="allergyYes">Yes</label>
+              </div>
 
-      <div class="contact-box">
-        <small>Telegram</small>
-        <a href="https://t.me/inktheory01" target="_blank">
-          @inktheory01
-        </a>
-      </div>
+            </div>
 
-      <div class="contact-box">
-        <small>TikTok</small>
-        <a href="https://www.tiktok.com/@ink.theory01" target="_blank">
-          @ink.theory01
-        </a>
-      </div>
+            <div class="form-group" style="margin-top:12px;">
+              <input
+                type="text"
+                name="allergyDetails"
+                placeholder="If yes, please specify"
+              >
+            </div>
 
-    </div>
-  </div>
-</section>
+          </div>
 
-<footer>
-  © 2026 INK THEORY — PROFESSIONAL TATTOO ARTIST
-</footer>
 
-<script>
+          <!-- QUESTION 3 -->
+          <div class="health-question">
 
-const BOOKING_URL =
-"https://script.google.com/macros/s/AKfycbx57WnaV0LZlSJF66ztjyTXP7lW-Pof85XBCE1LAvTk8giQ_0zhnZlpVgd715eB6hmYSw/exec";
-
-const form = document.getElementById("bookingForm");
-
-const message = document.getElementById("message");
-
-form.addEventListener("submit", function(event){
-
-  event.preventDefault();
-
-  message.textContent =
-  "Sending your booking request...";
-
-  fetch(BOOKING_URL,{
-    method:"POST",
-    mode:"no-cors",
-    body:new FormData(form)
-  })
-
-  .then(function(){
-
-    message.textContent =
-    "Thank you. Your booking request has been received by Ink Theory.";
-
-    form.reset();
-
-  })
-
-  .catch(function(){
-
-    message.textContent =
-    "Please contact Ink Theory directly by email or Telegram.";
-
-  });
-
-});
-
-</script>
-
-</body>
-          </html>
+            <p>
+              3. Do you have a condition that may affect he

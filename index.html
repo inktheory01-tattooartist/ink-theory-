@@ -222,27 +222,51 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
     }
 
     .portfolio-card {
-      height: 250px;
+      position: relative;
+      height: 360px;
+      overflow: hidden;
       border: 1px solid #292929;
-      border-radius: 10px;
-      background:
-        linear-gradient(
-          135deg,
-          #303030,
-          #0c0c0c
-        );
-      display: flex;
-      align-items: flex-end;
-      padding: 17px;
+      border-radius: 12px;
+      background: #111;
     }
 
-    .portfolio-card h3 {
+    .portfolio-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .portfolio-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .portfolio-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.85),
+          rgba(0, 0, 0, 0) 55%
+        );
+      pointer-events: none;
+    }
+
+    .portfolio-card figcaption {
+      position: absolute;
+      left: 15px;
+      bottom: 14px;
+      z-index: 2;
       font-size: 16px;
+      font-weight: 700;
     }
 
     /* =========================
@@ -519,7 +543,7 @@
       }
 
       .portfolio-card {
-        height: 210px;
+        height: 330px;
       }
 
       .choice-row {
@@ -784,29 +808,76 @@
 
     <div class="portfolio-grid">
 
-      <div class="portfolio-card">
-        <h3>
-          Custom Work
-        </h3>
-      </div>
+      <figure class="portfolio-card">
+        <img
+          src="images/ink-theory-dog-tags.jpg"
+          alt="Ink Theory Dog Tags tattoo design"
+          loading="lazy"
+        >
+        <figcaption>
+          Dog Tags
+        </figcaption>
+      </figure>
 
-      <div class="portfolio-card">
-        <h3>
-          Fine Line
-        </h3>
-      </div>
 
-      <div class="portfolio-card">
-        <h3>
-          Black &amp; Grey
-        </h3>
-      </div>
+      <figure class="portfolio-card">
+        <img
+          src="images/ink-theory-crown-football.jpg"
+          alt="Ink Theory Crown and Football tattoo design"
+          loading="lazy"
+        >
+        <figcaption>
+          Crown &amp; Football
+        </figcaption>
+      </figure>
 
-      <div class="portfolio-card">
-        <h3>
-          Creative Designs
-        </h3>
-      </div>
+
+      <figure class="portfolio-card">
+        <img
+          src="images/ink-theory-floral-snake.jpg"
+          alt="Ink Theory Floral Snake tattoo design"
+          loading="lazy"
+        >
+        <figcaption>
+          Floral Snake
+        </figcaption>
+      </figure>
+
+
+      <figure class="portfolio-card">
+        <img
+          src="images/ink-theory-compass.jpg"
+          alt="Ink Theory Compass tattoo design"
+          loading="lazy"
+        >
+        <figcaption>
+          Compass
+        </figcaption>
+      </figure>
+
+
+      <figure class="portfolio-card">
+        <img
+          src="images/ink-theory-impossible-chess.jpg"
+          alt="Ink Theory Impossible Chess tattoo design"
+          loading="lazy"
+        >
+        <figcaption>
+          Impossible Chess
+        </figcaption>
+      </figure>
+
+
+      <figure class="portfolio-card">
+        <img
+          src="images/ink-theory-rose.jpg"
+          alt="Ink Theory Rose tattoo design"
+          loading="lazy"
+        >
+        <figcaption>
+          Rose
+        </figcaption>
+      </figure>
 
     </div>
 

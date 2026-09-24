@@ -1,1882 +1,774 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Ink Theory | Professional Tattoo Artist</title>
-
-  <meta
-    name="description"
-    content="Ink Theory — professional custom tattoo services. Your Idea. Your Story. Your Ink."
-  >
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #080808;
-      color: #f5f5f5;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font-family: inherit;
-    }
-
-    .container {
-      width: 92%;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    /* =========================
-       NAVIGATION
-    ========================== */
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.92);
-      border-bottom: 1px solid #252525;
-    }
-
-    .nav-inner {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 21px;
-      font-weight: 900;
-      letter-spacing: 3px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      font-size: 13px;
-    }
-
-    .nav-links a:hover {
-      color: #999;
-    }
-
-    .nav-book {
-      border: 1px solid #fff;
-      border-radius: 30px;
-      padding: 9px 15px;
-    }
-
-    /* =========================
-       HERO
-    ========================== */
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      padding: 110px 20px 70px;
-      background:
-        radial-gradient(
-          circle at center,
-          #292929 0%,
-          #0b0b0b 45%,
-          #000 100%
-        );
-    }
-
-    .hero-content {
-      max-width: 850px;
-      margin: auto;
-    }
-
-    .eyebrow {
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #999;
-      font-size: 12px;
-    }
-
-    .hero h1 {
-      font-size: clamp(55px, 12vw, 125px);
-      line-height: 0.9;
-      letter-spacing: 4px;
-      margin: 22px 0;
-      font-weight: 900;
-    }
-
-    .hero p {
-      max-width: 650px;
-      margin: 0 auto 30px;
-      color: #ccc;
-      font-size: 17px;
-    }
-
-    .btn {
-      display: inline-block;
-      border: 1px solid #fff;
-      background: #fff;
-      color: #000;
-      padding: 13px 23px;
-      border-radius: 30px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-
-    .btn:hover {
-      background: transparent;
-      color: #fff;
-    }
-
-    /* =========================
-       GENERAL SECTIONS
-    ========================== */
-
-    section {
-      padding: 85px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(32px, 6vw, 55px);
-      margin-top: 6px;
-    }
-
-    /* =========================
-       ABOUT
-    ========================== */
-
-    .about {
-      max-width: 820px;
-      margin: auto;
-      text-align: center;
-      color: #bbb;
-      font-size: 16px;
-    }
-
-    /* =========================
-       SERVICES
-    ========================== */
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .service-card {
-      background: #101010;
-      border: 1px solid #292929;
-      border-radius: 12px;
-      padding: 25px;
-      transition: 0.25s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-3px);
-      border-color: #555;
-    }
-
-    .service-card h3 {
-      margin-bottom: 8px;
-    }
-
-    .service-card p {
-      color: #999;
-      font-size: 14px;
-    }
-
-    /* =========================
-       PORTFOLIO
-    ========================== */
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-
-    .portfolio-card {
-      position: relative;
-      height: 360px;
-      overflow: hidden;
-      border: 1px solid #292929;
-      border-radius: 12px;
-      background: #111;
-    }
-
-    .portfolio-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.35s ease;
-    }
-
-    .portfolio-card:hover img {
-      transform: scale(1.04);
-    }
-
-    .portfolio-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.85),
-          rgba(0, 0, 0, 0) 55%
-        );
-      pointer-events: none;
-    }
-
-    .portfolio-card figcaption {
-      position: absolute;
-      left: 15px;
-      bottom: 14px;
-      z-index: 2;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    /* =========================
-       FEATURE
-    ========================== */
-
-    .feature {
-      background: #111;
-      border-top: 1px solid #222;
-      border-bottom: 1px solid #222;
-      text-align: center;
-    }
-
-    .feature p {
-      color: #aaa;
-      max-width: 650px;
-      margin: 0 auto 24px;
-    }
-
-    /* =========================
-       BOOKING
-    ========================== */
-
-    .booking-box {
-      max-width: 850px;
-      margin: auto;
-      background: #101010;
-      border: 1px solid #292929;
-      border-radius: 14px;
-      padding: clamp(20px, 5vw, 42px);
-    }
-
-    .form-section {
-      border-top: 1px solid #292929;
-      padding-top: 27px;
-      margin-top: 27px;
-    }
-
-    .form-section:first-child {
-      border-top: 0;
-      padding-top: 0;
-      margin-top: 0;
-    }
-
-    .form-section h3 {
-      font-size: 21px;
-      margin-bottom: 7px;
-    }
-
-    .form-section-description {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 18px;
-    }
-
-    .form-group {
-      margin-bottom: 17px;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: #ddd;
-      margin-bottom: 7px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="date"],
-    select,
-    textarea {
-      width: 100%;
-      background: #080808;
-      color: #fff;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 13px;
-      outline: none;
-      font-size: 14px;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #777;
-    }
-
-    textarea {
-      min-height: 115px;
-      resize: vertical;
-    }
-
-    /* =========================
-       HEALTH SECTION
-    ========================== */
-
-    .health-note {
-      background: #171717;
-      border-left: 3px solid #888;
-      padding: 15px;
-      border-radius: 0 8px 8px 0;
-      color: #bbb;
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
-
-    .health-question {
-      padding-bottom: 19px;
-      margin-bottom: 19px;
-      border-bottom: 1px solid #252525;
-    }
-
-    .health-question:last-child {
-      border-bottom: 0;
-    }
-
-    .health-question > p {
-      font-size: 14px;
-      font-weight: 700;
-      color: #ddd;
-      margin-bottom: 10px;
-    }
-
-    .choice-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .choice input {
-      display: none;
-    }
-
-    .choice label {
-      border: 1px solid #333;
-      border-radius: 25px;
-      padding: 8px 14px;
-      color: #bbb;
-      font-weight: 500;
-      cursor: pointer;
-      margin: 0;
-      transition: 0.2s;
-    }
-
-    .choice input:checked + label {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
-    }
-
-    /* =========================
-       DECLARATIONS
-    ========================== */
-
-    .declaration {
-      background: #171717;
-      border: 1px solid #292929;
-      border-radius: 9px;
-      padding: 17px;
-      color: #aaa;
-      font-size: 13px;
-      margin-bottom: 15px;
-    }
-
-    .consent-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin: 13px 0;
-      color: #ccc;
-      font-size: 13px;
-    }
-
-    .consent-row input {
-      width: auto;
-      margin-top: 5px;
-      accent-color: white;
-    }
-
-    /* =========================
-       SUBMIT
-    ========================== */
-
-    .submit-area {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    #formMessage {
-      margin-top: 17px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    /* =========================
-       CONTACT
-    ========================== */
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-
-    .contact-card {
-      background: #101010;
-      border: 1px solid #292929;
-      border-radius: 10px;
-      padding: 25px;
-      text-align: center;
-    }
-
-    .contact-card h3 {
-      margin-bottom: 8px;
-    }
-
-    .contact-card p {
-      color: #999;
-      font-size: 14px;
-      word-break: break-word;
-    }
-
-    .contact-card a:hover {
-      color: #fff;
-    }
-
-    /* =========================
-       FOOTER
-    ========================== */
-
-    footer {
-      border-top: 1px solid #222;
-      text-align: center;
-      color: #777;
-      padding: 30px 0;
-      font-size: 13px;
-    }
-
-    /* =========================
-       MOBILE
-    ========================== */
-
-    @media (max-width: 800px) {
-
-      .services-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .portfolio-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links a:not(.nav-book) {
-        display: none;
-      }
-
-    }
-
-    @media (max-width: 520px) {
-
-      section {
-        padding: 65px 0;
-      }
-
-      .services-grid,
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .portfolio-card {
-        height: 330px;
-      }
-
-      .choice-row {
-        flex-direction: column;
-      }
-
-      .choice label {
-        width: 100%;
-        text-align: center;
-      }
-
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ink Theory | Professional Tattoo Artist</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #061a3a;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(3, 18, 45, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #70b7ff;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 20px 60px;
+  background:
+    radial-gradient(circle at top, rgba(30, 100, 200, 0.35), transparent 45%),
+    linear-gradient(180deg, #08285a 0%, #061a3a 100%);
+}
+
+.hero-content {
+  max-width: 900px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 10vw, 7rem);
+  letter-spacing: 8px;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #ffffff;
+  color: #061a3a;
+}
+
+section {
+  padding: 90px 20px;
+  background: #061a3a;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 45px;
+  color: #ffffff;
+}
+
+.about {
+  text-align: center;
+  max-width: 850px;
+  margin: auto;
+}
+
+.about p {
+  color: #ffffff;
+  font-size: 1.05rem;
+}
+
+.services-grid,
+.portfolio-grid,
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: #092652;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #70b7ff;
+}
+
+.card h3 {
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #ffffff;
+}
+
+.portfolio-card {
+  overflow: hidden;
+  padding: 0;
+}
+
+.portfolio-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-card .portfolio-info {
+  padding: 22px;
+}
+
+.portfolio-info h3 {
+  margin-bottom: 8px;
+}
+
+.feature {
+  text-align: center;
+  background:
+    radial-gradient(circle at center, rgba(30,100,200,0.3), transparent 55%),
+    #061a3a;
+}
+
+.feature h2 {
+  font-size: 3rem;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.feature p {
+  color: #ffffff;
+  max-width: 700px;
+  margin: auto;
+}
+
+.booking-form {
+  max-width: 800px;
+  margin: auto;
+  background: #092652;
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 13px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: #061a3a;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #cbd8ec;
+}
+
+.form-group textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.checkbox-group {
+  margin: 20px 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.checkbox-group input {
+  margin-top: 5px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #ffffff;
+  color: #061a3a;
+}
+
+.success-message {
+  display: none;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(0, 100, 255, 0.25);
+  color: #ffffff;
+  text-align: center;
+}
+
+.contact-card {
+  text-align: center;
+  padding: 30px;
+  background: #092652;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.contact-card h3 {
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.contact-card a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-card a:hover {
+  color: #70b7ff;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  background: #03122d;
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  nav {
+    gap: 12px;
+    padding: 12px 8px;
+    font-size: 0.85rem;
+  }
+
+  .hero h1 {
+    letter-spacing: 4px;
+  }
+
+  .booking-form {
+    padding: 22px;
+  }
+
+  .feature h2 {
+    font-size: 2.2rem;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<!-- =========================
-     NAVIGATION
-========================== -->
-
 <nav>
-
-  <div class="container nav-inner">
-
-    <a href="#home" class="logo">
-      INK THEORY
-    </a>
-
-    <div class="nav-links">
-
-      <a href="#about">
-        About
-      </a>
-
-      <a href="#services">
-        Services
-      </a>
-
-      <a href="#portfolio">
-        Portfolio
-      </a>
-
-      <a href="#booking" class="nav-book">
-        Book Now
-      </a>
-
-    </div>
-
-  </div>
-
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#contact">Contact</a>
+  <a href="#book">Book Now</a>
 </nav>
 
-
-<!-- =========================
-     HERO
-========================== -->
-
-<section class="hero" id="home">
-
+<section class="hero">
   <div class="hero-content">
-
-    <span class="eyebrow">
-      Professional Tattoo Artist
-    </span>
-
-    <h1>
-      INK THEORY
-    </h1>
-
-    <p>
-      Your Idea. Your Story. Your Ink.
-      Professional custom tattoo services created
-      with precision, creativity and attention to detail.
-    </p>
-
-    <a href="#booking" class="btn">
-      Book a Tattoo
-    </a>
-
+    <h1>INK THEORY</h1>
+    <p>Your Idea. Your Story. Your Ink.</p>
+    <a href="#book" class="btn">Book a Tattoo</a>
   </div>
-
 </section>
-
-
-<!-- =========================
-     ABOUT
-========================== -->
 
 <section id="about">
-
   <div class="container">
-
-    <div class="section-title">
-
-      <span class="eyebrow">
-        About Ink Theory
-      </span>
-
-      <h2>
-        Made To Mean Something.
-      </h2>
-
-    </div>
+    <h2 class="section-title">About Ink Theory</h2>
 
     <div class="about">
-
       <p>
-        Ink Theory is a professional tattoo service focused
-        on creating meaningful, personal and carefully designed
-        tattoos.
+        Ink Theory is a professional tattoo service focused on creating
+        meaningful, custom tattoo artwork designed around your personal
+        story, style, and vision. Every piece is approached with creativity,
+        precision, professionalism, and attention to detail.
       </p>
-
-      <br>
-
-      <p>
-        Every piece begins with your idea and is developed
-        with attention to style, placement, detail and individuality.
-        Whether you already know exactly what you want or need
-        help developing an idea, Ink Theory is here to turn your
-        concept into a tattoo you can be proud of.
-      </p>
-
     </div>
-
   </div>
-
 </section>
 
-
-<!-- =========================
-     SERVICES
-========================== -->
-
 <section id="services">
-
   <div class="container">
-
-    <div class="section-title">
-
-      <span class="eyebrow">
-        What We Create
-      </span>
-
-      <h2>
-        Services
-      </h2>
-
-    </div>
+    <h2 class="section-title">Services</h2>
 
     <div class="services-grid">
 
-      <div class="service-card">
-
-        <h3>
-          Custom Tattoos
-        </h3>
-
-        <p>
-          Original tattoo concepts created around
-          your personal idea, story and preferred style.
-        </p>
-
+      <div class="card">
+        <h3>Custom Tattoos</h3>
+        <p>Unique tattoo concepts created specifically around your ideas.</p>
       </div>
 
-
-      <div class="service-card">
-
-        <h3>
-          Fine Line
-        </h3>
-
-        <p>
-          Clean, delicate and detailed tattoo work
-          with an elegant finish.
-        </p>
-
+      <div class="card">
+        <h3>Fine Line</h3>
+        <p>Clean, delicate and detailed tattoo work with refined lines.</p>
       </div>
 
-
-      <div class="service-card">
-
-        <h3>
-          Black &amp; Grey
-        </h3>
-
-        <p>
-          Strong contrast, shading and depth using
-          black and grey tones.
-        </p>
-
+      <div class="card">
+        <h3>Black & Grey</h3>
+        <p>Professional black and grey artwork with depth and shading.</p>
       </div>
 
-
-      <div class="service-card">
-
-        <h3>
-          Lettering
-        </h3>
-
-        <p>
-          Names, quotes, dates and meaningful words
-          designed to fit your style.
-        </p>
-
+      <div class="card">
+        <h3>Lettering</h3>
+        <p>Personalized names, quotes, dates and meaningful lettering.</p>
       </div>
 
-
-      <div class="service-card">
-
-        <h3>
-          Minimalist
-        </h3>
-
-        <p>
-          Simple, clean and intentional designs
-          for a subtle statement.
-        </p>
-
+      <div class="card">
+        <h3>Minimalist</h3>
+        <p>Simple, elegant designs with clean and intentional details.</p>
       </div>
 
-
-      <div class="service-card">
-
-        <h3>
-          Cover-Up
-        </h3>
-
-        <p>
-          New tattoo concepts designed to creatively
-          transform existing work.
-        </p>
-
+      <div class="card">
+        <h3>Cover-Up</h3>
+        <p>Creative tattoo concepts designed to transform existing work.</p>
       </div>
 
     </div>
-
   </div>
-
 </section>
 
-
-<!-- =========================
-     PORTFOLIO
-========================== -->
-
 <section id="portfolio">
-
   <div class="container">
-
-    <div class="section-title">
-
-      <span class="eyebrow">
-        Selected Work
-      </span>
-
-      <h2>
-        Portfolio
-      </h2>
-
-    </div>
+    <h2 class="section-title">Portfolio</h2>
 
     <div class="portfolio-grid">
 
-      <figure class="portfolio-card">
+      <div class="card portfolio-card">
         <img
-          src="images/ink-theory-dog-tags.jpg"
-          alt="Ink Theory Dog Tags tattoo design"
-          loading="lazy"
+          src="ink-theory-dog-tags.jpg"
+          alt="Military and Marine custom dog tags tattoo design"
         >
-        <figcaption>
-          Dog Tags
-        </figcaption>
-      </figure>
+        <div class="portfolio-info">
+          <h3>Military / Marine Custom Work</h3>
+          <p>Custom military and Marine-inspired tattoo artwork.</p>
+        </div>
+      </div>
 
+      <div class="card portfolio-card">
+        <div class="portfolio-info">
+          <h3>Fine Line</h3>
+          <p>Elegant fine-line tattoo concepts.</p>
+        </div>
+      </div>
 
-      <figure class="portfolio-card">
-        <img
-          src="images/ink-theory-crown-football.jpg"
-          alt="Ink Theory Crown and Football tattoo design"
-          loading="lazy"
-        >
-        <figcaption>
-          Crown &amp; Football
-        </figcaption>
-      </figure>
+      <div class="card portfolio-card">
+        <div class="portfolio-info">
+          <h3>Black & Grey</h3>
+          <p>Detailed black and grey tattoo artwork.</p>
+        </div>
+      </div>
 
-
-      <figure class="portfolio-card">
-        <img
-          src="images/ink-theory-floral-snake.jpg"
-          alt="Ink Theory Floral Snake tattoo design"
-          loading="lazy"
-        >
-        <figcaption>
-          Floral Snake
-        </figcaption>
-      </figure>
-
-
-      <figure class="portfolio-card">
-        <img
-          src="images/ink-theory-compass.jpg"
-          alt="Ink Theory Compass tattoo design"
-          loading="lazy"
-        >
-        <figcaption>
-          Compass
-        </figcaption>
-      </figure>
-
-
-      <figure class="portfolio-card">
-        <img
-          src="images/ink-theory-impossible-chess.jpg"
-          alt="Ink Theory Impossible Chess tattoo design"
-          loading="lazy"
-        >
-        <figcaption>
-          Impossible Chess
-        </figcaption>
-      </figure>
-
-
-      <figure class="portfolio-card">
-        <img
-          src="images/ink-theory-rose.jpg"
-          alt="Ink Theory Rose tattoo design"
-          loading="lazy"
-        >
-        <figcaption>
-          Rose
-        </figcaption>
-      </figure>
+      <div class="card portfolio-card">
+        <div class="portfolio-info">
+          <h3>Creative Designs</h3>
+          <p>Original concepts created around each client's story.</p>
+        </div>
+      </div>
 
     </div>
-
   </div>
-
 </section>
-
-
-<!-- =========================
-     FEATURE CTA
-========================== -->
 
 <section class="feature">
-
   <div class="container">
-
-    <div class="section-title">
-
-      <h2>
-        Your Skin. Your Story.
-      </h2>
-
-    </div>
-
+    <h2>Your Skin. Your Story.</h2>
     <p>
-      Have an idea in mind?
-      Let's turn it into something personal,
-      clean and timeless.
+      Your tattoo should mean something to you. Tell us your idea,
+      and let's turn your vision into custom artwork.
     </p>
-
-    <a href="#booking" class="btn">
-      Start Your Booking
-    </a>
-
   </div>
-
 </section>
 
-
-<!-- =========================
-     BOOKING
-========================== -->
-
-<section id="booking">
-
+<section id="book">
   <div class="container">
-
-    <div class="section-title">
-
-      <span class="eyebrow">
-        Start Your Tattoo Journey
-      </span>
-
-      <h2>
-        Book With Ink Theory
-      </h2>
-
-    </div>
-
-
-    <div class="booking-box">
-
-      <form id="bookingForm">
-
-
-        <!-- CLIENT INFORMATION -->
-
-        <div class="form-section">
-
-          <h3>
-            Client Information
-          </h3>
-
-          <p class="form-section-description">
-            Please provide your details so we can contact
-            you about your request.
-          </p>
-
-
-          <div class="form-group">
-
-            <label>
-              Full Name *
-            </label>
-
-            <input
-              type="text"
-              name="fullName"
-              required
-              placeholder="Your full name"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Email Address *
-            </label>
-
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="you@example.com"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Phone / Telegram *
-            </label>
-
-            <input
-              type="text"
-              name="phone"
-              required
-              placeholder="Phone number or Telegram username"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Location / Address *
-            </label>
-
-            <input
-              type="text"
-              name="location"
-              required
-              placeholder="City, country or preferred tattoo location"
-            >
-
-          </div>
-
-        </div>
-
-
-        <!-- TATTOO DETAILS -->
-
-        <div class="form-section">
-
-          <h3>
-            Tattoo Details
-          </h3>
-
-          <p class="form-section-description">
-            Tell us about the tattoo you would like to create.
-          </p>
-
-
-          <div class="form-group">
-
-            <label>
-              Tattoo Type *
-            </label>
-
-            <select name="tattooType" required>
-
-              <option value="">
-                Select tattoo type
-              </option>
-
-              <option value="Custom Tattoo">
-                Custom Tattoo
-              </option>
-
-              <option value="Fine Line">
-                Fine Line
-              </option>
-
-              <option value="Black & Grey">
-                Black &amp; Grey
-              </option>
-
-              <option value="Lettering">
-                Lettering
-              </option>
-
-              <option value="Minimalist">
-                Minimalist
-              </option>
-
-              <option value="Cover-Up">
-                Cover-Up
-              </option>
-
-              <option value="Other">
-                Other
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Preferred Appointment Date *
-            </label>
-
-            <input
-              type="date"
-              name="appointmentDate"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              Tell Us About Your Tattoo *
-            </label>
-
-            <textarea
-              name="description"
-              required
-              placeholder="Describe your tattoo idea, placement, approximate size, preferred style, colours and any other details..."
-            ></textarea>
-
-          </div>
-
-        </div>
-
-
-        <!-- HEALTH & MEDICAL INFORMATION -->
-
-        <div class="form-section">
-
-          <h3>
-            🩺 Health &amp; Medical Information
-          </h3>
-
-          <p class="form-section-description">
-            Your safety and wellbeing are important to us.
-            Please answer honestly and accurately.
-          </p>
-
-
-          <div class="health-note">
-
-            This information helps your tattoo artist identify
-            health, medication, allergy or skin-related considerations
-            that may affect the tattooing process or healing.
-
-            <br><br>
-
-            If you have concerns about whether tattooing is appropriate
-            for you, please seek advice from an appropriate healthcare
-            professional.
-
-          </div>
-
-
-          <!-- HEALTH QUESTION 1 -->
-
-          <div class="health-question">
-
-            <p>
-              1. Do you have any medical condition, allergy,
-              or health concern that you believe may affect
-              getting a tattoo?
-            </p>
-
-            <div class="choice-row">
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="medicalNo"
-                  name="medicalCondition"
-                  value="No"
-                  required
-                >
-
-                <label for="medicalNo">
-                  No
-                </label>
-
-              </div>
-
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="medicalYes"
-                  name="medicalCondition"
-                  value="Yes"
-                >
-
-                <label for="medicalYes">
-                  Yes
-                </label>
-
-              </div>
-
-            </div>
-
-
-            <div class="form-group" style="margin-top:10px;">
-
-              <input
-                type="text"
-                name="medicalDetails"
-                placeholder="If yes, please provide details"
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- HEALTH QUESTION 2 -->
-
-          <div class="health-question">
-
-            <p>
-              2. Do you have any known allergies or sensitivities
-              to inks, pigments, latex, adhesives, antiseptics,
-              or skincare products?
-            </p>
-
-            <div class="choice-row">
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="allergyNo"
-                  name="allergies"
-                  value="No"
-                  required
-                >
-
-                <label for="allergyNo">
-                  No
-                </label>
-
-              </div>
-
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="allergyYes"
-                  name="allergies"
-                  value="Yes"
-                >
-
-                <label for="allergyYes">
-                  Yes
-                </label>
-
-              </div>
-
-            </div>
-
-
-            <div class="form-group" style="margin-top:10px;">
-
-              <input
-                type="text"
-                name="allergyDetails"
-                placeholder="If yes, please specify"
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- HEALTH QUESTION 3 -->
-
-          <div class="health-question">
-
-            <p>
-              3. Do you have a condition that may affect healing
-              or bleeding, such as a bleeding disorder, diabetes,
-              or a weakened immune system?
-            </p>
-
-            <div class="choice-row">
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="healingNo"
-                  name="healingCondition"
-                  value="No"
-                  required
-                >
-
-                <label for="healingNo">
-                  No
-                </label>
-
-              </div>
-
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="healingYes"
-                  name="healingCondition"
-                  value="Yes"
-                >
-
-                <label for="healingYes">
-                  Yes
-                </label>
-
-              </div>
-
-            </div>
-
-
-            <div class="form-group" style="margin-top:10px;">
-
-              <input
-                type="text"
-                name="healingDetails"
-                placeholder="If yes, please provide details"
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- HEALTH QUESTION 4 -->
-
-          <div class="health-question">
-
-            <p>
-              4. Are you currently taking any medication or
-              treatment that may affect bleeding, healing,
-              immunity, or skin sensitivity?
-            </p>
-
-            <div class="choice-row">
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="medicationNo"
-                  name="medication"
-                  value="No"
-                  required
-                >
-
-                <label for="medicationNo">
-                  No
-                </label>
-
-              </div>
-
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="medicationYes"
-                  name="medication"
-                  value="Yes"
-                >
-
-                <label for="medicationYes">
-                  Yes
-                </label>
-
-              </div>
-
-            </div>
-
-
-            <div class="form-group" style="margin-top:10px;">
-
-              <input
-                type="text"
-                name="medicationDetails"
-                placeholder="If yes, please specify"
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- HEALTH QUESTION 5 -->
-
-          <div class="health-question">
-
-            <p>
-              5. Do you currently have any skin irritation,
-              infection, rash, open wound, or other skin condition
-              in the area you would like tattooed?
-            </p>
-
-            <div class="choice-row">
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="skinNo"
-                  name="skinCondition"
-                  value="No"
-                  required
-                >
-
-                <label for="skinNo">
-                  No
-                </label>
-
-              </div>
-
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="skinYes"
-                  name="skinCondition"
-                  value="Yes"
-                >
-
-                <label for="skinYes">
-                  Yes
-                </label>
-
-              </div>
-
-            </div>
-
-
-            <div class="form-group" style="margin-top:10px;">
-
-              <input
-                type="text"
-                name="skinDetails"
-                placeholder="If yes, please explain"
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- HEALTH QUESTION 6 -->
-
-          <div class="health-question">
-
-            <p>
-              6. Are you pregnant, breastfeeding, or currently
-              receiving medical treatment that may affect your
-              decision to receive a tattoo?
-            </p>
-
-            <div class="choice-row">
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="pregnancyNo"
-                  name="pregnancyTreatment"
-                  value="No"
-                  required
-                >
-
-                <label for="pregnancyNo">
-                  No
-                </label>
-
-              </div>
-
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="pregnancyYes"
-                  name="pregnancyTreatment"
-                  value="Yes"
-                >
-
-                <label for="pregnancyYes">
-                  Yes
-                </label>
-
-              </div>
-
-
-              <div class="choice">
-
-                <input
-                  type="radio"
-                  id="pregnancyPrivate"
-                  name="pregnancyTreatment"
-                  value="Prefer to discuss privately"
-                >
-
-                <label for="pregnancyPrivate">
-                  Prefer to discuss privately
-                </label>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- HEALTH DECLARATION -->
-
-        <div class="form-section">
-
-          <h3>
-            Client Health Declaration
-          </h3>
-
-
-          <div class="declaration">
-
-            I confirm that the health and medical information
-            I have provided is truthful and complete to the best
-            of my knowledge.
-
-            <br><br>
-
-            I understand that certain medical conditions,
-            medications, allergies, or skin conditions may affect
-            the tattooing process or healing.
-
-            <br><br>
-
-            I agree to inform Ink Theory of any relevant changes
-            to my health before my appointment.
-
-            <br><br>
-
-            I understand that I may be advised to postpone or seek
-            appropriate medical advice if there is a health or
-            skin-related concern that could make tattooing
-            unsuitable or unsafe.
-
-          </div>
-
-
-          <label class="consent-row">
-
-            <input
-              type="checkbox"
-              name="healthConsent"
-              value="yes"
-              required
-            >
-
-            <span>
-              I have read and agree to the Health &amp;
-              Medical Declaration.
-            </span>
-
-          </label>
-
-        </div>
-
-
-        <!-- TATTOO RISK DECLARATION -->
-
-        <div class="form-section">
-
-          <h3>
-            Tattoo Risk Declaration
-          </h3>
-
-
-          <div class="declaration">
-
-            I understand that tattooing involves the intentional
-            insertion of pigment into the skin and that the process
-            may involve temporary discomfort, redness, swelling,
-            irritation, or other reactions.
-
-            <br><br>
-
-            I understand that proper aftercare is important for
-            healing and agree to follow the aftercare instructions
-            provided by Ink Theory.
-
-          </div>
-
-
-          <label class="consent-row">
-
-            <input
-              type="checkbox"
-              name="tattooConsent"
-              value="yes"
-              required
-            >
-
-            <span>
-              I have read and agree to the Tattoo Risk Declaration.
-            </span>
-
-          </label>
-
-        </div>
-
-
-        <!-- BOOKING CONSENT -->
-
-        <div class="form-section">
-
-          <h3>
-            Booking &amp; Contact Consent
-          </h3>
-
-
-          <div class="declaration">
-
-            I confirm that the information I have provided is
-            accurate and understand that Ink Theory may contact me
-            using the contact details supplied in this form regarding
-            my tattoo booking, consultation, appointment arrangements,
-            and related communication.
-
-          </div>
-
-
-          <label class="consent-row">
-
-            <input
-              type="checkbox"
-              name="bookingConsent"
-              value="yes"
-              required
-            >
-
-            <span>
-              I have read and agree to the Booking &amp;
-              Contact Declaration.
-            </span>
-
-          </label>
-
-        </div>
-
-
-        <!-- SUBMIT -->
-
-        <div class="submit-area">
-
-          <button
-            type="submit"
-            class="btn"
-            id="submitButton"
+    <h2 class="section-title">Book Your Appointment</h2>
+
+    <form class="booking-form" id="bookingForm">
+
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input
+          type="text"
+          id="name"
+          name="Full Name"
+          placeholder="Your full name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input
+          type="email"
+          id="email"
+          name="Email"
+          placeholder="Your email address"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone / Telegram *</label>
+        <input
+          type="text"
+          id="phone"
+          name="Phone / Telegram"
+          placeholder="Phone number or Telegram username"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location / Address *</label>
+        <input
+          type="text"
+          id="location"
+          name="Location / Address"
+          placeholder="City, state/country or appointment address"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="tattooType">Tattoo Type *</label>
+        <select id="tattooType" name="Tattoo Type" required>
+          <option value="">Select tattoo type</option>
+          <option>Custom Tattoo</option>
+          <option>Fine Line</option>
+          <option>Black & Grey</option>
+          <option>Lettering</option>
+          <option>Minimalist</option>
+          <option>Cover-Up</option>
+          <option>Military / Marine Custom Work</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Preferred Appointment Date *</label>
+        <input
+          type="date"
+          id="date"
+          name="Preferred Appointment Date"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="description">Tattoo Description *</label>
+        <textarea
+          id="description"
+          name="Tattoo Description"
+          placeholder="Describe your tattoo idea, size, placement and any important details..."
+          required
+        ></textarea>
+      </div>
+
+      <h3 style="margin:30px 0 20px; color:#ffffff;">
+        Health & Medical Information
+      </h3>
+
+      <div class="form-group">
+        <label for="health1">
+          Do you have any medical condition or health concern that may affect getting a tattoo?
+        </label>
+        <textarea
+          id="health1"
+          name="Medical Condition"
+          placeholder="Please provide details or write None."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="health2">
+          Do you have any allergies or sensitivities to inks, pigments, latex, adhesives, antiseptics or skincare products?
+        </label>
+        <textarea
+          id="health2"
+          name="Allergies or Sensitivities"
+          placeholder="Please provide details or write None."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="health3">
+          Do you have any condition that may affect healing or bleeding?
+        </label>
+        <textarea
+          id="health3"
+          name="Healing or Bleeding Condition"
+          placeholder="For example: bleeding disorder, diabetes, weakened immune system, etc."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="health4">
+          Are you taking any medication or undergoing treatment that may affect bleeding, healing, immunity or skin sensitivity?
+        </label>
+        <textarea
+          id="health4"
+          name="Medication or Treatment"
+          placeholder="Please provide details or write None."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="health5">
+          Do you currently have irritation, infection, rash, open wound or another skin condition in the tattoo area?
+        </label>
+        <textarea
+          id="health5"
+          name="Skin Condition"
+          placeholder="Please provide details or write None."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="health6">
+          Are you pregnant, breastfeeding, or receiving medical treatment that may affect your decision to get tattooed?
+        </label>
+        <textarea
+          id="health6"
+          name="Pregnancy Breastfeeding Medical Treatment"
+          placeholder="Please provide details or write None."
+        ></textarea>
+      </div>
+
+      <div class="checkbox-group">
+
+        <label>
+          <input
+            type="checkbox"
+            name="Client Health Declaration"
+            value="Accepted"
+            required
           >
-            Submit Tattoo Booking
-          </button>
+          <span>
+            I confirm that the health and medical information I have provided
+            is accurate and complete to the best of my knowledge.
+          </span>
+        </label>
 
+        <label>
+          <input
+            type="checkbox"
+            name="Tattoo Risk Declaration"
+            value="Accepted"
+            required
+          >
+          <span>
+            I understand that tattooing involves risks including possible
+            irritation, allergic reaction, infection, scarring and healing
+            complications, and I agree to discuss any concerns before the appointment.
+          </span>
+        </label>
 
-          <div id="formMessage"></div>
+        <label>
+          <input
+            type="checkbox"
+            name="Booking & Contact Consent"
+            value="Accepted"
+            required
+          >
+          <span>
+            I agree to be contacted by Ink Theory regarding my booking and appointment.
+          </span>
+        </label>
 
-        </div>
+      </div>
 
-      </form>
+      <button type="submit" class="submit-btn">
+        Submit Booking Request
+      </button>
 
-    </div>
+      <div class="success-message" id="successMessage">
+        Your booking request has been submitted successfully.
+        <br><br>
+        For a quicker response, you can contact Ink Theory directly on Telegram.
+        <br><br>
+        <a
+          href="https://t.me/inktheory01"
+          target="_blank"
+          style="color:#ffffff; font-weight:bold;"
+        >
+          Contact Ink Theory on Telegram
+        </a>
+      </div>
 
+    </form>
   </div>
-
 </section>
-
-
-<!-- =========================
-     CONTACT
-========================== -->
 
 <section id="contact">
-
   <div class="container">
 
-    <div class="section-title">
-
-      <span class="eyebrow">
-        Let's Connect
-      </span>
-
-      <h2>
-        Contact Ink Theory
-      </h2>
-
-    </div>
-
+    <h2 class="section-title">Contact Ink Theory</h2>
 
     <div class="contact-grid">
 
       <div class="contact-card">
-
-        <h3>
-          Email
-        </h3>
-
-        <p>
-          <a href="mailto:ink.theory01@outlook.com">
-            ink.theory01@outlook.com
-          </a>
-        </p>
-
+        <h3>Email</h3>
+        <a href="mailto:ink.theory01@outlook.com">
+          ink.theory01@outlook.com
+        </a>
       </div>
 
-
       <div class="contact-card">
-
-        <h3>
-          Telegram
-        </h3>
-
-        <p>
-          <a
-            href="https://t.me/inktheory01"
-            target="_blank"
-          >
-            @inktheory01
-          </a>
-        </p>
-
+        <h3>Telegram</h3>
+        <a
+          href="https://t.me/inktheory01"
+          target="_blank"
+        >
+          @inktheory01
+        </a>
       </div>
 
-
       <div class="contact-card">
-
-        <h3>
-          TikTok
-        </h3>
-
-        <p>
-          <a
-            href="https://www.tiktok.com/@ink.theory01"
-            target="_blank"
-          >
-            @ink.theory01
-          </a>
-        </p>
-
+        <h3>TikTok</h3>
+        <a
+          href="https://www.tiktok.com/@ink.theory01"
+          target="_blank"
+        >
+          @ink.theory01
+        </a>
       </div>
 
     </div>
 
   </div>
-
 </section>
 
-
-<!-- =========================
-     FOOTER
-========================== -->
-
 <footer>
-
-  <div class="container">
-
-    <p>
-      © <span id="year"></span>
-      Ink Theory. Professional Tattoo Services.
-    </p>
-
-    <p>
-      Your Idea. Your Story. Your Ink.
-    </p>
-
-  </div>
-
+  <p>© 2026 Ink Theory — Professional Tattoo Artist</p>
 </footer>
-
-
-<!-- =========================
-     BOOKING SCRIPT
-========================== -->
 
 <script>
 
-  const BOOKING_ENDPOINT =
-    "https://script.google.com/macros/s/AKfycbx57WnaV0LZlSJF66ztjyTXP7lW-Pof85XBCE1LAvTk8giQ_0zhnZlpVgd715eB6hmYSw/exec";
+const BOOKING_ENDPOINT =
+"https://script.google.com/macros/s/AKfycbx57WnaV0LZlSJF66ztjyTXP7lW-Pof85XBCE1LAvTk8giQ_0zhnZlpVgd715eB6hmYSw/exec";
 
+const bookingForm = document.getElementById("bookingForm");
+const successMessage = document.getElementById("successMessage");
 
-  document.getElementById("year").textContent =
-    new Date().getFullYear();
+bookingForm.addEventListener("submit", function(event) {
 
+  event.preventDefault();
 
-  document
-    .getElementById("bookingForm")
-    .addEventListener("submit", async function(event) {
+  const submitButton =
+    bookingForm.querySelector(".submit-btn");
 
-      event.preventDefault();
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting...";
 
+  const formData = new FormData(bookingForm);
 
-      const form = event.target;
+  fetch(BOOKING_ENDPOINT, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  })
+  .then(function() {
 
-      const button =
-        document.getElementById("submitButton");
+    bookingForm.reset();
 
-      const message =
-        document.getElementById("formMessage");
+    successMessage.style.display = "block";
 
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit Booking Request";
 
-      button.disabled = true;
-
-      button.textContent =
-        "Submitting...";
-
-      message.textContent =
-        "";
-
-      message.style.color =
-        "#aaa";
-
-
-      const formData =
-        new FormData(form);
-
-
-      try {
-
-        await fetch(
-          BOOKING_ENDPOINT,
-          {
-            method: "POST",
-            mode: "no-cors",
-            body: formData
-          }
-        );
-
-
-        message.textContent =
-          "Thank you. Your booking request has been submitted successfully. Ink Theory will contact you using the details you provided.";
-
-        message.style.color =
-          "#ddd";
-
-
-        form.reset();
-
-
-        setTimeout(function() {
-
-          const contactNow =
-            confirm(
-              "Your booking request has been submitted. Would you like to contact Ink Theory directly for a quicker response?"
-            );
-
-
-          if (contactNow) {
-
-            window.location.href =
-              "https://t.me/inktheory01";
-
-          }
-
-        }, 700);
-
-
-      } catch (error) {
-
-        message.textContent =
-          "We could not complete the submission. Please try again or contact Ink Theory directly.";
-
-        message.style.color =
-          "#ff8a8a";
-
-      }
-
-
-      button.disabled = false;
-
-      button.textContent =
-        "Submit Tattoo Booking";
-
+    successMessage.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
     });
+
+  })
+  .catch(function() {
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit Booking Request";
+
+    alert(
+      "There was a problem submitting your booking. Please contact Ink Theory directly on Telegram."
+    );
+
+  });
+
+});
 
 </script>
 

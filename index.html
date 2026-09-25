@@ -6,6 +6,9 @@
 
 <title>Ink Theory | Professional Tattoo Artist</title>
 
+<!-- PDF GENERATOR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
 * {
   box-sizing: border-box;
@@ -267,14 +270,37 @@ section {
   color: #061a3a;
 }
 
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 .success-message {
   display: none;
   margin-top: 20px;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   background: rgba(0, 100, 255, 0.25);
   color: #ffffff;
   text-align: center;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 13px 25px;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  background: #ffffff;
+  color: #061a3a;
 }
 
 .contact-card {
@@ -545,68 +571,68 @@ footer {
 
       <div class="form-group">
         <label for="health1">
-          Do you have any medical condition or health concern that may affect getting a tattoo?
+          Do you have any medical condition or health concern that may affect getting a tattoo? *
         </label>
-        <textarea
-          id="health1"
-          name="Medical Condition"
-          placeholder="Please provide details or write None."
-        ></textarea>
+        <select id="health1" name="Medical Condition" required>
+          <option value="">Please select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
       </div>
 
       <div class="form-group">
         <label for="health2">
-          Do you have any allergies or sensitivities to inks, pigments, latex, adhesives, antiseptics or skincare products?
+          Do you have any allergies or sensitivities to inks, pigments, latex, adhesives, antiseptics or skincare products? *
         </label>
-        <textarea
-          id="health2"
-          name="Allergies or Sensitivities"
-          placeholder="Please provide details or write None."
-        ></textarea>
+        <select id="health2" name="Allergies or Sensitivities" required>
+          <option value="">Please select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
       </div>
 
       <div class="form-group">
         <label for="health3">
-          Do you have any condition that may affect healing or bleeding?
+          Do you have any condition that may affect healing or bleeding? *
         </label>
-        <textarea
-          id="health3"
-          name="Healing or Bleeding Condition"
-          placeholder="For example: bleeding disorder, diabetes, weakened immune system, etc."
-        ></textarea>
+        <select id="health3" name="Healing or Bleeding Condition" required>
+          <option value="">Please select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
       </div>
 
       <div class="form-group">
         <label for="health4">
-          Are you taking any medication or undergoing treatment that may affect bleeding, healing, immunity or skin sensitivity?
+          Are you taking any medication or undergoing treatment that may affect bleeding, healing, immunity or skin sensitivity? *
         </label>
-        <textarea
-          id="health4"
-          name="Medication or Treatment"
-          placeholder="Please provide details or write None."
-        ></textarea>
+        <select id="health4" name="Medication or Treatment" required>
+          <option value="">Please select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
       </div>
 
       <div class="form-group">
         <label for="health5">
-          Do you currently have irritation, infection, rash, open wound or another skin condition in the tattoo area?
+          Do you currently have irritation, infection, rash, open wound or another skin condition in the tattoo area? *
         </label>
-        <textarea
-          id="health5"
-          name="Skin Condition"
-          placeholder="Please provide details or write None."
-        ></textarea>
+        <select id="health5" name="Skin Condition" required>
+          <option value="">Please select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
       </div>
 
       <div class="form-group">
         <label for="health6">
-          Are you pregnant, breastfeeding, or receiving medical treatment that may affect your decision to get tattooed?
+          Are you pregnant, breastfeeding, or receiving medical treatment that may affect your decision to get tattooed? *
         </label>
-        <textarea
-          id="health6"
-          name="Pregnancy Breastfeeding Medical Treatment"
-          placeholder="Please provide details or write None."
-        ></textarea>
+        <select id="health6" name="Pregnancy Breastfeeding Medical Treatment" required>
+          <option value="">Please select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
       </div>
 
       <div class="checkbox-group">
@@ -657,17 +683,23 @@ footer {
       </button>
 
       <div class="success-message" id="successMessage">
+
         Your booking request has been submitted successfully.
+
         <br><br>
-        For a quicker response, you can contact Ink Theory directly on Telegram.
+
+        Your Ink Theory booking confirmation PDF is ready.
+
         <br><br>
-        <a
-          href="https://t.me/inktheory01"
-          target="_blank"
-          style="color:#ffffff; font-weight:bold;"
+
+        <button
+          type="button"
+          id="downloadPdfBtn"
+          class="download-btn"
         >
-          Contact Ink Theory on Telegram
-        </a>
+          Download Booking PDF
+        </button>
+
       </div>
 
     </form>
@@ -724,6 +756,312 @@ const BOOKING_ENDPOINT =
 
 const bookingForm = document.getElementById("bookingForm");
 const successMessage = document.getElementById("successMessage");
+const downloadPdfBtn = document.getElementById("downloadPdfBtn");
+
+let latestBookingData = null;
+let latestBookingId = null;
+
+
+/* =========================================================
+   CREATE BOOKING PDF
+========================================================= */
+
+function createBookingPdf(formData, bookingId) {
+
+  if (!window.jspdf || !window.jspdf.jsPDF) {
+    alert(
+      "The booking PDF service could not load. Please check your internet connection and try again."
+    );
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+
+  const doc = new jsPDF({
+    unit: "mm",
+    format: "a4"
+  });
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+
+  let y = 20;
+
+  function addText(text, x, size, bold) {
+
+    doc.setFont("helvetica", bold ? "bold" : "normal");
+    doc.setFontSize(size);
+    doc.text(String(text || ""), x, y);
+
+  }
+
+  function addWrappedField(label, value) {
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+
+    doc.text(label, 20, y);
+
+    y += 5;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+
+    const lines = doc.splitTextToSize(
+      String(value || "Not provided"),
+      pageWidth - 40
+    );
+
+    doc.text(lines, 20, y);
+
+    y += (lines.length * 5) + 5;
+
+    if (y > pageHeight - 25) {
+      doc.addPage();
+      y = 20;
+    }
+  }
+
+
+  /* HEADER */
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(25);
+  doc.text("INK THEORY", pageWidth / 2, y, {
+    align: "center"
+  });
+
+  y += 9;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(13);
+  doc.text("Tattoo Booking Confirmation", pageWidth / 2, y, {
+    align: "center"
+  });
+
+  y += 10;
+
+  doc.setLineWidth(0.5);
+  doc.line(20, y, pageWidth - 20, y);
+
+  y += 10;
+
+
+  /* BOOKING REFERENCE */
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(11);
+
+  doc.text(
+    "Booking Reference: " + bookingId,
+    20,
+    y
+  );
+
+  y += 6;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+
+  doc.text(
+    "Confirmation Date: " + new Date().toLocaleString(),
+    20,
+    y
+  );
+
+  y += 12;
+
+
+  /* CLIENT INFORMATION */
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Client Information", 20, y);
+
+  y += 8;
+
+  addWrappedField(
+    "Full Name",
+    formData.get("Full Name")
+  );
+
+  addWrappedField(
+    "Email",
+    formData.get("Email")
+  );
+
+  addWrappedField(
+    "Phone / Telegram",
+    formData.get("Phone / Telegram")
+  );
+
+  addWrappedField(
+    "Location / Address",
+    formData.get("Location / Address")
+  );
+
+
+  /* APPOINTMENT */
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Appointment Details", 20, y);
+
+  y += 8;
+
+  addWrappedField(
+    "Tattoo Type",
+    formData.get("Tattoo Type")
+  );
+
+  addWrappedField(
+    "Preferred Appointment Date",
+    formData.get("Preferred Appointment Date")
+  );
+
+  addWrappedField(
+    "Tattoo Description",
+    formData.get("Tattoo Description")
+  );
+
+
+  /* HEALTH INFORMATION */
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Health & Medical Information", 20, y);
+
+  y += 8;
+
+  addWrappedField(
+    "Medical Condition",
+    formData.get("Medical Condition")
+  );
+
+  addWrappedField(
+    "Allergies or Sensitivities",
+    formData.get("Allergies or Sensitivities")
+  );
+
+  addWrappedField(
+    "Healing or Bleeding Condition",
+    formData.get("Healing or Bleeding Condition")
+  );
+
+  addWrappedField(
+    "Medication or Treatment",
+    formData.get("Medication or Treatment")
+  );
+
+  addWrappedField(
+    "Skin Condition",
+    formData.get("Skin Condition")
+  );
+
+  addWrappedField(
+    "Pregnancy / Breastfeeding / Medical Treatment",
+    formData.get("Pregnancy Breastfeeding Medical Treatment")
+  );
+
+
+  /* DECLARATIONS */
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Client Declarations", 20, y);
+
+  y += 8;
+
+  addWrappedField(
+    "Client Health Declaration",
+    formData.get("Client Health Declaration") || "Not accepted"
+  );
+
+  addWrappedField(
+    "Tattoo Risk Declaration",
+    formData.get("Tattoo Risk Declaration") || "Not accepted"
+  );
+
+  addWrappedField(
+    "Booking & Contact Consent",
+    formData.get("Booking & Contact Consent") || "Not accepted"
+  );
+
+
+  /* FINAL NOTE */
+
+  if (y > pageHeight - 45) {
+    doc.addPage();
+    y = 20;
+  }
+
+  y += 3;
+
+  doc.setLineWidth(0.5);
+  doc.line(20, y, pageWidth - 20, y);
+
+  y += 9;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+
+  const note =
+    "Please keep this booking confirmation for your records. " +
+    "Ink Theory will review your booking request and contact you regarding " +
+    "appointment arrangements and any additional information required.";
+
+  const noteLines = doc.splitTextToSize(
+    note,
+    pageWidth - 40
+  );
+
+  doc.text(noteLines, 20, y);
+
+  y += noteLines.length * 5 + 7;
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(10);
+
+  doc.text(
+    "Ink Theory",
+    pageWidth / 2,
+    y,
+    { align: "center" }
+  );
+
+  y += 5;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+
+  doc.text(
+    "ink.theory01@outlook.com",
+    pageWidth / 2,
+    y,
+    { align: "center" }
+  );
+
+  y += 5;
+
+  doc.text(
+    "@inktheory01",
+    pageWidth / 2,
+    y,
+    { align: "center" }
+  );
+
+
+  /* SAVE PDF */
+
+  doc.save(
+    "Ink-Theory-Booking-" + bookingId + ".pdf"
+  );
+}
+
+
+/* =========================================================
+   BOOKING SUBMISSION
+========================================================= */
 
 bookingForm.addEventListener("submit", function(event) {
 
@@ -733,9 +1071,31 @@ bookingForm.addEventListener("submit", function(event) {
     bookingForm.querySelector(".submit-btn");
 
   submitButton.disabled = true;
-  submitButton.textContent = "Submitting...";
+  submitButton.textContent = "Preparing Booking...";
 
   const formData = new FormData(bookingForm);
+
+  const bookingId =
+    "IT-" +
+    Date.now().toString().slice(-8);
+
+  latestBookingData = formData;
+  latestBookingId = bookingId;
+
+
+  /*
+    Create the PDF during the user's button action.
+    This helps mobile browsers allow the PDF download.
+  */
+
+  createBookingPdf(
+    formData,
+    bookingId
+  );
+
+
+  submitButton.textContent = "Submitting...";
+
 
   fetch(BOOKING_ENDPOINT, {
     method: "POST",
@@ -743,8 +1103,6 @@ bookingForm.addEventListener("submit", function(event) {
     body: formData
   })
   .then(function() {
-
-    bookingForm.reset();
 
     successMessage.style.display = "block";
 
@@ -756,6 +1114,8 @@ bookingForm.addEventListener("submit", function(event) {
       block: "center"
     });
 
+    bookingForm.reset();
+
   })
   .catch(function() {
 
@@ -763,10 +1123,38 @@ bookingForm.addEventListener("submit", function(event) {
     submitButton.textContent = "Submit Booking Request";
 
     alert(
-      "There was a problem submitting your booking. Please contact Ink Theory directly on Telegram."
+      "There was a problem submitting your booking. " +
+      "Please try again."
     );
 
   });
+
+});
+
+
+/* =========================================================
+   DOWNLOAD PDF AGAIN
+========================================================= */
+
+downloadPdfBtn.addEventListener("click", function() {
+
+  if (
+    latestBookingData &&
+    latestBookingId
+  ) {
+
+    createBookingPdf(
+      latestBookingData,
+      latestBookingId
+    );
+
+  } else {
+
+    alert(
+      "No booking confirmation is currently available."
+    );
+
+  }
 
 });
 

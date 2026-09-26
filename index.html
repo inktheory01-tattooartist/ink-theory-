@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ink Theory — Tattoo Artist</title>
+<title>Ink Theory | Professional Tattoo Artist</title>
+
+<!-- PDF GENERATOR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 * {
@@ -24,240 +27,326 @@ body {
   line-height: 1.6;
 }
 
-.container {
-  width: min(92%, 900px);
-  margin: auto;
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(3, 18, 45, 0.96);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
 }
 
-/* HEADER */
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-header {
+nav a:hover {
+  color: #70b7ff;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 45px 20px 30px;
-  background: #04142d;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding: 100px 20px 60px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(30, 100, 200, 0.35),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      #08285a 0%,
+      #061a3a 100%
+    );
 }
 
-.logo {
-  font-size: 42px;
-  font-weight: 800;
-  letter-spacing: 4px;
+.hero-content {
+  max-width: 900px;
 }
 
-.tagline {
-  margin-top: 8px;
-  color: #dce8ff;
-  font-size: 15px;
+.hero h1 {
+  font-size: clamp(3rem, 10vw, 7rem);
+  letter-spacing: 8px;
+  margin-bottom: 15px;
 }
 
-/* SECTIONS */
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #ffffff;
+  color: #061a3a;
+}
 
 section {
-  padding: 40px 0;
+  padding: 90px 20px;
+  background: #061a3a;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
 }
 
 .section-title {
   text-align: center;
-  font-size: 28px;
-  margin-bottom: 25px;
+  font-size: 2.5rem;
+  margin-bottom: 45px;
 }
 
-/* SERVICES */
-
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-}
-
-.service {
-  background: #0b2b5c;
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 22px 15px;
-  border-radius: 12px;
+.about {
   text-align: center;
+  max-width: 850px;
+  margin: auto;
 }
 
-.service h3 {
-  margin-bottom: 5px;
+.about p {
+  font-size: 1.05rem;
 }
 
-/* BOOKING */
+.services-grid,
+.portfolio-grid,
+.contact-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
 
-.booking-box {
-  background: #ffffff;
-  color: #111111;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+.card {
+  background: #092652;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+  padding: 30px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #70b7ff;
+}
+
+.card h3 {
+  margin-bottom: 12px;
+}
+
+.portfolio-card {
+  overflow: hidden;
+  padding: 0;
+}
+
+.portfolio-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-info {
+  padding: 22px;
+}
+
+.portfolio-info h3 {
+  margin-bottom: 8px;
+}
+
+.feature {
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(30,100,200,0.3),
+      transparent 55%
+    ),
+    #061a3a;
+}
+
+.feature h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.feature p {
+  max-width: 700px;
+  margin: auto;
+}
+
+.booking-form {
+  max-width: 800px;
+  margin: auto;
+  background: #092652;
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.18);
 }
 
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
-label {
+.form-group label {
   display: block;
-  font-weight: 700;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
-input,
-select,
-textarea {
+.form-group input,
+.form-group textarea,
+.form-group select {
   width: 100%;
   padding: 13px;
-  border: 1px solid #c9c9c9;
-  border-radius: 8px;
-  font-size: 15px;
-  font-family: inherit;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: #061a3a;
+  color: #ffffff;
+  font-size: 1rem;
 }
 
-textarea {
-  min-height: 110px;
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #cbd8ec;
+}
+
+.form-group textarea {
+  min-height: 130px;
   resize: vertical;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: #123d80;
-  box-shadow: 0 0 0 2px rgba(18,61,128,0.12);
+.checkbox-group {
+  margin: 20px 0;
 }
 
-.submit-button {
+.checkbox-group label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.checkbox-group input {
+  margin-top: 5px;
+}
+
+.submit-btn {
   width: 100%;
   padding: 15px;
-  border: none;
-  border-radius: 9px;
-  background: #061a3a;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  background: transparent;
   color: #ffffff;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.submit-button:hover {
-  background: #0b2b5c;
+.submit-btn:hover {
+  background: #ffffff;
+  color: #061a3a;
 }
 
-.submit-button:disabled {
+.submit-btn:disabled {
   opacity: 0.6;
-  cursor: not-allowed;
+  cursor: wait;
 }
 
-/* MESSAGE */
-
-#message {
+.success-message {
   display: none;
   margin-top: 20px;
-  padding: 18px;
+  padding: 20px;
   border-radius: 10px;
-  text-align: center;
-  font-weight: 600;
-}
-
-.success {
-  background: #e8f7ec;
-  color: #146c2e;
-}
-
-.error {
-  background: #fdecec;
-  color: #9b1c1c;
-}
-
-/* CONTACT */
-
-.contact {
+  background: rgba(0, 100, 255, 0.25);
   text-align: center;
 }
 
-.contact-intro {
-  color: #dce8ff;
-  margin-bottom: 25px;
-}
-
-/* SOCIAL ICONS */
-
-.social-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 28px;
-}
-
-.social-card {
-  width: 125px;
-  text-decoration: none;
+.download-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 13px 25px;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  background: transparent;
   color: #ffffff;
-  transition: transform 0.2s ease;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.social-card:hover {
-  transform: translateY(-5px);
-}
-
-.social-icon {
-  width: 72px;
-  height: 72px;
-  margin: auto;
-  border-radius: 50%;
+.download-btn:hover {
   background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  color: #061a3a;
 }
 
-.social-icon svg {
-  width: 38px;
-  height: 38px;
-  fill: #061a3a;
+.contact-card {
+  text-align: center;
+  padding: 30px;
+  background: #092652;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.18);
 }
 
-.social-name {
-  margin-top: 10px;
-  font-weight: 700;
-  font-size: 15px;
+.contact-card h3 {
+  margin-bottom: 10px;
 }
 
-.social-handle {
-  margin-top: 2px;
-  color: #cbdcff;
-  font-size: 12px;
-  word-break: break-word;
+.contact-card a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* FOOTER */
+.contact-card a:hover {
+  color: #70b7ff;
+}
 
 footer {
   text-align: center;
-  padding: 30px 15px;
-  background: #04142d;
-  color: #cbdcff;
-  font-size: 14px;
+  padding: 30px 20px;
+  background: #03122d;
 }
-
-/* MOBILE */
 
 @media (max-width: 600px) {
 
-  .logo {
-    font-size: 32px;
+  nav {
+    gap: 12px;
+    padding: 12px 8px;
+    font-size: 0.85rem;
   }
 
-  .booking-box {
-    padding: 20px;
+  .hero h1 {
+    letter-spacing: 4px;
   }
 
-  .social-grid {
-    gap: 20px;
+  .booking-form {
+    padding: 22px;
   }
 
-  .social-card {
-    width: 110px;
+  .feature h2 {
+    font-size: 2.2rem;
   }
 }
 </style>
@@ -265,277 +354,756 @@ footer {
 
 <body>
 
-<header>
-  <div class="container">
-    <div class="logo">INK THEORY</div>
-
-    <div class="tagline">
-      Professional Tattoo Art • Custom Work • Appointment Only
-    </div>
-  </div>
-</header>
+<nav>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#contact">Contact</a>
+  <a href="#book">Book Now</a>
+</nav>
 
 
-<section>
-  <div class="container">
+<!-- HERO -->
 
-    <h2 class="section-title">Tattoo Services</h2>
+<section class="hero">
 
-    <div class="services">
+  <div class="hero-content">
 
-      <div class="service">
-        <h3>Custom Tattoos</h3>
-        <p>Unique artwork designed around your idea.</p>
-      </div>
+    <h1>INK THEORY</h1>
 
-      <div class="service">
-        <h3>Fine Line</h3>
-        <p>Clean, detailed and delicate tattoo work.</p>
-      </div>
+    <p>
+      Your Idea. Your Story. Your Ink.
+    </p>
 
-      <div class="service">
-        <h3>Black & Grey</h3>
-        <p>Shading-focused custom tattoo designs.</p>
-      </div>
-
-      <div class="service">
-        <h3>Military / Marine</h3>
-        <p>Custom military-inspired artwork and dog-tag designs.</p>
-      </div>
-
-      <div class="service">
-        <h3>Cover-Up</h3>
-        <p>Custom designs created to cover existing tattoos.</p>
-      </div>
-
-      <div class="service">
-        <h3>Lettering</h3>
-        <p>Names, dates, quotes and custom typography.</p>
-      </div>
-
-    </div>
+    <a href="#book" class="btn">
+      Book a Tattoo
+    </a>
 
   </div>
+
 </section>
 
 
-<section id="booking">
+<!-- ABOUT -->
+
+<section id="about">
 
   <div class="container">
 
-    <h2 class="section-title">Book Your Tattoo</h2>
+    <h2 class="section-title">
+      About Ink Theory
+    </h2>
 
-    <div class="booking-box">
+    <div class="about">
 
-      <form id="bookingForm">
-
-        <div class="form-group">
-          <label for="clientName">Full Name *</label>
-
-          <input
-            type="text"
-            id="clientName"
-            name="clientName"
-            required
-            placeholder="Enter your full name">
-        </div>
-
-
-        <div class="form-group">
-          <label for="clientEmail">Email Address *</label>
-
-          <input
-            type="email"
-            id="clientEmail"
-            name="clientEmail"
-            required
-            placeholder="Enter your email address">
-        </div>
-
-
-        <div class="form-group">
-          <label for="phone">Phone / WhatsApp</label>
-
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Enter your phone number">
-        </div>
-
-
-        <div class="form-group">
-          <label for="appointmentDate">
-            Preferred Appointment Date *
-          </label>
-
-          <input
-            type="date"
-            id="appointmentDate"
-            name="appointmentDate"
-            required>
-        </div>
-
-
-        <div class="form-group">
-          <label for="appointmentTime">
-            Preferred Appointment Time
-          </label>
-
-          <input
-            type="time"
-            id="appointmentTime"
-            name="appointmentTime">
-        </div>
-
-
-        <div class="form-group">
-          <label for="tattooType">
-            Tattoo Type *
-          </label>
-
-          <select
-            id="tattooType"
-            name="tattooType"
-            required>
-
-            <option value="">Select tattoo type</option>
-
-            <option value="Custom Tattoo">
-              Custom Tattoo
-            </option>
-
-            <option value="Fine Line">
-              Fine Line
-            </option>
-
-            <option value="Black & Grey">
-              Black & Grey
-            </option>
-
-            <option value="Military / Marine Custom Work">
-              Military / Marine Custom Work
-            </option>
-
-            <option value="Cover-Up">
-              Cover-Up
-            </option>
-
-            <option value="Lettering">
-              Lettering
-            </option>
-
-            <option value="Other">
-              Other
-            </option>
-
-          </select>
-        </div>
-
-
-        <div class="form-group">
-          <label for="tattooPlacement">
-            Tattoo Placement
-          </label>
-
-          <input
-            type="text"
-            id="tattooPlacement"
-            name="tattooPlacement"
-            placeholder="Example: arm, chest, back, leg">
-        </div>
-
-
-        <div class="form-group">
-          <label for="tattooDescription">
-            Describe Your Tattoo Idea *
-          </label>
-
-          <textarea
-            id="tattooDescription"
-            name="tattooDescription"
-            required
-            placeholder="Describe the tattoo you want, including any important details..."></textarea>
-        </div>
-
-
-        <div class="form-group">
-          <label for="size">
-            Approximate Tattoo Size
-          </label>
-
-          <input
-            type="text"
-            id="size"
-            name="size"
-            placeholder="Example: 10 cm, palm-size, full back">
-        </div>
-
-
-        <div class="form-group">
-          <label for="location">
-            Appointment Location
-          </label>
-
-          <input
-            type="text"
-            id="location"
-            name="location"
-            placeholder="Where would you like the appointment?">
-        </div>
-
-
-        <div class="form-group">
-          <label for="additionalNotes">
-            Additional Information
-          </label>
-
-          <textarea
-            id="additionalNotes"
-            name="additionalNotes"
-            placeholder="Anything else Ink Theory should know?"></textarea>
-        </div>
-
-
-        <div class="form-group">
-
-          <label>
-            Client Consent *
-          </label>
-
-          <label style="font-weight:400;">
-
-            <input
-              type="checkbox"
-              id="consent"
-              name="consent"
-              value="Accepted"
-              required
-              style="width:auto; margin-right:8px;">
-
-            I confirm that the information I have provided is accurate
-            and I agree to be contacted regarding my tattoo appointment.
-
-          </label>
-
-        </div>
-
-
-        <button
-          type="submit"
-          class="submit-button"
-          id="submitButton">
-
-          Submit Tattoo Booking
-
-        </button>
-
-
-        <div id="message"></div>
-
-      </form>
+      <p>
+        Ink Theory is a professional tattoo service focused on creating
+        meaningful, custom tattoo artwork designed around your personal
+        story, style, and vision. Every piece is approached with creativity,
+        precision, professionalism, and attention to detail.
+      </p>
 
     </div>
+
+  </div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="services">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Services
+    </h2>
+
+    <div class="services-grid">
+
+      <div class="card">
+        <h3>Custom Tattoos</h3>
+        <p>
+          Unique tattoo concepts created specifically around your ideas.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Fine Line</h3>
+        <p>
+          Clean, delicate and detailed tattoo work with refined lines.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Black & Grey</h3>
+        <p>
+          Professional black and grey artwork with depth and shading.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Lettering</h3>
+        <p>
+          Personalized names, quotes, dates and meaningful lettering.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Minimalist</h3>
+        <p>
+          Simple, elegant designs with clean and intentional details.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Cover-Up</h3>
+        <p>
+          Creative tattoo concepts designed to transform existing work.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PORTFOLIO -->
+
+<section id="portfolio">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Portfolio
+    </h2>
+
+    <div class="portfolio-grid">
+
+
+      <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-dog-tags.jpg"
+          alt="Military and Marine custom dog tags tattoo design"
+          loading="lazy"
+        >
+
+        <div class="portfolio-info">
+
+          <h3>
+            Military / Marine Custom Work
+          </h3>
+
+          <p>
+            Custom military and Marine-inspired tattoo artwork.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-crown-football.jpg"
+          alt="Crown and football custom tattoo design"
+          loading="lazy"
+        >
+
+        <div class="portfolio-info">
+
+          <h3>
+            Crown & Football
+          </h3>
+
+          <p>
+            Custom symbolic sports-inspired artwork.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-floral-snake.jpg"
+          alt="Floral snake tattoo design"
+          loading="lazy"
+        >
+
+        <div class="portfolio-info">
+
+          <h3>
+            Floral Snake
+          </h3>
+
+          <p>
+            Detailed custom floral and animal composition.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-compass.jpg"
+          alt="Compass tattoo design"
+          loading="lazy"
+        >
+
+        <div class="portfolio-info">
+
+          <h3>
+            Compass
+          </h3>
+
+          <p>
+            Meaningful compass-inspired tattoo artwork.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-impossible-chess.jpg"
+          alt="Impossible chess tattoo design"
+          loading="lazy"
+        >
+
+        <div class="portfolio-info">
+
+          <h3>
+            Impossible Chess
+          </h3>
+
+          <p>
+            Creative conceptual tattoo artwork.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-rose.jpg"
+          alt="Rose tattoo design"
+          loading="lazy"
+        >
+
+        <div class="portfolio-info">
+
+          <h3>
+            Rose
+          </h3>
+
+          <p>
+            Classic floral tattoo artwork with refined detail.
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FEATURE -->
+
+<section class="feature">
+
+  <div class="container">
+
+    <h2>
+      Your Skin. Your Story.
+    </h2>
+
+    <p>
+      Your tattoo should mean something to you.
+      Tell us your idea, and let's turn your vision
+      into custom artwork.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- BOOKING -->
+
+<section id="book">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Book Your Appointment
+    </h2>
+
+
+    <form
+      class="booking-form"
+      id="bookingForm"
+    >
+
+
+      <!-- CLIENT -->
+
+      <div class="form-group">
+
+        <label for="name">
+          Full Name *
+        </label>
+
+        <input
+          type="text"
+          id="name"
+          name="Full Name"
+          placeholder="Your full name"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="email">
+          Email *
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          name="Email"
+          placeholder="Your email address"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="phone">
+          Phone / Telegram *
+        </label>
+
+        <input
+          type="text"
+          id="phone"
+          name="Phone / Telegram"
+          placeholder="Phone number or Telegram username"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="location">
+          Location / Address *
+        </label>
+
+        <input
+          type="text"
+          id="location"
+          name="Location / Address"
+          placeholder="City, state/country or appointment address"
+          required
+        >
+
+      </div>
+
+
+      <!-- TATTOO -->
+
+      <div class="form-group">
+
+        <label for="tattooType">
+          Tattoo Type *
+        </label>
+
+        <select
+          id="tattooType"
+          name="Tattoo Type"
+          required
+        >
+
+          <option value="">
+            Select tattoo type
+          </option>
+
+          <option>
+            Custom Tattoo
+          </option>
+
+          <option>
+            Fine Line
+          </option>
+
+          <option>
+            Black & Grey
+          </option>
+
+          <option>
+            Lettering
+          </option>
+
+          <option>
+            Minimalist
+          </option>
+
+          <option>
+            Cover-Up
+          </option>
+
+          <option>
+            Military / Marine Custom Work
+          </option>
+
+          <option>
+            Other
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="date">
+          Preferred Appointment Date *
+        </label>
+
+        <input
+          type="date"
+          id="date"
+          name="Preferred Appointment Date"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="description">
+          Tattoo Description *
+        </label>
+
+        <textarea
+          id="description"
+          name="Tattoo Description"
+          placeholder="Describe your tattoo idea, size, placement and any important details..."
+          required
+        ></textarea>
+
+      </div>
+
+
+      <!-- HEALTH -->
+
+      <h3
+        style="
+          margin:30px 0 20px;
+          color:#ffffff;
+        "
+      >
+        Health & Medical Information
+      </h3>
+
+
+      <div class="form-group">
+
+        <label for="health1">
+          Do you have any medical condition or health concern that may affect getting a tattoo? *
+        </label>
+
+        <select
+          id="health1"
+          name="Medical Condition"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="health2">
+          Do you have any allergies or sensitivities to inks, pigments, latex, adhesives, antiseptics or skincare products? *
+        </label>
+
+        <select
+          id="health2"
+          name="Allergies or Sensitivities"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="health3">
+          Do you have any condition that may affect healing or bleeding? *
+        </label>
+
+        <select
+          id="health3"
+          name="Healing or Bleeding Condition"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="health4">
+          Are you taking any medication or undergoing treatment that may affect bleeding, healing, immunity or skin sensitivity? *
+        </label>
+
+        <select
+          id="health4"
+          name="Medication or Treatment"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="health5">
+          Do you currently have irritation, infection, rash, open wound or another skin condition in the tattoo area? *
+        </label>
+
+        <select
+          id="health5"
+          name="Skin Condition"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="health6">
+          Are you pregnant, breastfeeding, or receiving medical treatment that may affect your decision to get tattooed? *
+        </label>
+
+        <select
+          id="health6"
+          name="Pregnancy Breastfeeding Medical Treatment"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- CONSENTS -->
+
+      <div class="checkbox-group">
+
+
+        <label>
+
+          <input
+            type="checkbox"
+            name="Client Health Declaration"
+            value="Accepted"
+            required
+          >
+
+          <span>
+            I confirm that the health and medical information I have provided
+            is accurate and complete to the best of my knowledge.
+          </span>
+
+        </label>
+
+
+        <label>
+
+          <input
+            type="checkbox"
+            name="Tattoo Risk Declaration"
+            value="Accepted"
+            required
+          >
+
+          <span>
+            I understand that tattooing involves risks including possible
+            irritation, allergic reaction, infection, scarring and healing
+            complications, and I agree to discuss any concerns before the appointment.
+          </span>
+
+        </label>
+
+
+        <label>
+
+          <input
+            type="checkbox"
+            name="Booking & Contact Consent"
+            value="Accepted"
+            required
+          >
+
+          <span>
+            I agree to be contacted by Ink Theory regarding my booking and appointment.
+          </span>
+
+        </label>
+
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="submit-btn"
+      >
+        Submit Booking Request
+      </button>
+
+
+      <div
+        class="success-message"
+        id="successMessage"
+      >
+
+        <strong>
+          Booking request submitted.
+        </strong>
+
+        <br><br>
+
+        Your Ink Theory booking confirmation PDF is ready.
+
+        <br>
+
+        <button
+          type="button"
+          id="downloadPdfBtn"
+          class="download-btn"
+        >
+          Download Booking PDF
+        </button>
+
+      </div>
+
+
+    </form>
 
   </div>
 
@@ -544,150 +1112,65 @@ footer {
 
 <!-- CONTACT -->
 
-<section>
+<section id="contact">
 
-  <div class="container contact">
+  <div class="container">
 
     <h2 class="section-title">
-      Connect With Ink Theory
+      Contact Ink Theory
     </h2>
 
-    <p class="contact-intro">
-      Tap an icon below to connect directly with Ink Theory.
-    </p>
+
+    <div class="contact-grid">
 
 
-    <div class="social-grid">
+      <div class="contact-card">
 
-
-      <!-- INSTAGRAM -->
-
-      <a
-        class="social-card"
-        href="https://instagram.com/ink.theory01"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram @ink.theory01">
-
-        <div class="social-icon">
-
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true">
-
-            <path
-              d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
-
-          </svg>
-
-        </div>
-
-        <div class="social-name">
-          Instagram
-        </div>
-
-        <div class="social-handle">
-          @ink.theory01
-        </div>
-
-      </a>
-
-
-      <!-- TIKTOK -->
-
-      <a
-        class="social-card"
-        href="https://www.tiktok.com/@ink.theory01"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="TikTok @ink.theory01">
-
-        <div class="social-icon">
-
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true">
-
-            <path
-              d="M15.5 2h3c.3 2.1 1.5 3.7 3.5 4.6v3.1c-1.5-.1-2.9-.6-4-1.4v7.2c0 4.1-2.8 6.5-6.5 6.5A6.5 6.5 0 0 1 5 15.5 6.5 6.5 0 0 1 11.5 9c.4 0 .9 0 1.3.1v3.3a3.3 3.3 0 1 0 1.7 3V2h1z"/>
-
-          </svg>
-
-        </div>
-
-        <div class="social-name">
-          TikTok
-        </div>
-
-        <div class="social-handle">
-          @ink.theory01
-        </div>
-
-      </a>
-
-
-      <!-- TELEGRAM -->
-
-      <a
-        class="social-card"
-        href="https://t.me/inktheory01"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Telegram @inktheory01">
-
-        <div class="social-icon">
-
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true">
-
-            <path
-              d="M21.8 3.2 18.5 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L5.9 13.6.9 12c-1.1-.3-1.1-1 .2-1.5L20.5 3c.9-.3 1.7.2 1.3.2z"/>
-
-          </svg>
-
-        </div>
-
-        <div class="social-name">
-          Telegram
-        </div>
-
-        <div class="social-handle">
-          @inktheory01
-        </div>
-
-      </a>
-
-
-      <!-- EMAIL -->
-
-      <a
-        class="social-card"
-        href="mailto:ink.theory01@outlook.com"
-        aria-label="Email Ink Theory">
-
-        <div class="social-icon">
-
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true">
-
-            <path
-              d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm0 2v.3l9 5.6 9-5.6V7H3zm18 10V9.7l-8.5 5.2a1 1 0 0 1-1 0L3 9.7V17h18z"/>
-
-          </svg>
-
-        </div>
-
-        <div class="social-name">
+        <h3>
           Email
-        </div>
+        </h3>
 
-        <div class="social-handle">
+        <a
+          href="mailto:ink.theory01@outlook.com"
+        >
           ink.theory01@outlook.com
-        </div>
+        </a>
 
-      </a>
+      </div>
+
+
+      <div class="contact-card">
+
+        <h3>
+          Telegram
+        </h3>
+
+        <a
+          href="https://t.me/inktheory01"
+          target="_blank"
+          rel="noopener"
+        >
+          @inktheory01
+        </a>
+
+      </div>
+
+
+      <div class="contact-card">
+
+        <h3>
+          TikTok
+        </h3>
+
+        <a
+          href="https://www.tiktok.com/@ink.theory01"
+          target="_blank"
+          rel="noopener"
+        >
+          @ink.theory01
+        </a>
+
+      </div>
 
 
     </div>
@@ -699,139 +1182,755 @@ footer {
 
 <footer>
 
-  <div>
+  <p>
     © 2026 Ink Theory — Professional Tattoo Artist
-  </div>
-
-  <div style="margin-top:6px;">
-    Appointment Only
-  </div>
+  </p>
 
 </footer>
 
 
 <script>
 
-/*
-============================================================
-INK THEORY GOOGLE APPS SCRIPT WEB APP
-============================================================
-*/
+/* =========================================================
+   GOOGLE APPS SCRIPT BOOKING ENDPOINT
+========================================================= */
 
-const SCRIPT_URL =
+const BOOKING_ENDPOINT =
 "https://script.google.com/macros/s/AKfycbx57WnaV0LZlSJF66ztjyTXP7lW-Pof85XBCE1LAvTk8giQ_0zhnZlpVgd715eB6hmYSw/exec";
 
 
 const bookingForm =
-  document.getElementById("bookingForm");
+document.getElementById("bookingForm");
 
-const submitButton =
-  document.getElementById("submitButton");
+const successMessage =
+document.getElementById("successMessage");
 
-const message =
-  document.getElementById("message");
-
-
-bookingForm.addEventListener("submit", async function(event) {
-
-  event.preventDefault();
-
-  submitButton.disabled = true;
-
-  submitButton.textContent =
-    "Submitting Booking...";
-
-  message.style.display = "none";
-
-  message.className = "";
+const downloadPdfBtn =
+document.getElementById("downloadPdfBtn");
 
 
-  const formData =
-    new FormData(bookingForm);
+let latestBookingData = null;
+let latestBookingId = null;
 
 
-  try {
+/* =========================================================
+   PDF CREATOR
+========================================================= */
 
-    const response =
-      await fetch(
-        SCRIPT_URL,
-        {
-          method: "POST",
-          body: formData
-        }
-      );
+function createBookingPdf(
+  formData,
+  bookingId
+) {
 
+  if (
+    !window.jspdf ||
+    !window.jspdf.jsPDF
+  ) {
 
-    const result =
-      await response.json();
+    alert(
+      "The booking PDF service could not load. Please check your internet connection and try again."
+    );
 
-
-    if (!result.success) {
-      throw new Error(
-        result.message ||
-        "Booking could not be submitted."
-      );
-    }
+    return;
+  }
 
 
-    message.className =
-      "success";
+  const {
+    jsPDF
+  } = window.jspdf;
 
 
-    message.innerHTML =
-      "<strong>Booking Submitted Successfully!</strong><br><br>" +
-
-      "Your booking reference is:<br>" +
-
-      "<strong>" +
-      result.bookingReference +
-      "</strong><br><br>" +
-
-      "A confirmation email has been sent to you.";
-
-
-    message.style.display =
-      "block";
-
-
-    bookingForm.reset();
-
-
-    window.scrollTo({
-      top: message.offsetTop - 100,
-      behavior: "smooth"
+  const doc =
+    new jsPDF({
+      unit: "mm",
+      format: "a4"
     });
 
 
-  } catch (error) {
+  const pageWidth =
+    doc.internal.pageSize.getWidth();
 
-    console.error(error);
-
-
-    message.className =
-      "error";
+  const pageHeight =
+    doc.internal.pageSize.getHeight();
 
 
-    message.innerHTML =
-      "<strong>Booking could not be submitted.</strong><br><br>" +
-
-      "Please check your internet connection and try again.";
+  let y = 20;
 
 
-    message.style.display =
-      "block";
+  function addWrappedField(
+    label,
+    value
+  ) {
 
-  } finally {
+    if (
+      y >
+      pageHeight - 30
+    ) {
 
-    submitButton.disabled =
-      false;
+      doc.addPage();
 
-    submitButton.textContent =
-      "Submit Tattoo Booking";
+      y = 20;
+
+    }
+
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
+    doc.setFontSize(10);
+
+    doc.text(
+      label,
+      20,
+      y
+    );
+
+
+    y += 5;
+
+
+    doc.setFont(
+      "helvetica",
+      "normal"
+    );
+
+    doc.setFontSize(10);
+
+
+    const lines =
+      doc.splitTextToSize(
+        String(
+          value ||
+          "Not provided"
+        ),
+        pageWidth - 40
+      );
+
+
+    doc.text(
+      lines,
+      20,
+      y
+    );
+
+
+    y +=
+      (lines.length * 5) +
+      5;
 
   }
 
-});
+
+  /* HEADER */
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(25);
+
+  doc.text(
+    "INK THEORY",
+    pageWidth / 2,
+    y,
+    {
+      align: "center"
+    }
+  );
+
+
+  y += 9;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+  doc.setFontSize(13);
+
+  doc.text(
+    "Tattoo Booking Confirmation",
+    pageWidth / 2,
+    y,
+    {
+      align: "center"
+    }
+  );
+
+
+  y += 10;
+
+
+  doc.line(
+    20,
+    y,
+    pageWidth - 20,
+    y
+  );
+
+
+  y += 10;
+
+
+  /* BOOKING REFERENCE */
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(11);
+
+  doc.text(
+    "Booking Reference: " +
+    bookingId,
+    20,
+    y
+  );
+
+
+  y += 6;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+  doc.setFontSize(9);
+
+  doc.text(
+    "Confirmation Date: " +
+    new Date().toLocaleString(),
+    20,
+    y
+  );
+
+
+  y += 12;
+
+
+  /* CLIENT */
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(14);
+
+  doc.text(
+    "Client Information",
+    20,
+    y
+  );
+
+
+  y += 8;
+
+
+  addWrappedField(
+    "Full Name",
+    formData.get("Full Name")
+  );
+
+
+  addWrappedField(
+    "Email",
+    formData.get("Email")
+  );
+
+
+  addWrappedField(
+    "Phone / Telegram",
+    formData.get("Phone / Telegram")
+  );
+
+
+  addWrappedField(
+    "Location / Address",
+    formData.get("Location / Address")
+  );
+
+
+  /* APPOINTMENT */
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(14);
+
+  doc.text(
+    "Appointment Details",
+    20,
+    y
+  );
+
+
+  y += 8;
+
+
+  addWrappedField(
+    "Tattoo Type",
+    formData.get("Tattoo Type")
+  );
+
+
+  addWrappedField(
+    "Preferred Appointment Date",
+    formData.get(
+      "Preferred Appointment Date"
+    )
+  );
+
+
+  addWrappedField(
+    "Tattoo Description",
+    formData.get(
+      "Tattoo Description"
+    )
+  );
+
+
+  /* HEALTH */
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(14);
+
+  doc.text(
+    "Health & Medical Information",
+    20,
+    y
+  );
+
+
+  y += 8;
+
+
+  addWrappedField(
+    "Medical Condition",
+    formData.get(
+      "Medical Condition"
+    )
+  );
+
+
+  addWrappedField(
+    "Allergies or Sensitivities",
+    formData.get(
+      "Allergies or Sensitivities"
+    )
+  );
+
+
+  addWrappedField(
+    "Healing or Bleeding Condition",
+    formData.get(
+      "Healing or Bleeding Condition"
+    )
+  );
+
+
+  addWrappedField(
+    "Medication or Treatment",
+    formData.get(
+      "Medication or Treatment"
+    )
+  );
+
+
+  addWrappedField(
+    "Skin Condition",
+    formData.get(
+      "Skin Condition"
+    )
+  );
+
+
+  addWrappedField(
+    "Pregnancy / Breastfeeding / Medical Treatment",
+    formData.get(
+      "Pregnancy Breastfeeding Medical Treatment"
+    )
+  );
+
+
+  /* CONSENTS */
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(14);
+
+  doc.text(
+    "Client Declarations",
+    20,
+    y
+  );
+
+
+  y += 8;
+
+
+  addWrappedField(
+    "Client Health Declaration",
+    formData.get(
+      "Client Health Declaration"
+    ) ||
+    "Not accepted"
+  );
+
+
+  addWrappedField(
+    "Tattoo Risk Declaration",
+    formData.get(
+      "Tattoo Risk Declaration"
+    ) ||
+    "Not accepted"
+  );
+
+
+  addWrappedField(
+    "Booking & Contact Consent",
+    formData.get(
+      "Booking & Contact Consent"
+    ) ||
+    "Not accepted"
+  );
+
+
+  /* FOOTER NOTE */
+
+  if (
+    y >
+    pageHeight - 45
+  ) {
+
+    doc.addPage();
+
+    y = 20;
+
+  }
+
+
+  y += 3;
+
+
+  doc.line(
+    20,
+    y,
+    pageWidth - 20,
+    y
+  );
+
+
+  y += 9;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+  doc.setFontSize(9);
+
+
+  const note =
+    "Please keep this booking confirmation for your records. " +
+    "Ink Theory will review your booking request and contact you " +
+    "regarding appointment arrangements and any additional information required.";
+
+
+  const noteLines =
+    doc.splitTextToSize(
+      note,
+      pageWidth - 40
+    );
+
+
+  doc.text(
+    noteLines,
+    20,
+    y
+  );
+
+
+  y +=
+    noteLines.length * 5 +
+    7;
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(10);
+
+
+  doc.text(
+    "Ink Theory",
+    pageWidth / 2,
+    y,
+    {
+      align: "center"
+    }
+  );
+
+
+  y += 5;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+  doc.setFontSize(9);
+
+
+  doc.text(
+    "ink.theory01@outlook.com",
+    pageWidth / 2,
+    y,
+    {
+      align: "center"
+    }
+  );
+
+
+  y += 5;
+
+
+  doc.text(
+    "@inktheory01",
+    pageWidth / 2,
+    y,
+    {
+      align: "center"
+    }
+  );
+
+
+  doc.save(
+    "Ink-Theory-Booking-" +
+    bookingId +
+    ".pdf"
+  );
+
+}
+
+
+/* =========================================================
+   BOOKING SUBMISSION
+========================================================= */
+
+bookingForm.addEventListener(
+  "submit",
+  function(event) {
+
+    event.preventDefault();
+
+
+    const submitButton =
+      bookingForm.querySelector(
+        ".submit-btn"
+      );
+
+
+    submitButton.disabled =
+      true;
+
+    submitButton.textContent =
+      "Preparing Booking...";
+
+
+    /*
+     * Capture EXACTLY what the client entered.
+     */
+
+    const formData =
+      new FormData(
+        bookingForm
+      );
+
+
+    /*
+     * Unique booking reference.
+     */
+
+    const bookingId =
+      "IT-" +
+      Date.now()
+        .toString()
+        .slice(-8);
+
+
+    latestBookingData =
+      formData;
+
+    latestBookingId =
+      bookingId;
+
+
+    /*
+     * Add booking reference.
+     */
+
+    formData.append(
+      "Booking Reference",
+      bookingId
+    );
+
+
+    /*
+     * Create confirmation PDF.
+     */
+
+    createBookingPdf(
+      formData,
+      bookingId
+    );
+
+
+    /*
+     * IMPORTANT:
+     *
+     * Convert FormData to URL encoded
+     * data before sending to Apps Script.
+     */
+
+    const encodedData =
+      new URLSearchParams();
+
+
+    for (
+      const [key, value]
+      of formData.entries()
+    ) {
+
+      encodedData.append(
+        key,
+        value
+      );
+
+    }
+
+
+    submitButton.textContent =
+      "Sending Booking...";
+
+
+    fetch(
+      BOOKING_ENDPOINT,
+      {
+
+        method: "POST",
+
+        mode: "no-cors",
+
+        headers: {
+          "Content-Type":
+            "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+
+        body:
+          encodedData.toString()
+
+      }
+    )
+
+    .then(
+      function() {
+
+        successMessage.style.display =
+          "block";
+
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.textContent =
+          "Submit Booking Request";
+
+
+        successMessage.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+
+        bookingForm.reset();
+
+      }
+    )
+
+    .catch(
+      function(error) {
+
+        console.error(error);
+
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.textContent =
+          "Submit Booking Request";
+
+
+        alert(
+          "There was a problem sending your booking. Please try again."
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   DOWNLOAD PDF AGAIN
+========================================================= */
+
+downloadPdfBtn.addEventListener(
+  "click",
+  function() {
+
+    if (
+      latestBookingData &&
+      latestBookingId
+    ) {
+
+      createBookingPdf(
+        latestBookingData,
+        latestBookingId
+      );
+
+    } else {
+
+      alert(
+        "No booking confirmation is currently available."
+      );
+
+    }
+
+  }
+);
 
 </script>
 

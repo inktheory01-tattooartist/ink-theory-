@@ -1,1597 +1,2628 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ink Theory | Professional Tattoo Artist</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<style>
-:root{
-  --bg:#061a3a;
-  --bg2:#092652;
-  --bg3:#03122d;
-  --card:rgba(255,255,255,.055);
-  --card2:rgba(255,255,255,.075);
-  --line:rgba(255,255,255,.12);
-  --white:#ffffff;
-  --soft:#dce8fa;
-  --muted:#9fb3d0;
-  --accent:#7fb2ff;
-  --accent2:#b9d5ff;
-  --success:#8ff0c1;
-  --danger:#ff9c9c;
-  --shadow:0 18px 55px rgba(0,0,0,.25);
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:
-    radial-gradient(circle at top right,rgba(70,130,220,.18),transparent 30%),
-    linear-gradient(145deg,var(--bg),var(--bg3));
-  color:var(--white);
-  line-height:1.6;
-  min-height:100vh;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-img{
-  max-width:100%;
-  display:block;
-}
-
-/* NAVIGATION */
-
-nav{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:1000;
-  background:rgba(3,18,45,.88);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);
-}
-
-.nav-inner{
-  max-width:1150px;
-  margin:auto;
-  min-height:70px;
-  padding:0 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.logo{
-  font-size:20px;
-  font-weight:800;
-  letter-spacing:3px;
-  white-space:nowrap;
-}
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:22px;
-  font-size:14px;
-}
-
-.nav-links a{
-  color:var(--soft);
-  transition:.25s;
-}
-
-.nav-links a:hover{
-  color:#fff;
-}
-
-.nav-book{
-  padding:10px 16px;
-  border:1px solid rgba(255,255,255,.22);
-  border-radius:999px;
-  background:rgba(255,255,255,.06);
-}
-
-.menu-btn{
-  display:none;
-  background:none;
-  border:0;
-  color:#fff;
-  font-size:26px;
-  cursor:pointer;
-}
-
-/* GENERAL */
-
-section{
-  max-width:1150px;
-  margin:auto;
-  padding:90px 20px;
-}
-
-.section-heading{
-  text-align:center;
-  margin-bottom:42px;
-}
-
-.section-heading span{
-  display:inline-block;
-  color:var(--accent2);
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:3px;
-  margin-bottom:9px;
-}
-
-.section-heading h2{
-  font-size:34px;
-  margin-bottom:10px;
-}
-
-.section-heading p{
-  color:var(--muted);
-  max-width:650px;
-  margin:auto;
-}
-
-/* HERO */
-
-.hero{
-  max-width:none;
-  min-height:100vh;
-  padding:130px 20px 80px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:500px;
-  height:500px;
-  border-radius:50%;
-  background:rgba(75,135,225,.12);
-  filter:blur(70px);
-  top:-150px;
-  right:-100px;
-}
-
-.hero-content{
-  max-width:850px;
-  position:relative;
-  z-index:1;
-}
-
-.hero-small{
-  color:var(--accent2);
-  text-transform:uppercase;
-  letter-spacing:4px;
-  font-size:12px;
-  margin-bottom:18px;
-}
-
-.hero h1{
-  font-size:clamp(48px,10vw,105px);
-  line-height:.95;
-  letter-spacing:7px;
-  font-weight:900;
-  margin-bottom:22px;
-}
-
-.hero p{
-  color:var(--soft);
-  font-size:18px;
-  max-width:650px;
-  margin:0 auto 32px;
-}
-
-.hero-buttons{
-  display:flex;
-  justify-content:center;
-  gap:13px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  padding:0 22px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.18);
-  color:#fff;
-  background:rgba(255,255,255,.07);
-  cursor:pointer;
-  font-weight:700;
-  transition:.25s;
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.12);
-}
-
-.btn-primary{
-  background:#fff;
-  color:#061a3a;
-}
-
-.btn-primary:hover{
-  background:#e9f2ff;
-}
-
-/* ABOUT */
-
-.about-card{
-  max-width:850px;
-  margin:auto;
-  padding:34px;
-  border:1px solid var(--line);
-  border-radius:24px;
-  background:var(--card);
-  box-shadow:var(--shadow);
-}
-
-.about-card p{
-  color:var(--soft);
-  margin-bottom:14px;
-}
-
-/* SERVICES */
-
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.service-card{
-  padding:25px;
-  min-height:150px;
-  border:1px solid var(--line);
-  background:var(--card);
-  border-radius:20px;
-  transition:.25s;
-}
-
-.service-card:hover{
-  transform:translateY(-4px);
-  background:var(--card2);
-}
-
-.service-number{
-  font-size:12px;
-  color:var(--accent2);
-  letter-spacing:2px;
-}
-
-.service-card h3{
-  margin:15px 0 7px;
-}
-
-.service-card p{
-  color:var(--muted);
-  font-size:14px;
-}
-
-/* PORTFOLIO ALBUM */
-
-.portfolio-shell{
-  max-width:1000px;
-  margin:auto;
-}
-
-.album-bar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  margin-bottom:20px;
-}
-
-.album-bar p{
-  color:var(--muted);
-  font-size:14px;
-}
-
-.album-count{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.05);
-  padding:7px 12px;
-  border-radius:999px;
-  color:var(--soft);
-  font-size:12px;
-}
-
-.album-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.album-item{
-  position:relative;
-  overflow:hidden;
-  aspect-ratio:1/1;
-  border-radius:15px;
-  border:1px solid var(--line);
-  background:#020d20;
-  cursor:pointer;
-}
-
-.album-item img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.35s;
-}
-
-.album-item:hover img{
-  transform:scale(1.06);
-}
-
-.album-overlay{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  padding:35px 12px 12px;
-  background:linear-gradient(transparent,rgba(0,0,0,.85));
-  opacity:0;
-  transition:.25s;
-}
-
-.album-item:hover .album-overlay{
-  opacity:1;
-}
-
-.album-overlay strong{
-  font-size:13px;
-}
-
-.album-overlay span{
-  display:block;
-  color:#c7d8ef;
-  font-size:11px;
-  margin-top:2px;
-}
-
-/* LIGHTBOX */
-
-.lightbox{
-  position:fixed;
-  inset:0;
-  z-index:3000;
-  background:rgba(0,0,0,.92);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:25px;
-}
-
-.lightbox.active{
-  display:flex;
-}
-
-.lightbox-content{
-  max-width:900px;
-  width:100%;
-  text-align:center;
-}
-
-.lightbox img{
-  max-height:78vh;
-  width:auto;
-  max-width:100%;
-  margin:auto;
-  border-radius:15px;
-}
-
-.lightbox-title{
-  margin-top:15px;
-  color:#fff;
-  font-weight:700;
-}
-
-.lightbox-close{
-  position:absolute;
-  top:20px;
-  right:25px;
-  width:44px;
-  height:44px;
-  border:1px solid rgba(255,255,255,.2);
-  border-radius:50%;
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  font-size:25px;
-  cursor:pointer;
-}
-
-/* FEATURE */
-
-.feature{
-  max-width:1000px;
-  margin:20px auto 0;
-  padding:45px 25px;
-  text-align:center;
-  border:1px solid var(--line);
-  border-radius:28px;
-  background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
-}
-
-.feature h2{
-  font-size:35px;
-  margin-bottom:10px;
-}
-
-.feature p{
-  color:var(--muted);
-  max-width:650px;
-  margin:auto;
-}
-
-/* BOOKING */
-
-.booking-wrap{
-  max-width:850px;
-  margin:auto;
-}
-
-.booking-card{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.045);
-  border-radius:26px;
-  padding:30px;
-  box-shadow:var(--shadow);
-}
-
-.form-section{
-  padding:20px 0 25px;
-  border-bottom:1px solid var(--line);
-}
-
-.form-section:last-of-type{
-  border-bottom:0;
-}
-
-.form-section h3{
-  margin-bottom:5px;
-  font-size:20px;
-}
-
-.form-section > p{
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:18px;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.form-group{
-  display:flex;
-  flex-direction:column;
-  gap:7px;
-}
-
-.form-group.full{
-  grid-column:1/-1;
-}
-
-label{
-  font-size:13px;
-  color:var(--soft);
-  font-weight:600;
-}
-
-input,
-select,
-textarea{
-  width:100%;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(0,0,0,.16);
-  color:#fff;
-  border-radius:13px;
-  padding:13px 14px;
-  outline:none;
-  font-family:inherit;
-  font-size:14px;
-  transition:.2s;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(127,178,255,.08);
-}
-
-select option{
-  background:#061a3a;
-  color:#fff;
-}
-
-textarea{
-  min-height:110px;
-  resize:vertical;
-}
-
-.yes-no{
-  display:flex;
-  gap:10px;
-}
-
-.yes-no label{
-  flex:1;
-  cursor:pointer;
-  position:relative;
-}
-
-.yes-no input{
-  position:absolute;
-  opacity:0;
-}
-
-.yes-no span{
-  display:block;
-  text-align:center;
-  padding:11px;
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:12px;
-  color:var(--soft);
-  background:rgba(255,255,255,.035);
-  transition:.2s;
-}
-
-.yes-no input:checked + span{
-  border-color:var(--accent);
-  background:rgba(127,178,255,.12);
-  color:#fff;
-}
-
-.reason-box{
-  display:none;
-  margin-top:10px;
-  animation:fadeIn .25s ease;
-}
-
-.reason-box.visible{
-  display:block;
-}
-
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(-4px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.consent-box{
-  padding:17px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:rgba(255,255,255,.035);
-  margin-top:12px;
-}
-
-.check-row{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-}
-
-.check-row input{
-  width:18px;
-  height:18px;
-  margin-top:3px;
-  flex:none;
-}
-
-.check-row label{
-  font-weight:400;
-  line-height:1.5;
-}
-
-.submit-area{
-  padding-top:25px;
-}
-
-.submit-btn{
-  width:100%;
-  min-height:55px;
-  border:0;
-  border-radius:15px;
-  background:#fff;
-  color:#061a3a;
-  font-size:15px;
-  font-weight:800;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.submit-btn:hover{
-  background:#e8f1ff;
-  transform:translateY(-1px);
-}
-
-.submit-btn:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-  transform:none;
-}
-
-.status{
-  margin-top:15px;
-  padding:13px;
-  border-radius:12px;
-  display:none;
-  font-size:14px;
-}
-
-.status.success{
-  display:block;
-  background:rgba(143,240,193,.09);
-  border:1px solid rgba(143,240,193,.25);
-  color:var(--success);
-}
-
-.status.error{
-  display:block;
-  background:rgba(255,156,156,.09);
-  border:1px solid rgba(255,156,156,.25);
-  color:var(--danger);
-}
-
-.pdf-download{
-  display:none;
-  margin-top:12px;
-  text-align:center;
-}
-
-/* CONTACT */
-
-.contact-icons{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.contact-icon{
-  width:62px;
-  height:62px;
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.055);
-  transition:.25s;
-}
-
-.contact-icon:hover{
-  transform:translateY(-4px);
-  background:rgba(255,255,255,.11);
-  border-color:rgba(255,255,255,.28);
-}
-
-.contact-icon svg{
-  width:29px;
-  height:29px;
-  fill:none;
-  stroke:#fff;
-  stroke-width:1.7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.contact-icon.instagram svg{
-  stroke-width:1.8;
-}
-
-.contact-icon.tiktok svg{
-  fill:#fff;
-  stroke:none;
-}
-
-.contact-icon.telegram svg{
-  fill:#fff;
-  stroke:none;
-}
-
-.contact-icon.email svg{
-  fill:none;
-}
-
-/* FOOTER */
-
-footer{
-  border-top:1px solid var(--line);
-  padding:30px 20px;
-  text-align:center;
-  color:var(--muted);
-  font-size:13px;
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-  .menu-btn{
-    display:block;
-  }
-
-  .nav-links{
-    display:none;
-    position:absolute;
-    top:70px;
-    left:12px;
-    right:12px;
-    padding:15px;
-    flex-direction:column;
-    align-items:stretch;
-    background:#061a3a;
-    border:1px solid var(--line);
-    border-radius:16px;
-  }
-
-  .nav-links.open{
-    display:flex;
-  }
-
-  .nav-links a{
-    padding:10px;
-  }
-
-  .services-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .album-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-@media(max-width:560px){
-
-  section{
-    padding:70px 15px;
-  }
-
-  .hero{
-    padding-left:15px;
-    padding-right:15px;
-  }
-
-  .hero h1{
-    letter-spacing:4px;
-  }
-
-  .hero p{
-    font-size:16px;
-  }
-
-  .section-heading h2{
-    font-size:28px;
-  }
-
-  .services-grid{
-    grid-template-columns:1fr;
-  }
-
-  .album-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
-  }
-
-  .album-overlay{
-    opacity:1;
-  }
-
-  .booking-card{
-    padding:18px;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .form-group.full{
-    grid-column:auto;
-  }
-
-  .contact-icon{
-    width:58px;
-    height:58px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ink Theory | Professional Tattoo Artist</title>
+
+  <meta
+    name="description"
+    content="Ink Theory — Professional tattoo artist. Custom tattoos, fine line, black & grey, lettering, minimalist, cover-ups and military / marine custom work."
+  >
+
+  <!-- PDF generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #061a3a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(3, 18, 45, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      min-height: 72px;
+      padding: 0 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: #8fc7ff;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      font-size: 0.95rem;
+      opacity: 0.88;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: #9bd0ff;
+    }
+
+    /* Top-right icon */
+    .menu-toggle {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      color: #ffffff;
+      border-radius: 12px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .menu-toggle svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 650px;
+      padding: 100px 20px 90px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(circle at top right, rgba(60,130,220,0.18), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(20,70,140,0.22), transparent 40%),
+        linear-gradient(135deg, #061a3a, #03122d);
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 15px;
+      margin-bottom: 20px;
+
+      border: 1px solid rgba(143,199,255,0.30);
+      border-radius: 999px;
+
+      color: #a9d5ff;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: 7px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #9bd0ff;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 32px;
+      color: #d6e5f7;
+      font-size: 1.08rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 50px;
+      padding: 0 23px;
+
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+
+      cursor: pointer;
+      transition: 0.25s;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #061a3a;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #dceeff;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.07);
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.13);
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    section {
+      padding: 85px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-heading small {
+      color: #8fc7ff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .section-heading h2 {
+      margin-top: 8px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+    }
+
+    .section-heading p {
+      max-width: 650px;
+      margin: 12px auto 0;
+      color: #bfd0e4;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about {
+      background: #071e42;
+    }
+
+    .about-card {
+      max-width: 850px;
+      margin: auto;
+      padding: 35px;
+
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 22px;
+    }
+
+    .about-card p {
+      color: #d5e1ef;
+      margin-bottom: 15px;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services {
+      background: #061a3a;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 27px;
+      border-radius: 18px;
+
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.09);
+
+      transition: 0.25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .service-icon {
+      width: 46px;
+      height: 46px;
+      margin-bottom: 17px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+      background: rgba(143,199,255,0.12);
+      color: #9bd0ff;
+    }
+
+    .service-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      color: #b9cce1;
+      font-size: 0.92rem;
+    }
+
+    /* =========================
+       PORTFOLIO ALBUM
+    ========================= */
+
+    .portfolio {
+      background: #071e42;
+    }
+
+    .portfolio-album {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      aspect-ratio: 1 / 1;
+
+      border: 1px solid rgba(255,255,255,0.09);
+      background: #03122d;
+
+      cursor: pointer;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+
+      transition: transform 0.4s ease;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .portfolio-label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      padding: 25px 14px 14px;
+
+      background: linear-gradient(
+        transparent,
+        rgba(0,0,0,0.88)
+      );
+
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .portfolio-note {
+      margin-top: 20px;
+      text-align: center;
+      color: #9fb5cc;
+      font-size: 0.85rem;
+    }
+
+    /* =========================
+       LIGHTBOX
+    ========================= */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+
+      background: rgba(0,0,0,0.90);
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 88vh;
+      border-radius: 14px;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+
+      width: 46px;
+      height: 46px;
+
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       FEATURE
+    ========================= */
+
+    .feature {
+      background:
+        radial-gradient(circle at center, rgba(52,117,194,0.18), transparent 55%),
+        #061a3a;
+
+      text-align: center;
+    }
+
+    .feature-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 55px 30px;
+
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px;
+
+      background: rgba(255,255,255,0.035);
+    }
+
+    .feature-box h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 15px;
+    }
+
+    .feature-box p {
+      color: #c1d2e6;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    /* =========================
+       BOOKING
+    ========================= */
+
+    .booking {
+      background: #071e42;
+    }
+
+    .booking-wrapper {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .booking-form {
+      padding: 30px;
+
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 22px;
+    }
+
+    .form-section-title {
+      margin: 25px 0 18px;
+      padding-bottom: 9px;
+
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+
+      color: #9bd0ff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .form-section-title:first-child {
+      margin-top: 0;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+
+      color: #eaf3ff;
+      font-size: 0.91rem;
+      font-weight: 700;
+    }
+
+    .required {
+      color: #9bd0ff;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+
+      padding: 14px 15px;
+
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 12px;
+
+      background: rgba(2,13,32,0.72);
+      color: #ffffff;
+
+      outline: none;
+
+      transition: 0.2s;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #7890aa;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #83bdf1;
+      box-shadow: 0 0 0 3px rgba(131,189,241,0.10);
+    }
+
+    textarea {
+      min-height: 115px;
+      resize: vertical;
+    }
+
+    select option {
+      background: #061a3a;
+      color: #ffffff;
+    }
+
+    .yes-no-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .reason-box {
+      display: none;
+      margin-top: 12px;
+
+      padding: 14px;
+
+      border-left: 3px solid #8fc7ff;
+      border-radius: 0 12px 12px 0;
+
+      background: rgba(143,199,255,0.055);
+    }
+
+    .reason-box.show {
+      display: block;
+    }
+
+    .reason-box label {
+      margin-bottom: 7px;
+    }
+
+    .declaration {
+      padding: 17px;
+      margin-bottom: 15px;
+
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,0.09);
+
+      background: rgba(255,255,255,0.035);
+    }
+
+    .declaration label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .declaration input[type="checkbox"] {
+      width: 19px;
+      height: 19px;
+      flex: 0 0 19px;
+      margin-top: 2px;
+      accent-color: #8fc7ff;
+    }
+
+    .submit-area {
+      margin-top: 28px;
+    }
+
+    .submit-button {
+      width: 100%;
+      min-height: 55px;
+
+      border: 0;
+      border-radius: 14px;
+
+      background: #ffffff;
+      color: #061a3a;
+
+      font-weight: 800;
+      font-size: 1rem;
+
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .submit-button:hover {
+      background: #dceeff;
+      transform: translateY(-2px);
+    }
+
+    .submit-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+      transform: none;
+    }
+
+    .form-message {
+      display: none;
+      margin-top: 18px;
+      padding: 15px;
+
+      border-radius: 12px;
+
+      background: rgba(72,200,130,0.10);
+      border: 1px solid rgba(72,200,130,0.25);
+
+      color: #d9ffe9;
+      text-align: center;
+    }
+
+    .form-message.show {
+      display: block;
+    }
+
+    .error-message {
+      background: rgba(255,80,80,0.10);
+      border-color: rgba(255,100,100,0.25);
+      color: #ffdada;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      background: #061a3a;
+      text-align: center;
+    }
+
+    .contact-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .contact-icon {
+      width: 58px;
+      height: 58px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 16px;
+
+      color: #ffffff;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.11);
+
+      transition: 0.25s;
+    }
+
+    .contact-icon:hover {
+      transform: translateY(-4px);
+      background: rgba(143,199,255,0.13);
+      border-color: rgba(143,199,255,0.35);
+    }
+
+    .contact-icon svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+    }
+
+    .contact-note {
+      margin-top: 20px;
+      color: #9fb5cc;
+      font-size: 0.88rem;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 30px 20px;
+      text-align: center;
+
+      background: #03122d;
+      border-top: 1px solid rgba(255,255,255,0.08);
+
+      color: #8da4bd;
+      font-size: 0.85rem;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 15px;
+        right: 15px;
+
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 14px;
+
+        background: #061a3a;
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 16px;
+
+        box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px;
+        border-radius: 9px;
+      }
+
+      .nav-links a:hover {
+        background: rgba(255,255,255,0.06);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .portfolio-album {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      section {
+        padding: 65px 15px;
+      }
+
+      .hero {
+        min-height: 590px;
+        padding: 80px 15px 70px;
+      }
+
+      .hero h1 {
+        letter-spacing: 4px;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-album {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .portfolio-label {
+        font-size: 0.72rem;
+        padding: 22px 9px 9px;
+      }
+
+      .booking-form {
+        padding: 20px;
+      }
+
+      .yes-no-row {
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        font-size: 1.12rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
-<nav>
-  <div class="nav-inner">
+  <!-- =========================
+       HEADER
+  ========================= -->
 
-    <a href="#home" class="logo">INK THEORY</a>
+  <header>
+    <nav class="nav">
 
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
-      ☰
+      <a href="#home" class="brand">
+        INK <span>THEORY</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#booking">Book Now</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <!-- TOP-RIGHT MENU ICON -->
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M4 6h16"></path>
+          <path d="M4 12h16"></path>
+          <path d="M4 18h16"></path>
+        </svg>
+      </button>
+
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        Professional Tattoo Artist
+      </div>
+
+      <h1>
+        INK <span>THEORY</span>
+      </h1>
+
+      <p>
+        Your Idea. Your Story. Your Ink.
+        Custom tattoo work created with precision,
+        creativity and attention to detail.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#booking" class="btn btn-primary">
+          Book an Appointment
+        </a>
+
+        <a href="#portfolio" class="btn btn-secondary">
+          View Portfolio
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       ABOUT
+  ========================= -->
+
+  <section class="about" id="about">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <small>About Ink Theory</small>
+        <h2>Your Skin. Your Story.</h2>
+      </div>
+
+      <div class="about-card">
+
+        <p>
+          Ink Theory is focused on creating meaningful,
+          personalized tattoo artwork that reflects each
+          client's individual idea and style.
+        </p>
+
+        <p>
+          Every appointment begins with understanding your
+          concept, placement and expectations before the
+          artwork is created.
+        </p>
+
+        <p>
+          From fine-line pieces to detailed custom work,
+          every tattoo is approached with care, precision
+          and professionalism.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SERVICES
+  ========================= -->
+
+  <section class="services" id="services">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <small>What I Do</small>
+        <h2>Services</h2>
+        <p>
+          Choose a style or describe your idea during the
+          booking process.
+        </p>
+      </div>
+
+      <div class="service-grid">
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8">
+              <path d="M12 3v18"></path>
+              <path d="M3 12h18"></path>
+            </svg>
+          </div>
+          <h3>Custom Tattoos</h3>
+          <p>Original artwork built around your personal concept.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8">
+              <path d="M5 19c5-1 9-5 10-10"></path>
+              <path d="M7 17l-2 2"></path>
+              <circle cx="15.5" cy="8.5" r="4"></circle>
+            </svg>
+          </div>
+          <h3>Fine Line</h3>
+          <p>Clean, delicate and detailed fine-line designs.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="8"></circle>
+              <path d="M8 16l8-8"></path>
+            </svg>
+          </div>
+          <h3>Black &amp; Grey</h3>
+          <p>Strong contrast and detailed monochrome artwork.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8">
+              <path d="M4 6h16"></path>
+              <path d="M4 12h16"></path>
+              <path d="M4 18h16"></path>
+            </svg>
+          </div>
+          <h3>Lettering</h3>
+          <p>Names, quotes, dates and personalized lettering.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="7"></circle>
+            </svg>
+          </div>
+          <h3>Minimalist</h3>
+          <p>Simple and elegant designs with clean visual impact.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8">
+              <path d="M5 19L19 5"></path>
+              <path d="M7 7h5"></path>
+              <path d="M12 12h5"></path>
+              <path d="M5 17h5"></path>
+            </svg>
+          </div>
+          <h3>Cover-Up</h3>
+          <p>New artwork designed to work with an existing tattoo.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PORTFOLIO
+       EXISTING FILES PRESERVED
+  ========================= -->
+
+  <section class="portfolio" id="portfolio">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <small>Selected Work</small>
+        <h2>Portfolio</h2>
+        <p>
+          Tap any design to view it larger.
+        </p>
+      </div>
+
+      <div class="portfolio-album">
+
+        <!-- DO NOT CHANGE THESE FILENAMES -->
+
+        <div
+          class="portfolio-item"
+          onclick="openLightbox('images/ink-theory-dog-tags.jpg')"
+        >
+          <img
+            src="images/ink-theory-dog-tags.jpg"
+            alt="Military / Marine Custom Work"
+            loading="lazy"
+          >
+          <div class="portfolio-label">
+            Military / Marine Custom Work
+          </div>
+        </div>
+
+        <div
+          class="portfolio-item"
+          onclick="openLightbox('images/ink-theory-crown-football.jpg')"
+        >
+          <img
+            src="images/ink-theory-crown-football.jpg"
+            alt="Crown Football Tattoo"
+            loading="lazy"
+          >
+          <div class="portfolio-label">
+            Custom Crown / Football
+          </div>
+        </div>
+
+        <div
+          class="portfolio-item"
+          onclick="openLightbox('images/ink-theory-floral-snake.jpg')"
+        >
+          <img
+            src="images/ink-theory-floral-snake.jpg"
+            alt="Floral Snake Tattoo"
+            loading="lazy"
+          >
+          <div class="portfolio-label">
+            Floral Snake
+          </div>
+        </div>
+
+        <div
+          class="portfolio-item"
+          onclick="openLightbox('images/ink-theory-compass.jpg')"
+        >
+          <img
+            src="images/ink-theory-compass.jpg"
+            alt="Compass Tattoo"
+            loading="lazy"
+          >
+          <div class="portfolio-label">
+            Compass
+          </div>
+        </div>
+
+        <div
+          class="portfolio-item"
+          onclick="openLightbox('images/ink-theory-impossible-chess.jpg')"
+        >
+          <img
+            src="images/ink-theory-impossible-chess.jpg"
+            alt="Impossible Chess Tattoo"
+            loading="lazy"
+          >
+          <div class="portfolio-label">
+            Impossible Chess
+          </div>
+        </div>
+
+        <div
+          class="portfolio-item"
+          onclick="openLightbox('images/ink-theory-rose.jpg')"
+        >
+          <img
+            src="images/ink-theory-rose.jpg"
+            alt="Rose Tattoo"
+            loading="lazy"
+          >
+          <div class="portfolio-label">
+            Rose
+          </div>
+        </div>
+
+        <!--
+          ADD MORE PORTFOLIO ITEMS HERE LATER.
+
+          Example:
+
+          <div class="portfolio-item"
+               onclick="openLightbox('images/your-new-design.jpg')">
+            <img src="images/your-new-design.jpg"
+                 alt="Your New Tattoo"
+                 loading="lazy">
+            <div class="portfolio-label">
+              Your New Tattoo
+            </div>
+          </div>
+        -->
+
+      </div>
+
+      <div class="portfolio-note">
+        More custom designs can be added to the album at any time.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       LIGHTBOX
+  ========================= -->
+
+  <div
+    class="lightbox"
+    id="lightbox"
+    onclick="closeLightbox(event)"
+  >
+
+    <button
+      type="button"
+      class="lightbox-close"
+      aria-label="Close image"
+      onclick="closeLightbox()"
+    >
+      ×
     </button>
 
-    <div class="nav-links" id="navLinks">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-      <a href="#booking" class="nav-book">Book Now</a>
-    </div>
-
-  </div>
-</nav>
-
-
-<!-- HERO -->
-<header class="hero" id="home">
-
-  <div class="hero-content">
-
-    <div class="hero-small">
-      Professional Tattoo Artist
-    </div>
-
-    <h1>INK THEORY</h1>
-
-    <p>
-      Your Idea. Your Story. Your Ink.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="#booking" class="btn btn-primary">
-        Book an Appointment
-      </a>
-
-      <a href="#portfolio" class="btn">
-        View Portfolio
-      </a>
-    </div>
+    <img
+      id="lightboxImage"
+      src=""
+      alt="Portfolio preview"
+    >
 
   </div>
 
-</header>
 
+  <!-- =========================
+       FEATURE
+  ========================= -->
 
-<!-- ABOUT -->
-<section id="about">
+  <section class="feature">
 
-  <div class="section-heading">
-    <span>About Ink Theory</span>
-    <h2>Your Story, Your Ink</h2>
-    <p>
-      Professional tattoo work designed around your idea, style and vision.
-    </p>
-  </div>
+    <div class="feature-box">
 
-  <div class="about-card">
+      <h2>Your Skin. Your Story.</h2>
 
-    <p>
-      Ink Theory creates thoughtful tattoo designs with attention to detail,
-      placement and personal meaning.
-    </p>
+      <p>
+        Tell Ink Theory what you have in mind and submit
+        your appointment request online.
+      </p>
 
-    <p>
-      Whether you already have a design in mind or need help developing your
-      idea, the booking process allows you to provide the information needed
-      before your appointment.
-    </p>
-
-    <p>
-      Every tattoo begins with an idea. Let's turn yours into something
-      meaningful.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- SERVICES -->
-<section id="services">
-
-  <div class="section-heading">
-    <span>Services</span>
-    <h2>Tattoo Styles</h2>
-    <p>
-      Choose a style or describe the tattoo you have in mind.
-    </p>
-  </div>
-
-  <div class="services-grid">
-
-    <div class="service-card">
-      <span class="service-number">01</span>
-      <h3>Custom Tattoos</h3>
-      <p>Original concepts created around your personal idea.</p>
     </div>
 
-    <div class="service-card">
-      <span class="service-number">02</span>
-      <h3>Fine Line</h3>
-      <p>Clean, delicate and detailed tattoo work.</p>
-    </div>
-
-    <div class="service-card">
-      <span class="service-number">03</span>
-      <h3>Black & Grey</h3>
-      <p>Shading, contrast and monochromatic tattoo designs.</p>
-    </div>
-
-    <div class="service-card">
-      <span class="service-number">04</span>
-      <h3>Lettering</h3>
-      <p>Names, quotes, dates and custom typography.</p>
-    </div>
-
-    <div class="service-card">
-      <span class="service-number">05</span>
-      <h3>Minimalist</h3>
-      <p>Simple designs with clean and intentional details.</p>
-    </div>
-
-    <div class="service-card">
-      <span class="service-number">06</span>
-      <h3>Cover-Up</h3>
-      <p>New artwork designed around an existing tattoo.</p>
-    </div>
-
-  </div>
-
-</section>
+  </section>
 
 
-<!-- PORTFOLIO ALBUM -->
-<section id="portfolio">
+  <!-- =========================
+       BOOKING FORM
+  ========================= -->
 
-  <div class="section-heading">
-    <span>Portfolio</span>
-    <h2>Ink Theory Album</h2>
-    <p>
-      A growing collection of tattoo designs and completed work.
-      Tap any design to view it larger.
-    </p>
-  </div>
+  <section class="booking" id="booking">
 
-  <div class="portfolio-shell">
+    <div class="container booking-wrapper">
 
-    <div class="album-bar">
-      <p>Selected work</p>
-      <span class="album-count" id="albumCount">0 designs</span>
-    </div>
-
-    <div class="album-grid" id="albumGrid">
-
-      <!-- EXISTING PORTFOLIO — DO NOT CHANGE THESE FILE NAMES -->
-
-      <div class="album-item"
-           data-title="Military / Marine Custom Work"
-           onclick="openLightbox(this)">
-        <img src="images/ink-theory-dog-tags.jpg"
-             alt="Military Marine Custom Work"
-             loading="lazy">
-        <div class="album-overlay">
-          <strong>Military / Marine</strong>
-          <span>Custom Work</span>
-        </div>
+      <div class="section-heading">
+        <small>Appointment Request</small>
+        <h2>Book With Ink Theory</h2>
+        <p>
+          Complete the form below. Your information will be
+          reviewed before your appointment is confirmed.
+        </p>
       </div>
 
-      <div class="album-item"
-           data-title="Crown Football Tattoo"
-           onclick="openLightbox(this)">
-        <img src="images/ink-theory-crown-football.jpg"
-             alt="Crown Football Tattoo"
-             loading="lazy">
-        <div class="album-overlay">
-          <strong>Crown Football</strong>
-          <span>Custom Design</span>
+
+      <form
+        class="booking-form"
+        id="bookingForm"
+        novalidate
+      >
+
+        <!-- =====================
+             CLIENT INFORMATION
+        ====================== -->
+
+        <div class="form-section-title">
+          Client Information
         </div>
-      </div>
 
-      <div class="album-item"
-           data-title="Floral Snake Tattoo"
-           onclick="openLightbox(this)">
-        <img src="images/ink-theory-floral-snake.jpg"
-             alt="Floral Snake Tattoo"
-             loading="lazy">
-        <div class="album-overlay">
-          <strong>Floral Snake</strong>
-          <span>Custom Design</span>
+        <div class="form-group">
+          <label for="fullName">
+            Full Name <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="fullName"
+            name="Full Name"
+            placeholder="Enter your full name"
+            required
+          >
         </div>
-      </div>
 
-      <div class="album-item"
-           data-title="Compass Tattoo"
-           onclick="openLightbox(this)">
-        <img src="images/ink-theory-compass.jpg"
-             alt="Compass Tattoo"
-             loading="lazy">
-        <div class="album-overlay">
-          <strong>Compass</strong>
-          <span>Custom Design</span>
+
+        <div class="form-group">
+          <label for="email">
+            Email <span class="required">*</span>
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="Email"
+            placeholder="Enter your email address"
+            required
+          >
         </div>
-      </div>
 
-      <div class="album-item"
-           data-title="Impossible Chess Tattoo"
-           onclick="openLightbox(this)">
-        <img src="images/ink-theory-impossible-chess.jpg"
-             alt="Impossible Chess Tattoo"
-             loading="lazy">
-        <div class="album-overlay">
-          <strong>Impossible Chess</strong>
-          <span>Custom Design</span>
+
+        <div class="form-group">
+          <label for="phone">
+            Phone / Telegram <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="phone"
+            name="Phone / Telegram"
+            placeholder="Phone number or Telegram username"
+            required
+          >
         </div>
-      </div>
 
-      <div class="album-item"
-           data-title="Rose Tattoo"
-           onclick="openLightbox(this)">
-        <img src="images/ink-theory-rose.jpg"
-             alt="Rose Tattoo"
-             loading="lazy">
-        <div class="album-overlay">
-          <strong>Rose</strong>
-          <span>Custom Design</span>
+
+        <div class="form-group">
+          <label for="location">
+            Location / Address <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="location"
+            name="Location / Address"
+            placeholder="Where will the appointment take place?"
+            required
+          >
         </div>
-      </div>
 
-      <!--
-        ADD MORE DESIGNS HERE.
 
-        Example:
+        <!-- =====================
+             APPOINTMENT
+        ====================== -->
 
-        <div class="album-item"
-             data-title="Angel Wings"
-             onclick="openLightbox(this)">
-          <img src="images/angel-wings.jpg"
-               alt="Angel Wings Tattoo"
-               loading="lazy">
-          <div class="album-overlay">
-            <strong>Angel Wings</strong>
-            <span>Custom Design</span>
+        <div class="form-section-title">
+          Appointment Details
+        </div>
+
+
+        <div class="form-group">
+          <label for="tattooType">
+            Tattoo Type <span class="required">*</span>
+          </label>
+
+          <select
+            id="tattooType"
+            name="Tattoo Type"
+            required
+          >
+            <option value="">Select tattoo type</option>
+            <option value="Custom Tattoo">Custom Tattoo</option>
+            <option value="Fine Line">Fine Line</option>
+            <option value="Black & Grey">Black &amp; Grey</option>
+            <option value="Lettering">Lettering</option>
+            <option value="Minimalist">Minimalist</option>
+            <option value="Cover-Up">Cover-Up</option>
+            <option value="Military / Marine Custom Work">
+              Military / Marine Custom Work
+            </option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="appointmentDate">
+            Preferred Appointment Date
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="date"
+            id="appointmentDate"
+            name="Preferred Appointment Date"
+            required
+          >
+        </div>
+
+
+        <div class="form-group">
+          <label for="tattooDescription">
+            Tattoo Description <span class="required">*</span>
+          </label>
+
+          <textarea
+            id="tattooDescription"
+            name="Tattoo Description"
+            placeholder="Describe the tattoo you want, placement, approximate size, colors, references, etc."
+            required
+          ></textarea>
+        </div>
+
+
+        <!-- =====================
+             HEALTH & SAFETY
+        ====================== -->
+
+        <div class="form-section-title">
+          Health &amp; Safety
+        </div>
+
+
+        <!-- MEDICAL CONDITION -->
+
+        <div class="form-group">
+
+          <label>
+            Do you have any medical condition we should know about?
+            <span class="required">*</span>
+          </label>
+
+          <div class="yes-no-row">
+
+            <select
+              class="yes-no-select"
+              data-reason="medicalReasonBox"
+              data-reason-input="medicalReason"
+              name="Medical Condition"
+              required
+            >
+              <option value="">Select answer</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+
           </div>
+
+          <div
+            class="reason-box"
+            id="medicalReasonBox"
+          >
+            <label for="medicalReason">
+              Please describe the condition
+              <span class="required">*</span>
+            </label>
+
+            <textarea
+              id="medicalReason"
+              name="Medical Condition Reason"
+              placeholder="Please provide details"
+            ></textarea>
+          </div>
+
         </div>
 
-        You can continue adding as many designs as you want.
-      -->
+
+        <!-- ALLERGIES -->
+
+        <div class="form-group">
+
+          <label>
+            Do you have any allergies or sensitivities?
+            <span class="required">*</span>
+          </label>
+
+          <select
+            class="yes-no-select"
+            data-reason="allergyReasonBox"
+            data-reason-input="allergyReason"
+            name="Allergies or Sensitivities"
+            required
+          >
+            <option value="">Select answer</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+
+          <div
+            class="reason-box"
+            id="allergyReasonBox"
+          >
+            <label for="allergyReason">
+              Please describe the allergy or sensitivity
+              <span class="required">*</span>
+            </label>
+
+            <textarea
+              id="allergyReason"
+              name="Allergies or Sensitivities Reason"
+              placeholder="Please provide details"
+            ></textarea>
+          </div>
+
+        </div>
+
+
+        <!-- HEALING / BLEEDING -->
+
+        <div class="form-group">
+
+          <label>
+            Do you have a healing or bleeding condition?
+            <span class="required">*</span>
+          </label>
+
+          <select
+            class="yes-no-select"
+            data-reason="healingReasonBox"
+            data-reason-input="healingReason"
+            name="Healing or Bleeding Condition"
+            required
+          >
+            <option value="">Select answer</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+
+          <div
+            class="reason-box"
+            id="healingReasonBox"
+          >
+            <label for="healingReason">
+              Please describe the condition
+              <span class="required">*</span>
+            </label>
+
+            <textarea
+              id="healingReason"
+              name="Healing or Bleeding Condition Reason"
+              placeholder="Please provide details"
+            ></textarea>
+          </div>
+
+        </div>
+
+
+        <!-- MEDICATION -->
+
+        <div class="form-group">
+
+          <label>
+            Are you currently taking medication or receiving treatment?
+            <span class="required">*</span>
+          </label>
+
+          <select
+            class="yes-no-select"
+            data-reason="medicationReasonBox"
+            data-reason-input="medicationReason"
+            name="Medication or Treatment"
+            required
+          >
+            <option value="">Select answer</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+
+          <div
+            class="reason-box"
+            id="medicationReasonBox"
+          >
+            <label for="medicationReason">
+              Please describe the medication or treatment
+              <span class="required">*</span>
+            </label>
+
+            <textarea
+              id="medicationReason"
+              name="Medication or Treatment Reason"
+              placeholder="Please provide details"
+            ></textarea>
+          </div>
+
+        </div>
+
+
+        <!-- SKIN CONDITION -->
+
+        <div class="form-group">
+
+          <label>
+            Do you have any skin condition affecting the tattoo area?
+            <span class="required">*</span>
+          </label>
+
+          <select
+            class="yes-no-select"
+            data-reason="skinReasonBox"
+            data-reason-input="skinReason"
+            name="Skin Condition"
+            required
+          >
+            <option value="">Select answer</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+
+          <div
+            class="reason-box"
+            id="skinReasonBox"
+          >
+            <label for="skinReason">
+              Please describe the skin condition
+              <span class="required">*</span>
+            </label>
+
+            <textarea
+              id="skinReason"
+              name="Skin Condition Reason"
+              placeholder="Please provide details"
+            ></textarea>
+          </div>
+
+        </div>
+
+
+        <!-- PREGNANCY / BREASTFEEDING / MEDICAL TREATMENT -->
+
+        <div class="form-group">
+
+          <label>
+            Are you pregnant, breastfeeding, or currently undergoing medical treatment?
+            <span class="required">*</span>
+          </label>
+
+          <select
+            class="yes-no-select"
+            data-reason="pregnancyReasonBox"
+            data-reason-input="pregnancyReason"
+            name="Pregnancy Breastfeeding Medical Treatment"
+            required
+          >
+            <option value="">Select answer</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+
+          <div
+            class="reason-box"
+            id="pregnancyReasonBox"
+          >
+            <label for="pregnancyReason">
+              Please provide details
+              <span class="required">*</span>
+            </label>
+
+            <textarea
+              id="pregnancyReason"
+              name="Pregnancy Breastfeeding Medical Treatment Reason"
+              placeholder="Please provide details"
+            ></textarea>
+          </div>
+
+        </div>
+
+
+        <!-- =====================
+             DECLARATIONS
+        ====================== -->
+
+        <div class="form-section-title">
+          Client Declarations
+        </div>
+
+
+        <div class="declaration">
+
+          <label>
+
+            <input
+              type="checkbox"
+              name="Client Health Declaration"
+              value="Accepted"
+              required
+            >
+
+            <span>
+              I confirm that the health information I have provided
+              is accurate and complete to the best of my knowledge.
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <div class="declaration">
+
+          <label>
+
+            <input
+              type="checkbox"
+              name="Tattoo Risk Declaration"
+              value="Accepted"
+              required
+            >
+
+            <span>
+              I understand that tattooing involves risks such as
+              discomfort, irritation, allergic reaction, infection
+              and changes during healing.
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <div class="declaration">
+
+          <label>
+
+            <input
+              type="checkbox"
+              name="Booking & Contact Consent"
+              value="Accepted"
+              required
+            >
+
+            <span>
+              I agree that Ink Theory may use the contact information
+              I provide to communicate with me about my appointment.
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <!-- =====================
+             SUBMIT
+        ====================== -->
+
+        <div class="submit-area">
+
+          <button
+            type="submit"
+            class="submit-button"
+            id="submitButton"
+          >
+            Submit Booking Request
+          </button>
+
+        </div>
+
+
+        <div
+          class="form-message"
+          id="formMessage"
+        ></div>
+
+      </form>
 
     </div>
 
-  </div>
+  </section>
+
+
+  <!-- =========================
+       CONTACT
+       SVG ICONS ONLY
+  ========================= -->
+
+  <section class="contact" id="contact">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <small>Contact Ink Theory</small>
+        <h2>Let's Talk About Your Tattoo</h2>
+        <p>
+          Use any of the platforms below for a quick response.
+        </p>
+      </div>
+
+
+      <div class="contact-icons">
+
+        <!-- INSTAGRAM -->
+
+        <a
+          class="contact-icon"
+          href="https://instagram.com/ink.theory01"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          title="Instagram"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="5"
+            ></rect>
+
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+            ></circle>
+
+            <circle
+              cx="17.5"
+              cy="6.5"
+              r="1"
+              fill="currentColor"
+              stroke="none"
+            ></circle>
+          </svg>
+
+        </a>
+
+
+        <!-- TIKTOK -->
+
+        <a
+          class="contact-icon"
+          href="https://www.tiktok.com/@ink.theory01"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+          title="TikTok"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M14 4v10.2a4.2 4.2 0 1 1-3.4-4.12"></path>
+            <path d="M14 4c.7 2.1 2.2 3.5 4.5 3.8"></path>
+          </svg>
+
+        </a>
+
+
+        <!-- TELEGRAM -->
+
+        <a
+          class="contact-icon"
+          href="https://t.me/inktheory01"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Telegram"
+          title="Telegram"
+        >
 
-</section>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linejoin="round"
+          >
+            <path d="M21 3L3.8 10.1c-.7.3-.7 1.3.1 1.6l4.4 1.5 1.7 5.4c.2.7 1.1.9 1.6.4l2.5-2.5 4.5 3.3c.6.4 1.4.1 1.6-.6L21.9 4c.2-.8-.2-1.3-.9-1z"></path>
+            <path d="M8.3 13.2L18.2 7"></path>
+          </svg>
 
+        </a>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
 
-  <button class="lightbox-close"
-          onclick="closeLightbox()"
-          aria-label="Close">
-    ×
-  </button>
+        <!-- EMAIL -->
 
-  <div class="lightbox-content">
+        <a
+          class="contact-icon"
+          href="mailto:ink.theory01@outlook.com"
+          aria-label="Email Ink Theory"
+          title="Email"
+        >
 
-    <img id="lightboxImage" src="" alt="Tattoo design">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linejoin="round"
+          >
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="2"
+            ></rect>
 
-    <div class="lightbox-title" id="lightboxTitle"></div>
+            <path d="M3 7l9 6 9-6"></path>
+          </svg>
 
-  </div>
+        </a>
 
-</div>
+      </div>
 
 
-<!-- FEATURE -->
-<section>
+      <div class="contact-note">
+        Tap an icon to connect with Ink Theory.
+      </div>
 
-  <div class="feature">
+    </div>
 
-    <h2>Your Skin. Your Story.</h2>
+  </section>
 
-    <p>
-      Every design carries meaning. Tell Ink Theory what you envision,
-      and provide the details needed to begin your appointment.
-    </p>
 
-  </div>
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
-</section>
+  <footer>
+    © <span id="currentYear"></span> Ink Theory. All rights reserved.
+  </footer>
 
 
-<!-- BOOKING -->
-<section id="booking">
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
 
-  <div class="section-heading">
-    <span>Appointment</span>
-    <h2>Book With Ink Theory</h2>
-    <p>
-      Complete the form below. Your information will be reviewed before
-      your appointment is confirmed.
-    </p>
-  </div>
+  <script>
 
-  <div class="booking-wrap">
+    /* =========================================
+       APPS SCRIPT BOOKING ENDPOINT
+    ========================================= */
 
-    <div class="booking-card">
+    const BOOKING_ENDPOINT =
+      "https://script.google.com/macros/s/AKfycbx57WnaV0LZlSJF66ztjyTXP7lW-Pof85XBCE1LAvTk8giQ_0zhnZlpVgd715eB6hmYSw/exec";
 
-      <form id="bookingForm">
 
-        <!-- PERSONAL INFORMATION -->
-        <div class="form-section">
+    /* =========================================
+       CURRENT YEAR
+    ========================================= */
 
-          <h3>01. Your Information</h3>
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
 
-          <p>
-            Please provide accurate contact information.
-          </p>
 
-          <div class="form-grid">
+    /* =========================================
+       MOBILE MENU
+    ========================================= */
 
-            <div class="form-group">
-              <label for="fullName">Full Name *</label>
-              <input
-                id="fullName"
-                name="Full Name"
-                type="text"
-                required>
-            </div>
+    const menuToggle =
+      document.getElementById("menuToggle");
 
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input
-                id="email"
-                name="Email"
-                type="email"
-                required>
-            </div>
+    const navLinks =
+      document.getElementById("navLinks");
 
-            <div class="form-group">
-              <label for="phone">Phone / Telegram *</label>
-              <input
-                id="phone"
-                name="Phone / Telegram"
-                type="text"
-                required>
-            </div>
+    menuToggle.addEventListener("click", function () {
 
-            <div class="form-group">
-              <label for="location">Location / Address *</label>
-              <input
-                id="location"
-                name="Location / Address"
-                type="text"
-                required>
-            </div>
+      navLinks.classList.toggle("show");
 
-          </div>
+      const isOpen =
+        navLinks.classList.contains("show");
 
-        </div>
+      menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
 
+    });
 
-        <!-- APPOINTMENT -->
-        <div class="form-section">
 
-          <h3>02. Appointment Details</h3>
+    /* Close mobile menu after clicking a link */
 
-          <p>
-            Tell us what you would like to book.
-          </p>
+    document.querySelectorAll(".nav-links a").forEach(function(link) {
 
-          <div class="form-grid">
+      link.addEventListener("click", function() {
 
-            <div class="form-group">
+        navLinks.classList.remove("show");
 
-              <label for="tattooType">Tattoo Type *</label>
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
 
-              <select
-                id="tattooType"
-                name="Tattoo Type"
-                required>
+      });
 
-                <option value="">Select tattoo type</option>
-                <option>Custom Tattoo</option>
-                <option>Fine Line</option>
-                <option>Black & Grey</option>
-                <option>Lettering</option>
-                <option>Minimalist</option>
-                <option>Cover-Up</option>
-                <option>Military / Marine Custom Work</option>
-                <option>Other</option>
+    });
 
-              </select>
 
-            </div>
+    /* =========================================
+       PORTFOLIO LIGHTBOX
+    ========================================= */
 
-            <div class="form-group">
+    function openLightbox(imagePath) {
 
-              <label for="appointmentDate">
-                Preferred Appointment Date *
-              </label>
+      const lightbox =
+        document.getElementById("lightbox");
 
-              <input
-                id="appointmentDate"
-                name="Preferred Appointment Date"
-                type="date"
-                required>
+      const image =
+        document.getElementById("lightboxImage");
 
-            </div>
+      image.src = imagePath;
 
-            <div class="form-group full">
+      lightbox.classList.add("show");
 
-              <label for="description">
-                Tattoo Description *
-              </label>
+      document.body.style.overflow = "hidden";
+    }
 
-              <textarea
-                id="description"
-                name="Tattoo Description"
-                placeholder="Describe your tattoo idea, size, placement, style, meaning, or any important details."
-                required></textarea>
 
-            </div>
+    function closeLightbox(event) {
 
-          </div>
+      if (
+        event &&
+        event.target &&
+        event.target.id !== "lightbox"
+      ) {
+        return;
+      }
 
-        </div>
+      const lightbox =
+        document.getElementById("lightbox");
 
+      const image =
+        document.getElementById("lightboxImage");
 
-        <!-- HEALTH -->
-        <div class="form-section">
+      lightbox.classList.remove("show");
 
-          <h3>03. Health & Safety</h3>
+      image.src = "";
 
-          <p>
-            Please answer honestly. If you select Yes, an explanation box
-            will appear. If you select No, nothing else is displayed.
-          </p>
+      document.body.style.overflow = "";
+    }
 
 
-          <!-- MEDICAL CONDITION -->
-          <div class="form-group">
+    /* =========================================
+       ESCAPE LIGHTBOX
+    ========================================= */
 
-            <label>
-              Do you currently have any medical condition that may affect tattooing? *
-            </label>
+    document.addEventListener("keydown", function(event) {
 
-            <div class="yes-no">
+      if (event.key === "Escape") {
 
-              <label>
-                <input
-                  type="radio"
-                  name="Medical Condition"
-                  value="Yes"
-                  required
-                  onchange="toggleReason('medicalCondition','yes')">
-                <span>Yes</span>
-              </label>
+        const lightbox =
+          document.getElementById("lightbox");
 
-              <label>
-                <input
-                  type="radio"
-                  name="Medical Condition"
-                  value="No"
-                  onchange="toggleReason('medicalCondition','no')">
-                <span>No</span>
-              </label>
+        if (lightbox.classList.contains("show")) {
+          closeLightbox();
+        }
 
-            </div>
+      }
 
-            <div class="reason-box" id="medicalCondition">
+    });
 
-              <textarea
-                name="Medical Condition Reason"
-                placeholder="Please describe the condition and any relevant details."></textarea>
 
-            </div>
+    /* =========================================
+       YES / NO CONDITIONAL REASON FIELDS
+    ========================================= */
 
-          </div>
+    document.querySelectorAll(".yes-no-select").forEach(function(select) {
 
+      select.addEventListener("change", function() {
 
-          <!-- ALLERGIES -->
-          <div class="form-group" style="margin-top:22px">
+        const reasonBoxId =
+          select.getAttribute("data-reason");
 
-            <label>
-              Do you have any allergies or skin sensitivities? *
-            </label>
+        const reasonInputId =
+          select.getAttribute("data-reason-input");
 
-            <div class="yes-no">
+        const reasonBox =
+          document.getElementById(reasonBoxId);
 
-              <label>
-                <input
-                  type="radio"
-                  name="Allergies or Sensitivities"
-                  value="Yes"
-                  required
-                  onchange="toggleReason('allergyReason','yes')">
-                <span>Yes</span>
-              </label>
+        const reasonInput =
+          document.getElementById(reasonInputId);
 
-              <label>
-                <input
-                  type="radio"
-                  name="Allergies or Sensitivities"
-                  value="No"
-                  onchange="toggleReason('allergyReason','no')">
-                <span>No</span>
-              </label>
 
-            </div>
+        if (select.value === "Yes") {
 
-            <div class="reason-box" id="allergyReason">
+          reasonBox.classList.add("show");
 
-              <textarea
-                name="Allergies or Sensitivities Reason"
-                placeholder="Please describe the allergy or sensitivity."></textarea>
+          reasonInput.required = true;
 
-            </div>
+        } else {
 
-          </div>
+          reasonBox.classList.remove("show");
 
+          reasonInput.required = false;
 
-          <!-- HEALING -->
-          <div class="form-group" style="margin-top:22px">
+          /*
+            IMPORTANT:
+            If the client changes Yes → No,
+            remove the previous answer completely.
+          */
 
-            <label>
-              Do you have any healing or bleeding condition? *
-            </label>
+          reasonInput.value = "";
 
-            <div class="yes-no">
+        }
 
-              <label>
-                <input
-                  type="radio"
-                  name="Healing or Bleeding Condition"
-                  value="Yes"
-                  required
-                  onchange="toggleReason('healingReason','yes')">
-                <span>Yes</span>
-              </label>
+      });
 
-              <label>
-                <input
-                  type="radio"
-                  name="Healing or Bleeding Condition"
-                  value="No"
-                  onchange="toggleReason('healingReason','no')">
-                <span>No</span>
-              </label>
+    });
 
-            </div>
 
-            <div class="reason-box" id="healingReason">
+    /* =========================================
+       DATE — PREVENT PAST APPOINTMENT DATES
+    ========================================= */
 
-              <textarea
-                name="Healing or Bleeding Condition Reason"
-                placeholder="Please describe the condition."></textarea>
+    const appointmentDate =
+      document.getElementById("appointmentDate");
 
-            </div>
+    const today =
+      new Date().toISOString().split("T")[0];
 
-          </div>
+    appointmentDate.min = today;
 
 
-          <!-- MEDICATION -->
-          <div class="form-group" style="margin-top:22px">
+    /* =========================================
+       FORM SUBMISSION
+    ========================================= */
 
-            <label>
-              Are you currently taking medication or receiving treatment that may affect tattooing? *
-            </label>
+    const bookingForm =
+      document.getElementById("bookingForm");
 
-            <div class="yes-no">
+    const submitButton =
+      document.getElementById("submitButton");
 
-              <label>
-                <input
-                  type="radio"
-                  name="Medication or Treatment"
-                  value="Yes"
-                  required
-                  onchange="toggleReason('medicationReason','yes')">
-                <span>Yes</span>
-              </label>
+    const formMessage =
+      document.getElementById("formMessage");
 
-              <label>
-                <input
-                  type="radio"
-                  name="Medication or Treatment"
-                  value="No"
-                  onchange="toggleReason('medicationReason','no')">
-                <span>No</span>
-              </label>
 
-            </div>
+    bookingForm.addEventListener("submit", async function(event) {
 
-            <div class="reason-box" id="medicationReason">
+      event.preventDefault();
 
-              <textarea
-                name="Medication or Treatment Reason"
-                placeholder="Please describe the medication or treatment."></textarea>
 
-            </div>
+      /* Browser validation */
 
-          </div>
+      if (!bookingForm.checkValidity()) {
 
+        bookingForm.reportValidity();
 
-          <!-- SKIN CONDITION -->
-          <div class="form-group" style="margin-top:22px">
+        return;
 
-            <label>
-              Do you currently have a skin condition at or near the tattoo area? *
-            </label>
+      }
 
-            <div class="yes-no">
 
-              <label>
-                <input
-                  type="radio"
-                  name="Skin Condition"
-                  value="Yes"
-                  required
-                  onchange="toggleReason('skinReason','yes')">
-                <span>Yes</span>
-              </label>
+      /* Generate booking reference */
 
-              <label>
-                <input
-                  type="radio"
-                  name="Skin Condition"
-                  value="No"
-                  onchange="toggleReason('skinReason','no')">
-                <span>No</span>
-              </label>
+      const bookingId =
+        "IT-" +
+        Date.now().toString().slice(-8);
 
-            </div>
 
-            <div class="reason-box" id="skinReason">
+      /*
+        Collect the exact information
+        entered by the client.
+      */
 
-              <textarea
-                name="Skin Condition Reason"
-                placeholder="Please describe the skin condition and tattoo area."></textarea>
+      const formData =
+        new FormData(bookingForm);
 
-            </div>
 
-          </div>
+      formData.append(
+        "Booking Reference",
+        bookingId
+      );
 
 
-          <!-- PREGNANCY / BREASTFEEDING / MEDICAL TREATMENT -->
-          <div class="form-group" style="margin-top:22px">
+      /* -----------------------------------------
+         Show processing state
+      ----------------------------------------- */
 
-            <label>
-              Are you currently pregnant, breastfeeding, or undergoing medical treatment? *
-            </label>
+      submitButton.disabled = true;
 
-            <div class="yes-no">
+      submitButton.textContent =
+        "Submitting Booking...";
 
-              <label>
-                <input
-                  type="radio"
-                  name="Pregnancy Breastfeeding Medical Treatment"
-                  value="Yes"
-                  required
-                  onchange="toggleReason('pregnancyReason','yes')">
-                <span>Yes</span>
-              </label>
 
-              <label>
-                <input
-                  type="radio"
-                  name="Pregnancy Breastfeeding Medical Treatment"
-                  value="No"
-                  onchange="toggleReason('pregnancyReason','no')">
-                <span>No</span>
-              </label>
+      formMessage.classList.remove("show");
+      formMessage.classList.remove("error-message");
 
-            </div>
 
-            <div class="reason-box" id="pregnancyReason">
+      try {
 
-              <textarea
-                name="Pregnancy Breastfeeding Medical Treatment Reason"
-                placeholder="Please provide any relevant details."></textarea>
+        /*
+          Convert FormData to URL encoded data
+          for Google Apps Script.
+        */
 
-            </div>
+        const encodedData =
+          new URLSearchParams();
 
-          </div>
 
-        </div>
+        for (const [key, value] of formData.entries()) {
 
+          encodedData.append(
+            key,
+            value
+          );
 
-        <!-- DECLARATIONS -->
-        <div class="form-section">
+        }
 
-          <h3>04. Client Declarations</h3>
 
-          <p>
-            Please review and confirm the following.
-          </p>
+        /*
+          Send booking to Apps Script.
 
+          no-cors is required for this frontend setup.
+        */
 
-          <div class="consent-box">
+        await fetch(
+          BOOKING_ENDPOINT,
+          {
+            method: "POST",
 
-            <div class="check-row">
+            mode: "no-cors",
 
-              <input
-                id="healthDeclaration"
-                type="checkbox"
-                name="Client Health Declaration"
-                value="Accepted"
-                required>
+            headers: {
+              "Content-Type":
+                "application/x-www-form-urlencoded;charset=UTF-8"
+            },
 
-              <label for="healthDeclaration">
-                I confirm that the health information I have provided is accurate
-                and complete to the best of my knowledge.
-              </label>
+            body: encodedData.toString()
+          }
+        );
 
-            </div>
 
-          </div>
+        /* -----------------------------------------
+           Generate client PDF
+        ----------------------------------------- */
 
+        generateBookingPDF(
+          formData,
+          bookingId
+        );
 
-          <div class="consent-box">
 
-            <div class="check-row">
+        /* -----------------------------------------
+           Success message
+        ----------------------------------------- */
 
-              <input
-                id="riskDeclaration"
-                type="checkbox"
-                name="Tattoo Risk Declaration"
-                value="Accepted"
-                required>
+        formMessage.innerHTML =
+          "<strong>Booking submitted successfully.</strong><br><br>" +
+          "Your booking reference is <strong>" +
+          bookingId +
+          "</strong>.<br><br>" +
+          "A confirmation email will be sent to the email address you provided.";
 
-              <label for="riskDeclaration">
-                I understand that tattooing involves potential risks and that
-                appropriate aftercare is important.
-              </label>
+        formMessage.classList.add("show");
 
-            </div>
 
-          </div>
+        /* -----------------------------------------
+           Reset form
+        ----------------------------------------- */
 
+        bookingForm.reset();
 
-          <div class="consent-box">
 
-            <div class="check-row">
+        /* Hide every conditional reason box */
 
-              <input
-                id="bookingConsent"
-                type="checkbox"
-                name="Booking & Contact Consent"
-                value="Accepted"
-                required>
+        document.querySelectorAll(".reason-box").forEach(function(box) {
 
-              <label for="bookingConsent">
-                I agree to submit this
+          box.classList.remove("show");
+
+        });
+
+
+        /* Remove required state from hidden reason fields */
+
+        document.querySelectorAll(".reason-box textarea").forEach(function(input) {
+
+          input.required = false;
+          input.value = "";
+
+        });
+
+
+        /* Scroll to confirmation */
+
+        formMessage.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        formMessage.textContent =
+          "There was a problem submitting the booking. Please try again.";
+
+        formMessage.classList.add(
+          "show",
+          "error-message"
+        );
+
+      }
+
+
+      /* Restore button */
+
+      submitButton.disabled = false;
+
+      submitButton.textContent =
+        "Submit Booking Request";
+
+    });
+
+
+    /* =========================================
+       PDF GENERATION
+    ========================================= */
+
+    function generateBookingPDF(
+      formData,
+      bookingId
+    ) {
+
+      if (
+        !window.jspdf ||
+        !window.jspdf.jsPDF
+      ) {
+
+        console.warn(
+          "jsPDF is not available."
+        );
+
+        return;
+
+      }
+
+
+      const {
+        jsPDF
+      } = window.jspdf;
+
+
+      const doc =
+        new jsPDF();
+
+
+      let y = 20;
+
+
+      function addLine(
+        label,
+        value
+      ) {
+
+        const safeValue =
+          value || "Not provided";
+
+
+        const text =
+          label + ": " + safeValue;
+
+
+        const wrapped =
+          doc.splitTextToSize(
+            text,
+            170
+          );
+
+
+        doc.text(
+          wrapped,
+          20,
+          y
+        );
+
+
+        y +=
+          7 * wrapped.length +
+          2;
+
+
+        if (y > 275) {
+
+          doc.addPage();
+
+          y = 20;
+
+        }
+
+      }
+
+
+      doc.setFontSize(18);
+
+      doc.text(
+        "INK THEORY",
+        20,
+        y
+      );
+
+      y += 10;
+
+
+      doc.setFontSize(11);
+
+      doc.text(
+        "Tattoo Booking Request",
+        20,
+        y
+      );
+
+      y += 10;
+
+
+      addLine(
+        "Booking Reference",
+        bookingId
+      );
+
+
+      y += 4;
+
+
+      doc.setFontSize(13);
+
+      doc.text(
+        "CLIENT INFORMATION",
+        20,
+        y
+      );
+
+      y += 8;
+
+      doc.setFontSize(11);
+
+
+      addLine(
+        "Full Name",
+        formData.get("Full Name")
+      );
+
+      addLine(
+        "Email",
+        formData.get("Email")
+      );
+
+      addLine(
+        "Phone / Telegram",
+        formData.get("Phone / Telegram")
+      );
+
+      addLine(
+        "Location / Address",
+        formData.get("Location / Address")
+      );
+
+
+      y += 4;
+
+      doc.setFontSize(13);
+
+      doc.text(
+        "APPOINTMENT DETAILS",
+        20,
+        y
+      );
+
+      y += 8;
+
+      doc.setFontSize(11);
+
+
+      addLine(
+        "Tattoo Type",
+        formData.get("Tattoo Type")
+      );
+
+      addLine(
+        "Preferred Appointment Date",
+        formData.get("Preferred Appointment Date")
+      );
+
+      addLine(
+        "Tattoo Description",
+        formData.get("Tattoo Description")
+      );
+
+
+      y += 4;
+
+      doc.setFontSize(13);
+
+      doc.text(
+        "HEALTH & SAFETY",
+        20,
+        y
+      );
+
+      y += 8;
+
+      doc.setFontSize(11);
+
+
+      const conditionalFields = [
+
+        [
+          "Medical Condition",
+          "Medical Condition Reason"
+        ],
+
+        [
+          "Allergies or Sensitivities",
+          "Allergies or Sensitivities Reason"
+        ],
+
+        [
+          "Healing or Bleeding Condition",
+          "Healing or Bleeding Condition Reason"
+        ],
+
+        [
+          "Medication or Treatment",
+          "Medication or Treatment Reason"
+        ],
+
+        [
+          "Skin Condition",
+          "Skin Condition Reason"
+        ],
+
+        [
+          "Pregnancy Breastfeeding Medical Treatment",
+          "Pregnancy Breastfeeding Medical Treatment Reason"
+        ]
+
+      ];
+
+
+      conditionalFields.forEach(function(pair) {
+
+        const answer =
+          formData.get(pair[0]) || "";
+
+
+        addLine(
+          pair[0],
+          answer
+        );
+
+
+        /*
+          Only include reason if
+          the client selected Yes.
+        */
+
+        if (answer === "Yes") {
+
+          addLine(
+            pair[1],
+            formData.get(pair[1])
+          );
+
+        }
+
+      });
+
+
+      y += 4;
+
+      doc.setFontSize(13);
+
+      doc.text(
+        "CLIENT DECLARATIONS",
+        20,
+        y
+      );
+
+      y += 8;
+
+      doc.setFontSize(11);
+
+
+      addLine(
+        "Client Health Declaration",
+        formData.get("Client Health Declaration")
+      );
+
+      addLine(
+        "Tattoo Risk Declaration",
+        formData.get("Tattoo Risk Declaration")
+      );
+
+      addLine(
+        "Booking & Contact Consent",
+        formData.get("Booking & Contact Consent")
+      );
+
+
+      y += 6;
+
+
+      doc.setFontSize(9);
+
+      doc.text(
+        "Ink Theory",
+        20,
+        y
+      );
+
+      y += 5;
+
+      doc.text(
+        "ink.theory01@outlook.com",
+        20,
+        y
+      );
+
+
+      /*
+        Save PDF to the client's device.
+      */
+
+      doc.save(
+        "Ink-Theory-Booking-" +
+        bookingId +
+        ".pdf"
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>

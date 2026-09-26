@@ -32,7 +32,7 @@ nav {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(3, 18, 45, 0.95);
+  background: rgba(3, 18, 45, 0.96);
   backdrop-filter: blur(10px);
   padding: 15px 20px;
   display: flex;
@@ -44,7 +44,6 @@ nav a {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  transition: 0.3s;
 }
 
 nav a:hover {
@@ -58,9 +57,18 @@ nav a:hover {
   justify-content: center;
   text-align: center;
   padding: 100px 20px 60px;
+
   background:
-    radial-gradient(circle at top, rgba(30, 100, 200, 0.35), transparent 45%),
-    linear-gradient(180deg, #08285a 0%, #061a3a 100%);
+    radial-gradient(
+      circle at top,
+      rgba(30, 100, 200, 0.35),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      #08285a 0%,
+      #061a3a 100%
+    );
 }
 
 .hero-content {
@@ -71,12 +79,10 @@ nav a:hover {
   font-size: clamp(3rem, 10vw, 7rem);
   letter-spacing: 8px;
   margin-bottom: 15px;
-  color: #ffffff;
 }
 
 .hero p {
   font-size: 1.2rem;
-  color: #ffffff;
   margin-bottom: 30px;
 }
 
@@ -88,7 +94,6 @@ nav a:hover {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  transition: 0.3s;
 }
 
 .btn:hover {
@@ -110,7 +115,6 @@ section {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 45px;
-  color: #ffffff;
 }
 
 .about {
@@ -120,7 +124,6 @@ section {
 }
 
 .about p {
-  color: #ffffff;
   font-size: 1.05rem;
 }
 
@@ -128,7 +131,8 @@ section {
 .portfolio-grid,
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
   gap: 25px;
 }
 
@@ -138,7 +142,7 @@ section {
   border-radius: 18px;
   padding: 30px;
   text-align: center;
-  transition: transform 0.3s, border-color 0.3s;
+  transition: 0.3s;
 }
 
 .card:hover {
@@ -147,12 +151,7 @@ section {
 }
 
 .card h3 {
-  color: #ffffff;
   margin-bottom: 12px;
-}
-
-.card p {
-  color: #ffffff;
 }
 
 .portfolio-card {
@@ -167,7 +166,7 @@ section {
   display: block;
 }
 
-.portfolio-card .portfolio-info {
+.portfolio-info {
   padding: 22px;
 }
 
@@ -177,19 +176,22 @@ section {
 
 .feature {
   text-align: center;
+
   background:
-    radial-gradient(circle at center, rgba(30,100,200,0.3), transparent 55%),
+    radial-gradient(
+      circle at center,
+      rgba(30,100,200,0.3),
+      transparent 55%
+    ),
     #061a3a;
 }
 
 .feature h2 {
   font-size: 3rem;
-  color: #ffffff;
   margin-bottom: 15px;
 }
 
 .feature p {
-  color: #ffffff;
   max-width: 700px;
   margin: auto;
 }
@@ -211,7 +213,6 @@ section {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
-  color: #ffffff;
 }
 
 .form-group input,
@@ -244,7 +245,6 @@ section {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  color: #ffffff;
   margin-bottom: 15px;
 }
 
@@ -262,7 +262,6 @@ section {
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .submit-btn:hover {
@@ -281,7 +280,6 @@ section {
   padding: 20px;
   border-radius: 10px;
   background: rgba(0, 100, 255, 0.25);
-  color: #ffffff;
   text-align: center;
 }
 
@@ -313,7 +311,6 @@ section {
 
 .contact-card h3 {
   margin-bottom: 10px;
-  color: #ffffff;
 }
 
 .contact-card a {
@@ -330,10 +327,10 @@ footer {
   text-align: center;
   padding: 30px 20px;
   background: #03122d;
-  color: #ffffff;
 }
 
 @media (max-width: 600px) {
+
   nav {
     gap: 12px;
     padding: 12px 8px;
@@ -365,129 +362,319 @@ footer {
   <a href="#book">Book Now</a>
 </nav>
 
+
+<!-- HERO -->
+
 <section class="hero">
+
   <div class="hero-content">
+
     <h1>INK THEORY</h1>
-    <p>Your Idea. Your Story. Your Ink.</p>
-    <a href="#book" class="btn">Book a Tattoo</a>
+
+    <p>
+      Your Idea. Your Story. Your Ink.
+    </p>
+
+    <a href="#book" class="btn">
+      Book a Tattoo
+    </a>
+
   </div>
+
 </section>
 
+
+<!-- ABOUT -->
+
 <section id="about">
+
   <div class="container">
-    <h2 class="section-title">About Ink Theory</h2>
+
+    <h2 class="section-title">
+      About Ink Theory
+    </h2>
 
     <div class="about">
+
       <p>
         Ink Theory is a professional tattoo service focused on creating
         meaningful, custom tattoo artwork designed around your personal
         story, style, and vision. Every piece is approached with creativity,
         precision, professionalism, and attention to detail.
       </p>
+
     </div>
+
   </div>
+
 </section>
 
+
+<!-- SERVICES -->
+
 <section id="services">
+
   <div class="container">
-    <h2 class="section-title">Services</h2>
+
+    <h2 class="section-title">
+      Services
+    </h2>
 
     <div class="services-grid">
 
       <div class="card">
         <h3>Custom Tattoos</h3>
-        <p>Unique tattoo concepts created specifically around your ideas.</p>
+        <p>
+          Unique tattoo concepts created specifically around your ideas.
+        </p>
       </div>
 
       <div class="card">
         <h3>Fine Line</h3>
-        <p>Clean, delicate and detailed tattoo work with refined lines.</p>
+        <p>
+          Clean, delicate and detailed tattoo work with refined lines.
+        </p>
       </div>
 
       <div class="card">
         <h3>Black & Grey</h3>
-        <p>Professional black and grey artwork with depth and shading.</p>
+        <p>
+          Professional black and grey artwork with depth and shading.
+        </p>
       </div>
 
       <div class="card">
         <h3>Lettering</h3>
-        <p>Personalized names, quotes, dates and meaningful lettering.</p>
+        <p>
+          Personalized names, quotes, dates and meaningful lettering.
+        </p>
       </div>
 
       <div class="card">
         <h3>Minimalist</h3>
-        <p>Simple, elegant designs with clean and intentional details.</p>
+        <p>
+          Simple, elegant designs with clean and intentional details.
+        </p>
       </div>
 
       <div class="card">
         <h3>Cover-Up</h3>
-        <p>Creative tattoo concepts designed to transform existing work.</p>
+        <p>
+          Creative tattoo concepts designed to transform existing work.
+        </p>
       </div>
 
     </div>
+
   </div>
+
 </section>
 
+
+<!-- PORTFOLIO -->
+
 <section id="portfolio">
+
   <div class="container">
-    <h2 class="section-title">Portfolio</h2>
+
+    <h2 class="section-title">
+      Portfolio
+    </h2>
 
     <div class="portfolio-grid">
 
+
       <div class="card portfolio-card">
+
         <img
-          src="ink-theory-dog-tags.jpg"
+          src="images/ink-theory-dog-tags.jpg"
           alt="Military and Marine custom dog tags tattoo design"
+          loading="lazy"
         >
+
         <div class="portfolio-info">
-          <h3>Military / Marine Custom Work</h3>
-          <p>Custom military and Marine-inspired tattoo artwork.</p>
+
+          <h3>
+            Military / Marine Custom Work
+          </h3>
+
+          <p>
+            Custom military and Marine-inspired tattoo artwork.
+          </p>
+
         </div>
+
       </div>
 
-      <div class="card portfolio-card">
-        <div class="portfolio-info">
-          <h3>Fine Line</h3>
-          <p>Elegant fine-line tattoo concepts.</p>
-        </div>
-      </div>
 
       <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-crown-football.jpg"
+          alt="Crown and football custom tattoo design"
+          loading="lazy"
+        >
+
         <div class="portfolio-info">
-          <h3>Black & Grey</h3>
-          <p>Detailed black and grey tattoo artwork.</p>
+
+          <h3>
+            Crown & Football
+          </h3>
+
+          <p>
+            Custom symbolic sports-inspired artwork.
+          </p>
+
         </div>
+
       </div>
 
+
       <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-floral-snake.jpg"
+          alt="Floral snake tattoo design"
+          loading="lazy"
+        >
+
         <div class="portfolio-info">
-          <h3>Creative Designs</h3>
-          <p>Original concepts created around each client's story.</p>
+
+          <h3>
+            Floral Snake
+          </h3>
+
+          <p>
+            Detailed custom floral and animal composition.
+          </p>
+
         </div>
+
       </div>
+
+
+      <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-compass.jpg"
+          alt="Compass tattoo design"
+          loading="lazy"
+        >
+
+        <div class="portfolio-info">
+
+          <h3>
+            Compass
+          </h3>
+
+          <p>
+            Meaningful compass-inspired tattoo artwork.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-impossible-chess.jpg"
+          alt="Impossible chess tattoo design"
+          loading="lazy"
+        >
+
+        <div class="portfolio-info">
+
+          <h3>
+            Impossible Chess
+          </h3>
+
+          <p>
+            Creative conceptual tattoo artwork.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="card portfolio-card">
+
+        <img
+          src="images/ink-theory-rose.jpg"
+          alt="Rose tattoo design"
+          loading="lazy"
+        >
+
+        <div class="portfolio-info">
+
+          <h3>
+            Rose
+          </h3>
+
+          <p>
+            Classic floral tattoo artwork with refined detail.
+          </p>
+
+        </div>
+
+      </div>
+
 
     </div>
+
   </div>
+
 </section>
+
+
+<!-- FEATURE -->
 
 <section class="feature">
+
   <div class="container">
-    <h2>Your Skin. Your Story.</h2>
+
+    <h2>
+      Your Skin. Your Story.
+    </h2>
+
     <p>
-      Your tattoo should mean something to you. Tell us your idea,
-      and let's turn your vision into custom artwork.
+      Your tattoo should mean something to you.
+      Tell us your idea, and let's turn your vision
+      into custom artwork.
     </p>
+
   </div>
+
 </section>
 
-<section id="book">
-  <div class="container">
-    <h2 class="section-title">Book Your Appointment</h2>
 
-    <form class="booking-form" id="bookingForm">
+<!-- BOOKING -->
+
+<section id="book">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Book Your Appointment
+    </h2>
+
+
+    <form
+      class="booking-form"
+      id="bookingForm"
+    >
+
+
+      <!-- CLIENT -->
 
       <div class="form-group">
-        <label for="name">Full Name *</label>
+
+        <label for="name">
+          Full Name *
+        </label>
+
         <input
           type="text"
           id="name"
@@ -495,10 +682,16 @@ footer {
           placeholder="Your full name"
           required
         >
+
       </div>
 
+
       <div class="form-group">
-        <label for="email">Email *</label>
+
+        <label for="email">
+          Email *
+        </label>
+
         <input
           type="email"
           id="email"
@@ -506,10 +699,16 @@ footer {
           placeholder="Your email address"
           required
         >
+
       </div>
 
+
       <div class="form-group">
-        <label for="phone">Phone / Telegram *</label>
+
+        <label for="phone">
+          Phone / Telegram *
+        </label>
+
         <input
           type="text"
           id="phone"
@@ -517,10 +716,16 @@ footer {
           placeholder="Phone number or Telegram username"
           required
         >
+
       </div>
 
+
       <div class="form-group">
-        <label for="location">Location / Address *</label>
+
+        <label for="location">
+          Location / Address *
+        </label>
+
         <input
           type="text"
           id="location"
@@ -528,169 +733,364 @@ footer {
           placeholder="City, state/country or appointment address"
           required
         >
+
       </div>
 
+
+      <!-- TATTOO -->
+
       <div class="form-group">
-        <label for="tattooType">Tattoo Type *</label>
-        <select id="tattooType" name="Tattoo Type" required>
-          <option value="">Select tattoo type</option>
-          <option>Custom Tattoo</option>
-          <option>Fine Line</option>
-          <option>Black & Grey</option>
-          <option>Lettering</option>
-          <option>Minimalist</option>
-          <option>Cover-Up</option>
-          <option>Military / Marine Custom Work</option>
-          <option>Other</option>
+
+        <label for="tattooType">
+          Tattoo Type *
+        </label>
+
+        <select
+          id="tattooType"
+          name="Tattoo Type"
+          required
+        >
+
+          <option value="">
+            Select tattoo type
+          </option>
+
+          <option>
+            Custom Tattoo
+          </option>
+
+          <option>
+            Fine Line
+          </option>
+
+          <option>
+            Black & Grey
+          </option>
+
+          <option>
+            Lettering
+          </option>
+
+          <option>
+            Minimalist
+          </option>
+
+          <option>
+            Cover-Up
+          </option>
+
+          <option>
+            Military / Marine Custom Work
+          </option>
+
+          <option>
+            Other
+          </option>
+
         </select>
+
       </div>
 
+
       <div class="form-group">
-        <label for="date">Preferred Appointment Date *</label>
+
+        <label for="date">
+          Preferred Appointment Date *
+        </label>
+
         <input
           type="date"
           id="date"
           name="Preferred Appointment Date"
           required
         >
+
       </div>
 
+
       <div class="form-group">
-        <label for="description">Tattoo Description *</label>
+
+        <label for="description">
+          Tattoo Description *
+        </label>
+
         <textarea
           id="description"
           name="Tattoo Description"
           placeholder="Describe your tattoo idea, size, placement and any important details..."
           required
         ></textarea>
+
       </div>
 
-      <h3 style="margin:30px 0 20px; color:#ffffff;">
+
+      <!-- HEALTH -->
+
+      <h3
+        style="
+          margin:30px 0 20px;
+          color:#ffffff;
+        "
+      >
         Health & Medical Information
       </h3>
 
+
       <div class="form-group">
+
         <label for="health1">
           Do you have any medical condition or health concern that may affect getting a tattoo? *
         </label>
-        <select id="health1" name="Medical Condition" required>
-          <option value="">Please select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+
+        <select
+          id="health1"
+          name="Medical Condition"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
         </select>
+
       </div>
 
+
       <div class="form-group">
+
         <label for="health2">
           Do you have any allergies or sensitivities to inks, pigments, latex, adhesives, antiseptics or skincare products? *
         </label>
-        <select id="health2" name="Allergies or Sensitivities" required>
-          <option value="">Please select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+
+        <select
+          id="health2"
+          name="Allergies or Sensitivities"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
         </select>
+
       </div>
 
+
       <div class="form-group">
+
         <label for="health3">
           Do you have any condition that may affect healing or bleeding? *
         </label>
-        <select id="health3" name="Healing or Bleeding Condition" required>
-          <option value="">Please select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+
+        <select
+          id="health3"
+          name="Healing or Bleeding Condition"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
         </select>
+
       </div>
 
+
       <div class="form-group">
+
         <label for="health4">
           Are you taking any medication or undergoing treatment that may affect bleeding, healing, immunity or skin sensitivity? *
         </label>
-        <select id="health4" name="Medication or Treatment" required>
-          <option value="">Please select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+
+        <select
+          id="health4"
+          name="Medication or Treatment"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
         </select>
+
       </div>
 
+
       <div class="form-group">
+
         <label for="health5">
           Do you currently have irritation, infection, rash, open wound or another skin condition in the tattoo area? *
         </label>
-        <select id="health5" name="Skin Condition" required>
-          <option value="">Please select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+
+        <select
+          id="health5"
+          name="Skin Condition"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
         </select>
+
       </div>
 
+
       <div class="form-group">
+
         <label for="health6">
           Are you pregnant, breastfeeding, or receiving medical treatment that may affect your decision to get tattooed? *
         </label>
-        <select id="health6" name="Pregnancy Breastfeeding Medical Treatment" required>
-          <option value="">Please select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+
+        <select
+          id="health6"
+          name="Pregnancy Breastfeeding Medical Treatment"
+          required
+        >
+
+          <option value="">
+            Please select
+          </option>
+
+          <option value="Yes">
+            Yes
+          </option>
+
+          <option value="No">
+            No
+          </option>
+
         </select>
+
       </div>
+
+
+      <!-- CONSENTS -->
 
       <div class="checkbox-group">
 
+
         <label>
+
           <input
             type="checkbox"
             name="Client Health Declaration"
             value="Accepted"
             required
           >
+
           <span>
             I confirm that the health and medical information I have provided
             is accurate and complete to the best of my knowledge.
           </span>
+
         </label>
 
+
         <label>
+
           <input
             type="checkbox"
             name="Tattoo Risk Declaration"
             value="Accepted"
             required
           >
+
           <span>
             I understand that tattooing involves risks including possible
             irritation, allergic reaction, infection, scarring and healing
             complications, and I agree to discuss any concerns before the appointment.
           </span>
+
         </label>
 
+
         <label>
+
           <input
             type="checkbox"
             name="Booking & Contact Consent"
             value="Accepted"
             required
           >
+
           <span>
             I agree to be contacted by Ink Theory regarding my booking and appointment.
           </span>
+
         </label>
+
 
       </div>
 
-      <button type="submit" class="submit-btn">
+
+      <button
+        type="submit"
+        class="submit-btn"
+      >
         Submit Booking Request
       </button>
 
-      <div class="success-message" id="successMessage">
 
-        Your booking request has been submitted successfully.
+      <div
+        class="success-message"
+        id="successMessage"
+      >
+
+        <strong>
+          Booking request submitted.
+        </strong>
 
         <br><br>
 
         Your Ink Theory booking confirmation PDF is ready.
 
-        <br><br>
+        <br>
 
         <button
           type="button"
@@ -702,198 +1102,354 @@ footer {
 
       </div>
 
+
     </form>
+
   </div>
+
 </section>
 
+
+<!-- CONTACT -->
+
 <section id="contact">
+
   <div class="container">
 
-    <h2 class="section-title">Contact Ink Theory</h2>
+    <h2 class="section-title">
+      Contact Ink Theory
+    </h2>
+
 
     <div class="contact-grid">
 
-      <div class="contact-card">
-        <h3>Email</h3>
-        <a href="mailto:ink.theory01@outlook.com">
-          ink.theory01@outlook.com
-        </a>
-      </div>
 
       <div class="contact-card">
-        <h3>Telegram</h3>
+
+        <h3>
+          Email
+        </h3>
+
+        <a
+          href="mailto:ink.theory01@outlook.com"
+        >
+          ink.theory01@outlook.com
+        </a>
+
+      </div>
+
+
+      <div class="contact-card">
+
+        <h3>
+          Telegram
+        </h3>
+
         <a
           href="https://t.me/inktheory01"
           target="_blank"
+          rel="noopener"
         >
           @inktheory01
         </a>
+
       </div>
 
+
       <div class="contact-card">
-        <h3>TikTok</h3>
+
+        <h3>
+          TikTok
+        </h3>
+
         <a
           href="https://www.tiktok.com/@ink.theory01"
           target="_blank"
+          rel="noopener"
         >
           @ink.theory01
         </a>
+
       </div>
+
 
     </div>
 
   </div>
+
 </section>
 
+
 <footer>
-  <p>© 2026 Ink Theory — Professional Tattoo Artist</p>
+
+  <p>
+    © 2026 Ink Theory — Professional Tattoo Artist
+  </p>
+
 </footer>
 
+
 <script>
+
+/* =========================================================
+   GOOGLE APPS SCRIPT BOOKING ENDPOINT
+========================================================= */
 
 const BOOKING_ENDPOINT =
 "https://script.google.com/macros/s/AKfycbx57WnaV0LZlSJF66ztjyTXP7lW-Pof85XBCE1LAvTk8giQ_0zhnZlpVgd715eB6hmYSw/exec";
 
-const bookingForm = document.getElementById("bookingForm");
-const successMessage = document.getElementById("successMessage");
-const downloadPdfBtn = document.getElementById("downloadPdfBtn");
+
+const bookingForm =
+document.getElementById("bookingForm");
+
+const successMessage =
+document.getElementById("successMessage");
+
+const downloadPdfBtn =
+document.getElementById("downloadPdfBtn");
+
 
 let latestBookingData = null;
 let latestBookingId = null;
 
 
 /* =========================================================
-   CREATE BOOKING PDF
+   PDF CREATOR
 ========================================================= */
 
-function createBookingPdf(formData, bookingId) {
+function createBookingPdf(
+  formData,
+  bookingId
+) {
 
-  if (!window.jspdf || !window.jspdf.jsPDF) {
+  if (
+    !window.jspdf ||
+    !window.jspdf.jsPDF
+  ) {
+
     alert(
       "The booking PDF service could not load. Please check your internet connection and try again."
     );
+
     return;
   }
 
-  const { jsPDF } = window.jspdf;
 
-  const doc = new jsPDF({
-    unit: "mm",
-    format: "a4"
-  });
+  const {
+    jsPDF
+  } = window.jspdf;
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
+
+  const doc =
+    new jsPDF({
+      unit: "mm",
+      format: "a4"
+    });
+
+
+  const pageWidth =
+    doc.internal.pageSize.getWidth();
+
+  const pageHeight =
+    doc.internal.pageSize.getHeight();
+
 
   let y = 20;
 
-  function addText(text, x, size, bold) {
 
-    doc.setFont("helvetica", bold ? "bold" : "normal");
-    doc.setFontSize(size);
-    doc.text(String(text || ""), x, y);
+  function addWrappedField(
+    label,
+    value
+  ) {
 
-  }
+    if (
+      y >
+      pageHeight - 30
+    ) {
 
-  function addWrappedField(label, value) {
+      doc.addPage();
 
-    doc.setFont("helvetica", "bold");
+      y = 20;
+
+    }
+
+
+    doc.setFont(
+      "helvetica",
+      "bold"
+    );
+
     doc.setFontSize(10);
 
-    doc.text(label, 20, y);
+    doc.text(
+      label,
+      20,
+      y
+    );
+
 
     y += 5;
 
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
 
-    const lines = doc.splitTextToSize(
-      String(value || "Not provided"),
-      pageWidth - 40
+    doc.setFont(
+      "helvetica",
+      "normal"
     );
 
-    doc.text(lines, 20, y);
+    doc.setFontSize(10);
 
-    y += (lines.length * 5) + 5;
 
-    if (y > pageHeight - 25) {
-      doc.addPage();
-      y = 20;
-    }
+    const lines =
+      doc.splitTextToSize(
+        String(
+          value ||
+          "Not provided"
+        ),
+        pageWidth - 40
+      );
+
+
+    doc.text(
+      lines,
+      20,
+      y
+    );
+
+
+    y +=
+      (lines.length * 5) +
+      5;
+
   }
 
 
   /* HEADER */
 
-  doc.setFont("helvetica", "bold");
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
   doc.setFontSize(25);
-  doc.text("INK THEORY", pageWidth / 2, y, {
-    align: "center"
-  });
+
+  doc.text(
+    "INK THEORY",
+    pageWidth / 2,
+    y,
+    {
+      align: "center"
+    }
+  );
+
 
   y += 9;
 
-  doc.setFont("helvetica", "normal");
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
   doc.setFontSize(13);
-  doc.text("Tattoo Booking Confirmation", pageWidth / 2, y, {
-    align: "center"
-  });
+
+  doc.text(
+    "Tattoo Booking Confirmation",
+    pageWidth / 2,
+    y,
+    {
+      align: "center"
+    }
+  );
+
 
   y += 10;
 
-  doc.setLineWidth(0.5);
-  doc.line(20, y, pageWidth - 20, y);
+
+  doc.line(
+    20,
+    y,
+    pageWidth - 20,
+    y
+  );
+
 
   y += 10;
 
 
   /* BOOKING REFERENCE */
 
-  doc.setFont("helvetica", "bold");
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
   doc.setFontSize(11);
 
   doc.text(
-    "Booking Reference: " + bookingId,
+    "Booking Reference: " +
+    bookingId,
     20,
     y
   );
+
 
   y += 6;
 
-  doc.setFont("helvetica", "normal");
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
   doc.setFontSize(9);
 
   doc.text(
-    "Confirmation Date: " + new Date().toLocaleString(),
+    "Confirmation Date: " +
+    new Date().toLocaleString(),
     20,
     y
   );
+
 
   y += 12;
 
 
-  /* CLIENT INFORMATION */
+  /* CLIENT */
 
-  doc.setFont("helvetica", "bold");
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
   doc.setFontSize(14);
-  doc.text("Client Information", 20, y);
+
+  doc.text(
+    "Client Information",
+    20,
+    y
+  );
+
 
   y += 8;
+
 
   addWrappedField(
     "Full Name",
     formData.get("Full Name")
   );
 
+
   addWrappedField(
     "Email",
     formData.get("Email")
   );
 
+
   addWrappedField(
     "Phone / Telegram",
     formData.get("Phone / Telegram")
   );
+
 
   addWrappedField(
     "Location / Address",
@@ -903,159 +1459,277 @@ function createBookingPdf(formData, bookingId) {
 
   /* APPOINTMENT */
 
-  doc.setFont("helvetica", "bold");
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
   doc.setFontSize(14);
-  doc.text("Appointment Details", 20, y);
+
+  doc.text(
+    "Appointment Details",
+    20,
+    y
+  );
+
 
   y += 8;
+
 
   addWrappedField(
     "Tattoo Type",
     formData.get("Tattoo Type")
   );
 
+
   addWrappedField(
     "Preferred Appointment Date",
-    formData.get("Preferred Appointment Date")
+    formData.get(
+      "Preferred Appointment Date"
+    )
   );
+
 
   addWrappedField(
     "Tattoo Description",
-    formData.get("Tattoo Description")
+    formData.get(
+      "Tattoo Description"
+    )
   );
 
 
-  /* HEALTH INFORMATION */
+  /* HEALTH */
 
-  doc.setFont("helvetica", "bold");
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
   doc.setFontSize(14);
-  doc.text("Health & Medical Information", 20, y);
+
+  doc.text(
+    "Health & Medical Information",
+    20,
+    y
+  );
+
 
   y += 8;
+
 
   addWrappedField(
     "Medical Condition",
-    formData.get("Medical Condition")
+    formData.get(
+      "Medical Condition"
+    )
   );
+
 
   addWrappedField(
     "Allergies or Sensitivities",
-    formData.get("Allergies or Sensitivities")
+    formData.get(
+      "Allergies or Sensitivities"
+    )
   );
+
 
   addWrappedField(
     "Healing or Bleeding Condition",
-    formData.get("Healing or Bleeding Condition")
+    formData.get(
+      "Healing or Bleeding Condition"
+    )
   );
+
 
   addWrappedField(
     "Medication or Treatment",
-    formData.get("Medication or Treatment")
+    formData.get(
+      "Medication or Treatment"
+    )
   );
+
 
   addWrappedField(
     "Skin Condition",
-    formData.get("Skin Condition")
+    formData.get(
+      "Skin Condition"
+    )
   );
+
 
   addWrappedField(
     "Pregnancy / Breastfeeding / Medical Treatment",
-    formData.get("Pregnancy Breastfeeding Medical Treatment")
+    formData.get(
+      "Pregnancy Breastfeeding Medical Treatment"
+    )
   );
 
 
-  /* DECLARATIONS */
+  /* CONSENTS */
 
-  doc.setFont("helvetica", "bold");
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
   doc.setFontSize(14);
-  doc.text("Client Declarations", 20, y);
+
+  doc.text(
+    "Client Declarations",
+    20,
+    y
+  );
+
 
   y += 8;
 
+
   addWrappedField(
     "Client Health Declaration",
-    formData.get("Client Health Declaration") || "Not accepted"
+    formData.get(
+      "Client Health Declaration"
+    ) ||
+    "Not accepted"
   );
+
 
   addWrappedField(
     "Tattoo Risk Declaration",
-    formData.get("Tattoo Risk Declaration") || "Not accepted"
+    formData.get(
+      "Tattoo Risk Declaration"
+    ) ||
+    "Not accepted"
   );
+
 
   addWrappedField(
     "Booking & Contact Consent",
-    formData.get("Booking & Contact Consent") || "Not accepted"
+    formData.get(
+      "Booking & Contact Consent"
+    ) ||
+    "Not accepted"
   );
 
 
-  /* FINAL NOTE */
+  /* FOOTER NOTE */
 
-  if (y > pageHeight - 45) {
+  if (
+    y >
+    pageHeight - 45
+  ) {
+
     doc.addPage();
+
     y = 20;
+
   }
+
 
   y += 3;
 
-  doc.setLineWidth(0.5);
-  doc.line(20, y, pageWidth - 20, y);
+
+  doc.line(
+    20,
+    y,
+    pageWidth - 20,
+    y
+  );
+
 
   y += 9;
 
-  doc.setFont("helvetica", "normal");
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
   doc.setFontSize(9);
+
 
   const note =
     "Please keep this booking confirmation for your records. " +
-    "Ink Theory will review your booking request and contact you regarding " +
-    "appointment arrangements and any additional information required.";
+    "Ink Theory will review your booking request and contact you " +
+    "regarding appointment arrangements and any additional information required.";
 
-  const noteLines = doc.splitTextToSize(
-    note,
-    pageWidth - 40
+
+  const noteLines =
+    doc.splitTextToSize(
+      note,
+      pageWidth - 40
+    );
+
+
+  doc.text(
+    noteLines,
+    20,
+    y
   );
 
-  doc.text(noteLines, 20, y);
 
-  y += noteLines.length * 5 + 7;
+  y +=
+    noteLines.length * 5 +
+    7;
 
-  doc.setFont("helvetica", "bold");
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
   doc.setFontSize(10);
+
 
   doc.text(
     "Ink Theory",
     pageWidth / 2,
     y,
-    { align: "center" }
+    {
+      align: "center"
+    }
   );
+
 
   y += 5;
 
-  doc.setFont("helvetica", "normal");
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
   doc.setFontSize(9);
+
 
   doc.text(
     "ink.theory01@outlook.com",
     pageWidth / 2,
     y,
-    { align: "center" }
+    {
+      align: "center"
+    }
   );
 
+
   y += 5;
+
 
   doc.text(
     "@inktheory01",
     pageWidth / 2,
     y,
-    { align: "center" }
+    {
+      align: "center"
+    }
   );
 
-
-  /* SAVE PDF */
 
   doc.save(
-    "Ink-Theory-Booking-" + bookingId + ".pdf"
+    "Ink-Theory-Booking-" +
+    bookingId +
+    ".pdf"
   );
+
 }
 
 
@@ -1063,100 +1737,200 @@ function createBookingPdf(formData, bookingId) {
    BOOKING SUBMISSION
 ========================================================= */
 
-bookingForm.addEventListener("submit", function(event) {
+bookingForm.addEventListener(
+  "submit",
+  function(event) {
 
-  event.preventDefault();
-
-  const submitButton =
-    bookingForm.querySelector(".submit-btn");
-
-  submitButton.disabled = true;
-  submitButton.textContent = "Preparing Booking...";
-
-  const formData = new FormData(bookingForm);
-
-  const bookingId =
-    "IT-" +
-    Date.now().toString().slice(-8);
-
-  latestBookingData = formData;
-  latestBookingId = bookingId;
+    event.preventDefault();
 
 
-  /*
-    Create the PDF during the user's button action.
-    This helps mobile browsers allow the PDF download.
-  */
-
-  createBookingPdf(
-    formData,
-    bookingId
-  );
+    const submitButton =
+      bookingForm.querySelector(
+        ".submit-btn"
+      );
 
 
-  submitButton.textContent = "Submitting...";
+    submitButton.disabled =
+      true;
+
+    submitButton.textContent =
+      "Preparing Booking...";
 
 
-  fetch(BOOKING_ENDPOINT, {
-    method: "POST",
-    mode: "no-cors",
-    body: formData
-  })
-  .then(function() {
+    /*
+     * Capture EXACTLY what the client entered.
+     */
 
-    successMessage.style.display = "block";
+    const formData =
+      new FormData(
+        bookingForm
+      );
 
-    submitButton.disabled = false;
-    submitButton.textContent = "Submit Booking Request";
 
-    successMessage.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
+    /*
+     * Unique booking reference.
+     */
 
-    bookingForm.reset();
+    const bookingId =
+      "IT-" +
+      Date.now()
+        .toString()
+        .slice(-8);
 
-  })
-  .catch(function() {
 
-    submitButton.disabled = false;
-    submitButton.textContent = "Submit Booking Request";
+    latestBookingData =
+      formData;
 
-    alert(
-      "There was a problem submitting your booking. " +
-      "Please try again."
+    latestBookingId =
+      bookingId;
+
+
+    /*
+     * Add booking reference.
+     */
+
+    formData.append(
+      "Booking Reference",
+      bookingId
     );
 
-  });
 
-});
+    /*
+     * Create confirmation PDF.
+     */
+
+    createBookingPdf(
+      formData,
+      bookingId
+    );
+
+
+    /*
+     * IMPORTANT:
+     *
+     * Convert FormData to URL encoded
+     * data before sending to Apps Script.
+     */
+
+    const encodedData =
+      new URLSearchParams();
+
+
+    for (
+      const [key, value]
+      of formData.entries()
+    ) {
+
+      encodedData.append(
+        key,
+        value
+      );
+
+    }
+
+
+    submitButton.textContent =
+      "Sending Booking...";
+
+
+    fetch(
+      BOOKING_ENDPOINT,
+      {
+
+        method: "POST",
+
+        mode: "no-cors",
+
+        headers: {
+          "Content-Type":
+            "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+
+        body:
+          encodedData.toString()
+
+      }
+    )
+
+    .then(
+      function() {
+
+        successMessage.style.display =
+          "block";
+
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.textContent =
+          "Submit Booking Request";
+
+
+        successMessage.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+
+        bookingForm.reset();
+
+      }
+    )
+
+    .catch(
+      function(error) {
+
+        console.error(error);
+
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.textContent =
+          "Submit Booking Request";
+
+
+        alert(
+          "There was a problem sending your booking. Please try again."
+        );
+
+      }
+    );
+
+  }
+);
 
 
 /* =========================================================
    DOWNLOAD PDF AGAIN
 ========================================================= */
 
-downloadPdfBtn.addEventListener("click", function() {
+downloadPdfBtn.addEventListener(
+  "click",
+  function() {
 
-  if (
-    latestBookingData &&
-    latestBookingId
-  ) {
-
-    createBookingPdf(
-      latestBookingData,
+    if (
+      latestBookingData &&
       latestBookingId
-    );
+    ) {
 
-  } else {
+      createBookingPdf(
+        latestBookingData,
+        latestBookingId
+      );
 
-    alert(
-      "No booking confirmation is currently available."
-    );
+    } else {
+
+      alert(
+        "No booking confirmation is currently available."
+      );
+
+    }
 
   }
-
-});
+);
 
 </script>
 

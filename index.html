@@ -8,13 +8,10 @@
 
   <meta
     name="description"
-    content="Ink Theory — Professional tattoo artist. Custom tattoos, fine line, black & grey, lettering, minimalist, cover-ups and military / marine custom work."
+    content="Ink Theory — Professional tattoo artist. Custom tattoos, fine line, black & grey, lettering, minimalist and cover-up tattoo work."
   >
 
   <meta name="theme-color" content="#061a3a">
-
-  <!-- PDF generator -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
 
@@ -40,7 +37,8 @@
     }
 
     body.menu-open,
-    body.lightbox-open {
+    body.lightbox-open,
+    body.modal-open {
       overflow: hidden;
     }
 
@@ -103,12 +101,12 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 22px;
     }
 
     .nav-links a {
       color: #ffffff;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       opacity: 0.88;
       transition: 0.25s;
     }
@@ -394,12 +392,32 @@
       background: #071e42;
     }
 
+    .portfolio-section-title {
+      margin: 40px 0 20px;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .portfolio-section-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .portfolio-section-title h3 {
+      font-size: 1.35rem;
+    }
+
+    .portfolio-section-title span {
+      color: #8fc7ff;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
     .portfolio-album {
       display: grid;
-
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
     }
 
@@ -452,8 +470,8 @@
       background:
         linear-gradient(
           to top,
-          rgba(0,0,0,0.82),
-          transparent 50%
+          rgba(0,0,0,0.84),
+          transparent 52%
         );
 
       pointer-events: none;
@@ -467,7 +485,7 @@
       right: 0;
       bottom: 0;
 
-      padding: 38px 14px 14px;
+      padding: 42px 14px 14px;
 
       font-size: 0.86rem;
       font-weight: 700;
@@ -487,29 +505,33 @@
       letter-spacing: 1.5px;
     }
 
+    .video-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+
+      z-index: 3;
+
+      padding: 6px 9px;
+
+      border-radius: 999px;
+
+      background: rgba(3,18,45,0.82);
+      border: 1px solid rgba(255,255,255,0.15);
+
+      font-size: 0.68rem;
+      font-weight: 700;
+
+      color: #ffffff;
+    }
+
     .portfolio-note {
-      margin-top: 20px;
+      margin-top: 28px;
 
       text-align: center;
 
       color: #9fb5cc;
       font-size: 0.85rem;
-    }
-
-    .portfolio-add-note {
-      max-width: 720px;
-      margin: 28px auto 0;
-
-      padding: 16px;
-
-      text-align: center;
-
-      color: #bfd0e4;
-
-      border-radius: 14px;
-
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.07);
     }
 
     /* =========================================================
@@ -675,6 +697,17 @@
       font-weight: 700;
     }
 
+    .field-help {
+      display: block;
+
+      margin-top: 6px;
+
+      color: #8ea7c2;
+
+      font-size: 0.78rem;
+      font-weight: 400;
+    }
+
     .required {
       color: #9bd0ff;
     }
@@ -726,8 +759,7 @@
     .yes-no-row {
       display: grid;
 
-      grid-template-columns:
-        1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 
       gap: 12px;
     }
@@ -865,11 +897,184 @@
     }
 
     /* =========================================================
+       MANAGE APPOINTMENT
+    ========================================================= */
+
+    .manage {
+      background: #061a3a;
+    }
+
+    .manage-wrapper {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .manage-card {
+      padding: 30px;
+
+      border-radius: 22px;
+
+      background: rgba(255,255,255,0.045);
+
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .manage-intro {
+      color: #bfd0e4;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .manage-form {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr auto;
+
+      gap: 12px;
+
+      align-items: end;
+    }
+
+    .manage-form .form-group {
+      margin-bottom: 0;
+    }
+
+    .manage-button {
+      min-height: 49px;
+
+      padding: 0 20px;
+
+      border: 0;
+      border-radius: 12px;
+
+      background: #ffffff;
+      color: #061a3a;
+
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .manage-result {
+      display: none;
+
+      margin-top: 22px;
+
+      padding: 20px;
+
+      border-radius: 16px;
+
+      background: rgba(255,255,255,0.035);
+
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .manage-result.show {
+      display: block;
+    }
+
+    .appointment-summary {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 12px;
+
+      margin-bottom: 20px;
+    }
+
+    .summary-item {
+      padding: 13px;
+
+      border-radius: 11px;
+
+      background: rgba(255,255,255,0.035);
+
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .summary-item small {
+      display: block;
+
+      color: #8ea7c2;
+
+      margin-bottom: 3px;
+    }
+
+    .summary-item strong {
+      color: #ffffff;
+    }
+
+    .manage-actions {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 12px;
+    }
+
+    .manage-action {
+      min-height: 50px;
+
+      border-radius: 12px;
+
+      border: 1px solid rgba(255,255,255,0.14);
+
+      background: rgba(255,255,255,0.055);
+
+      color: #ffffff;
+
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .manage-action:hover {
+      background: rgba(255,255,255,0.10);
+    }
+
+    .manage-action.cancel {
+      border-color: rgba(255,100,100,0.28);
+    }
+
+    .manage-request {
+      display: none;
+
+      margin-top: 20px;
+
+      padding: 20px;
+
+      border-radius: 16px;
+
+      background: rgba(255,255,255,0.035);
+
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .manage-request.show {
+      display: block;
+    }
+
+    .request-title {
+      margin-bottom: 15px;
+
+      color: #9bd0ff;
+
+      font-weight: 800;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================================================
        CONTACT
     ========================================================= */
 
     .contact {
-      background: #061a3a;
+      background: #071e42;
 
       text-align: center;
     }
@@ -996,7 +1201,7 @@
       margin-bottom: 6px;
     }
 
-    .terms-card .terms-updated {
+    .terms-updated {
       color: #8fc7ff;
 
       font-size: 0.78rem;
@@ -1013,15 +1218,10 @@
       font-size: 1rem;
     }
 
-    .terms-card p,
-    .terms-card li {
+    .terms-card p {
       color: #c9d8e9;
 
       font-size: 0.91rem;
-    }
-
-    .terms-card ul {
-      padding-left: 20px;
     }
 
     .terms-close {
@@ -1138,6 +1338,14 @@
         grid-template-columns:
           repeat(2, 1fr);
       }
+
+      .manage-form {
+        grid-template-columns: 1fr;
+      }
+
+      .manage-button {
+        width: 100%;
+      }
     }
 
     @media (max-width: 560px) {
@@ -1175,11 +1383,17 @@
           25px 9px 9px;
       }
 
-      .booking-form {
+      .booking-form,
+      .manage-card {
         padding: 20px;
       }
 
       .yes-no-row {
+        grid-template-columns: 1fr;
+      }
+
+      .appointment-summary,
+      .manage-actions {
         grid-template-columns: 1fr;
       }
 
@@ -1219,9 +1433,14 @@
 
         <a href="#booking">Book Now</a>
 
+        <a href="#manage">Manage Appointment</a>
+
         <a href="#contact">Contact</a>
 
-        <a href="javascript:void(0)" onclick="openTerms()">
+        <a
+          href="javascript:void(0)"
+          onclick="openTerms()"
+        >
           Terms &amp; Conditions
         </a>
 
@@ -1353,30 +1572,27 @@
         <h2>Services</h2>
 
         <p>
-          Choose a style or describe your idea during the
-          booking process.
+          Choose a tattoo style or describe your custom idea
+          during the booking process.
         </p>
 
       </div>
 
       <div class="service-grid">
 
+
         <div class="service-card">
 
           <div class="service-icon">
-
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="1.8"
             >
-
               <path d="M12 3v18"></path>
               <path d="M3 12h18"></path>
-
             </svg>
-
           </div>
 
           <h3>Custom Tattoos</h3>
@@ -1391,25 +1607,16 @@
         <div class="service-card">
 
           <div class="service-icon">
-
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="1.8"
             >
-
               <path d="M5 19c5-1 9-5 10-10"></path>
               <path d="M7 17l-2 2"></path>
-
-              <circle
-                cx="15.5"
-                cy="8.5"
-                r="4"
-              ></circle>
-
+              <circle cx="15.5" cy="8.5" r="4"></circle>
             </svg>
-
           </div>
 
           <h3>Fine Line</h3>
@@ -1424,24 +1631,15 @@
         <div class="service-card">
 
           <div class="service-icon">
-
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="1.8"
             >
-
-              <circle
-                cx="12"
-                cy="12"
-                r="8"
-              ></circle>
-
+              <circle cx="12" cy="12" r="8"></circle>
               <path d="M8 16l8-8"></path>
-
             </svg>
-
           </div>
 
           <h3>Black &amp; Grey</h3>
@@ -1456,20 +1654,16 @@
         <div class="service-card">
 
           <div class="service-icon">
-
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="1.8"
             >
-
               <path d="M4 6h16"></path>
               <path d="M4 12h16"></path>
               <path d="M4 18h16"></path>
-
             </svg>
-
           </div>
 
           <h3>Lettering</h3>
@@ -1484,22 +1678,14 @@
         <div class="service-card">
 
           <div class="service-icon">
-
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="1.8"
             >
-
-              <circle
-                cx="12"
-                cy="12"
-                r="7"
-              ></circle>
-
+              <circle cx="12" cy="12" r="7"></circle>
             </svg>
-
           </div>
 
           <h3>Minimalist</h3>
@@ -1514,21 +1700,17 @@
         <div class="service-card">
 
           <div class="service-icon">
-
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="1.8"
             >
-
               <path d="M5 19L19 5"></path>
               <path d="M7 7h5"></path>
               <path d="M12 12h5"></path>
               <path d="M5 17h5"></path>
-
             </svg>
-
           </div>
 
           <h3>Cover-Up</h3>
@@ -1539,6 +1721,7 @@
 
         </div>
 
+
       </div>
 
     </div>
@@ -1548,7 +1731,6 @@
 
   <!-- =========================================================
        PORTFOLIO
-       IMAGES + VIDEOS
   ========================================================= -->
 
   <section class="portfolio" id="portfolio">
@@ -1562,16 +1744,28 @@
         <h2>Portfolio</h2>
 
         <p>
-          Tap any image or video to view it larger.
+          Explore completed tattoo artwork and tattoo process videos.
         </p>
+
+      </div>
+
+
+      <!-- =====================================================
+           TATTOO PICTURES
+      ====================================================== -->
+
+      <div class="portfolio-section-title">
+
+        <div>
+          <h3>Tattoo Pictures</h3>
+          <span>Completed Work</span>
+        </div>
 
       </div>
 
 
       <div class="portfolio-album">
 
-
-        <!-- IMAGE 1 -->
 
         <div
           class="portfolio-item"
@@ -1580,24 +1774,22 @@
 
           <img
             src="images/ink-theory-dog-tags.jpg"
-            alt="Military / Marine Custom Work"
+            alt="Custom Tattoo Artwork"
             loading="lazy"
           >
 
           <div class="portfolio-label">
 
             <span class="portfolio-type">
-              Custom Work
+              Custom
             </span>
 
-            Military / Marine Custom Work
+            Custom Tattoo Artwork
 
           </div>
 
         </div>
 
-
-        <!-- IMAGE 2 -->
 
         <div
           class="portfolio-item"
@@ -1613,17 +1805,15 @@
           <div class="portfolio-label">
 
             <span class="portfolio-type">
-              Custom Work
+              Custom
             </span>
 
-            Custom Crown / Football
+            Crown &amp; Football
 
           </div>
 
         </div>
 
-
-        <!-- IMAGE 3 -->
 
         <div
           class="portfolio-item"
@@ -1639,7 +1829,7 @@
           <div class="portfolio-label">
 
             <span class="portfolio-type">
-              Custom Work
+              Custom
             </span>
 
             Floral Snake
@@ -1648,8 +1838,6 @@
 
         </div>
 
-
-        <!-- IMAGE 4 -->
 
         <div
           class="portfolio-item"
@@ -1665,7 +1853,7 @@
           <div class="portfolio-label">
 
             <span class="portfolio-type">
-              Custom Work
+              Custom
             </span>
 
             Compass
@@ -1674,8 +1862,6 @@
 
         </div>
 
-
-        <!-- IMAGE 5 -->
 
         <div
           class="portfolio-item"
@@ -1691,7 +1877,7 @@
           <div class="portfolio-label">
 
             <span class="portfolio-type">
-              Creative Design
+              Creative
             </span>
 
             Impossible Chess
@@ -1700,8 +1886,6 @@
 
         </div>
 
-
-        <!-- IMAGE 6 -->
 
         <div
           class="portfolio-item"
@@ -1727,27 +1911,44 @@
         </div>
 
 
-        <!-- =====================================================
-             VIDEO TEMPLATE
+      </div>
 
-             Upload your video to GitHub:
-             images/your-video.mp4
 
-             Then copy this block.
+      <!-- =====================================================
+           TATTOO VIDEOS
+      ====================================================== -->
 
-             IMPORTANT:
-             Keep videos reasonably compressed for mobile.
-        ====================================================== -->
+      <div class="portfolio-section-title">
+
+        <div>
+          <h3>Tattoo Videos</h3>
+          <span>Process &amp; Results</span>
+        </div>
+
+      </div>
+
+
+      <div class="portfolio-album">
+
 
         <!--
+          VIDEO SLOT
+
+          Change only:
+          1. the filename
+          2. the title
+
+          Example:
+          images/ink-theory-process-01.mp4
+        -->
 
         <div
           class="portfolio-item"
-          onclick="openVideoLightbox('images/your-video.mp4')"
+          onclick="openVideoLightbox('images/ink-theory-process-01.mp4')"
         >
 
           <video
-            src="images/your-video.mp4"
+            src="images/ink-theory-process-01.mp4"
             muted
             autoplay
             loop
@@ -1755,37 +1956,65 @@
             preload="metadata"
           ></video>
 
+          <div class="video-badge">
+            PROCESS
+          </div>
+
           <div class="portfolio-label">
 
             <span class="portfolio-type">
-              Video
+              Tattoo Process
             </span>
 
-            Tattoo Process
+            Tattoo Making Process
 
           </div>
 
         </div>
 
+
+        <!--
+          ADDITIONAL VIDEO SLOT
+
+          Replace the filename and title when needed.
         -->
+
+        <div
+          class="portfolio-item"
+          onclick="openVideoLightbox('images/ink-theory-process-02.mp4')"
+        >
+
+          <video
+            src="images/ink-theory-process-02.mp4"
+            muted
+            autoplay
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <div class="video-badge">
+            RESULTS
+          </div>
+
+          <div class="portfolio-label">
+
+            <span class="portfolio-type">
+              Tattoo Results
+            </span>
+
+            Finished Tattoo Result
+
+          </div>
+
+        </div>
 
 
       </div>
 
 
       <div class="portfolio-note">
-        More custom designs can be added to the album at any time.
-      </div>
-
-
-      <div class="portfolio-add-note">
-
-        <strong>Portfolio expansion:</strong><br>
-
-        You can add additional JPG, PNG, WEBP or MP4
-        tattoo artwork and process videos to the
-        <strong>images</strong> folder on GitHub.
-
+        Ink Theory portfolio — artwork, process and finished results.
       </div>
 
     </div>
@@ -1886,7 +2115,7 @@
           <input
             type="text"
             id="fullName"
-            name="Full Name"
+            name="fullName"
             placeholder="Enter your full name"
             required
           >
@@ -1904,7 +2133,7 @@
           <input
             type="email"
             id="email"
-            name="Email"
+            name="email"
             placeholder="Enter your email address"
             required
           >
@@ -1922,7 +2151,7 @@
           <input
             type="text"
             id="phone"
-            name="Phone / Telegram"
+            name="phone"
             placeholder="Phone number or Telegram username"
             required
           >
@@ -1933,17 +2162,22 @@
         <div class="form-group">
 
           <label for="location">
-            Location / Address
+            Appointment Location / Address
             <span class="required">*</span>
           </label>
 
           <input
             type="text"
             id="location"
-            name="Location / Address"
-            placeholder="Where will the appointment take place?"
+            name="location"
+            placeholder="Apt, Suite, Studio, Hotel, or full address"
             required
           >
+
+          <span class="field-help">
+            Where would you like the appointment to take place?
+            Include an Apt, Suite, Studio, Hotel, or full address where applicable.
+          </span>
 
         </div>
 
@@ -1964,7 +2198,7 @@
 
           <select
             id="tattooType"
-            name="Tattoo Type"
+            name="tattooType"
             required
           >
 
@@ -1972,8 +2206,8 @@
               Select tattoo type
             </option>
 
-            <option value="Custom Tattoo">
-              Custom Tattoo
+            <option value="Custom">
+              Custom
             </option>
 
             <option value="Fine Line">
@@ -1994,10 +2228,6 @@
 
             <option value="Cover-Up">
               Cover-Up
-            </option>
-
-            <option value="Military / Marine Custom Work">
-              Military / Marine Custom Work
             </option>
 
             <option value="Other">
@@ -2022,7 +2252,7 @@
           <input
             type="date"
             id="appointmentDate"
-            name="Preferred Appointment Date"
+            name="appointmentDate"
             required
           >
 
@@ -2041,7 +2271,7 @@
 
           <textarea
             id="tattooDescription"
-            name="Tattoo Description"
+            name="description"
             placeholder="Describe the tattoo you want, placement, approximate size, colors, references, etc."
             required
           ></textarea>
@@ -2056,11 +2286,9 @@
         </div>
 
 
-        <!-- MEDICAL -->
-
         <div class="form-group">
 
-          <label>
+          <label for="medicalCondition">
 
             Do you have any medical condition we should know about?
 
@@ -2069,10 +2297,11 @@
           </label>
 
           <select
+            id="medicalCondition"
             class="yes-no-select"
             data-reason="medicalReasonBox"
             data-reason-input="medicalReason"
-            name="Medical Condition"
+            name="medicalCondition"
             required
           >
 
@@ -2106,7 +2335,7 @@
 
             <textarea
               id="medicalReason"
-              name="Medical Condition Reason"
+              name="medicalDetails"
               placeholder="Please provide details"
             ></textarea>
 
@@ -2115,11 +2344,9 @@
         </div>
 
 
-        <!-- ALLERGIES -->
-
         <div class="form-group">
 
-          <label>
+          <label for="allergies">
 
             Do you have any allergies or sensitivities?
 
@@ -2128,10 +2355,11 @@
           </label>
 
           <select
+            id="allergies"
             class="yes-no-select"
             data-reason="allergyReasonBox"
             data-reason-input="allergyReason"
-            name="Allergies or Sensitivities"
+            name="allergies"
             required
           >
 
@@ -2165,7 +2393,7 @@
 
             <textarea
               id="allergyReason"
-              name="Allergies or Sensitivities Reason"
+              name="allergyDetails"
               placeholder="Please provide details"
             ></textarea>
 
@@ -2174,11 +2402,9 @@
         </div>
 
 
-        <!-- HEALING -->
-
         <div class="form-group">
 
-          <label>
+          <label for="healingCondition">
 
             Do you have a healing or bleeding condition?
 
@@ -2187,10 +2413,11 @@
           </label>
 
           <select
+            id="healingCondition"
             class="yes-no-select"
             data-reason="healingReasonBox"
             data-reason-input="healingReason"
-            name="Healing or Bleeding Condition"
+            name="healingCondition"
             required
           >
 
@@ -2224,7 +2451,7 @@
 
             <textarea
               id="healingReason"
-              name="Healing or Bleeding Condition Reason"
+              name="healingDetails"
               placeholder="Please provide details"
             ></textarea>
 
@@ -2233,11 +2460,9 @@
         </div>
 
 
-        <!-- MEDICATION -->
-
         <div class="form-group">
 
-          <label>
+          <label for="medication">
 
             Are you currently taking medication or receiving treatment?
 
@@ -2246,10 +2471,11 @@
           </label>
 
           <select
+            id="medication"
             class="yes-no-select"
             data-reason="medicationReasonBox"
             data-reason-input="medicationReason"
-            name="Medication or Treatment"
+            name="medication"
             required
           >
 
@@ -2283,7 +2509,7 @@
 
             <textarea
               id="medicationReason"
-              name="Medication or Treatment Reason"
+              name="medicationDetails"
               placeholder="Please provide details"
             ></textarea>
 
@@ -2292,11 +2518,9 @@
         </div>
 
 
-        <!-- SKIN -->
-
         <div class="form-group">
 
-          <label>
+          <label for="skinCondition">
 
             Do you have any skin condition affecting the tattoo area?
 
@@ -2305,10 +2529,11 @@
           </label>
 
           <select
+            id="skinCondition"
             class="yes-no-select"
             data-reason="skinReasonBox"
             data-reason-input="skinReason"
-            name="Skin Condition"
+            name="skinCondition"
             required
           >
 
@@ -2342,7 +2567,7 @@
 
             <textarea
               id="skinReason"
-              name="Skin Condition Reason"
+              name="skinDetails"
               placeholder="Please provide details"
             ></textarea>
 
@@ -2351,11 +2576,9 @@
         </div>
 
 
-        <!-- PREGNANCY -->
-
         <div class="form-group">
 
-          <label>
+          <label for="pregnancyTreatment">
 
             Are you pregnant, breastfeeding, or currently undergoing medical treatment?
 
@@ -2364,10 +2587,11 @@
           </label>
 
           <select
+            id="pregnancyTreatment"
             class="yes-no-select"
             data-reason="pregnancyReasonBox"
             data-reason-input="pregnancyReason"
-            name="Pregnancy Breastfeeding Medical Treatment"
+            name="pregnancyTreatment"
             required
           >
 
@@ -2401,7 +2625,7 @@
 
             <textarea
               id="pregnancyReason"
-              name="Pregnancy Breastfeeding Medical Treatment Reason"
+              name="pregnancyTreatmentDetails"
               placeholder="Please provide details"
             ></textarea>
 
@@ -2423,16 +2647,14 @@
 
             <input
               type="checkbox"
-              name="Client Health Declaration"
+              name="healthConsent"
               value="Accepted"
               required
             >
 
             <span>
-
               I confirm that the health information I have provided
               is accurate and complete to the best of my knowledge.
-
             </span>
 
           </label>
@@ -2446,17 +2668,15 @@
 
             <input
               type="checkbox"
-              name="Tattoo Risk Declaration"
+              name="tattooConsent"
               value="Accepted"
               required
             >
 
             <span>
-
               I understand that tattooing involves risks such as
               discomfort, irritation, allergic reaction, infection
               and changes during healing.
-
             </span>
 
           </label>
@@ -2470,16 +2690,14 @@
 
             <input
               type="checkbox"
-              name="Booking & Contact Consent"
+              name="bookingConsent"
               value="Accepted"
               required
             >
 
             <span>
-
               I agree that Ink Theory may use the contact information
               I provide to communicate with me about my appointment.
-
             </span>
 
           </label>
@@ -2487,15 +2705,13 @@
         </div>
 
 
-        <!-- TERMS ACCEPTANCE -->
-
         <div class="declaration">
 
           <label>
 
             <input
               type="checkbox"
-              name="Terms & Conditions Acceptance"
+              name="termsConsent"
               value="Accepted"
               required
             >
@@ -2546,6 +2762,258 @@
 
 
   <!-- =========================================================
+       MANAGE APPOINTMENT
+  ========================================================= -->
+
+  <section class="manage" id="manage">
+
+    <div class="container manage-wrapper">
+
+      <div class="section-heading">
+
+        <small>Client Services</small>
+
+        <h2>Manage Appointment</h2>
+
+        <p>
+          Enter your booking reference and email to view your
+          appointment and request a change or cancellation.
+        </p>
+
+      </div>
+
+
+      <div class="manage-card">
+
+        <p class="manage-intro">
+          Use the booking reference shown in your Ink Theory
+          confirmation email.
+        </p>
+
+
+        <form
+          class="manage-form"
+          id="manageLookupForm"
+        >
+
+          <div class="form-group">
+
+            <label for="manageBookingReference">
+              Booking Reference
+            </label>
+
+            <input
+              type="text"
+              id="manageBookingReference"
+              name="bookingReference"
+              placeholder="Example: IT-12345678"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="manageEmail">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              id="manageEmail"
+              name="email"
+              placeholder="Your booking email"
+              required
+            >
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="manage-button"
+            id="manageLookupButton"
+          >
+            Find Appointment
+          </button>
+
+        </form>
+
+
+        <div
+          class="manage-result"
+          id="manageResult"
+        >
+
+          <div
+            class="appointment-summary"
+            id="appointmentSummary"
+          ></div>
+
+
+          <div class="manage-actions">
+
+            <button
+              type="button"
+              class="manage-action"
+              onclick="showManageRequest('reschedule')"
+            >
+              Request Reschedule
+            </button>
+
+            <button
+              type="button"
+              class="manage-action cancel"
+              onclick="showManageRequest('cancel')"
+            >
+              Request Cancellation
+            </button>
+
+          </div>
+
+
+          <div
+            class="manage-request"
+            id="manageRequestBox"
+          >
+
+            <div
+              class="request-title"
+              id="manageRequestTitle"
+            >
+              Appointment Request
+            </div>
+
+
+            <form id="manageRequestForm">
+
+              <input
+                type="hidden"
+                id="manageAction"
+                name="action"
+              >
+
+              <input
+                type="hidden"
+                id="manageRequestReference"
+                name="bookingReference"
+              >
+
+              <input
+                type="hidden"
+                id="manageRequestEmail"
+                name="email"
+              >
+
+
+              <div
+                class="form-group"
+                id="newDateGroup"
+              >
+
+                <label for="newAppointmentDate">
+                  Requested New Date
+                </label>
+
+                <input
+                  type="date"
+                  id="newAppointmentDate"
+                  name="newAppointmentDate"
+                >
+
+              </div>
+
+
+              <div
+                class="form-group"
+                id="newTimeGroup"
+              >
+
+                <label for="newAppointmentTime">
+                  Requested Time
+                </label>
+
+                <input
+                  type="time"
+                  id="newAppointmentTime"
+                  name="newAppointmentTime"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="manageReason">
+                  Reason / Additional Information
+                </label>
+
+                <textarea
+                  id="manageReason"
+                  name="reason"
+                  placeholder="Please provide any information relevant to your request."
+                  required
+                ></textarea>
+
+              </div>
+
+
+              <div
+                class="form-group hidden"
+                id="cancelConfirmationGroup"
+              >
+
+                <label for="cancelConfirmation">
+                  Cancellation Confirmation
+                </label>
+
+                <select
+                  id="cancelConfirmation"
+                  name="confirmation"
+                >
+
+                  <option value="">
+                    Select confirmation
+                  </option>
+
+                  <option value="I confirm that I want to request cancellation.">
+                    I confirm that I want to request cancellation.
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <button
+                type="submit"
+                class="submit-button"
+                id="manageRequestButton"
+              >
+                Submit Request
+              </button>
+
+            </form>
+
+          </div>
+
+
+          <div
+            class="form-message"
+            id="manageMessage"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
        CONTACT
   ========================================================= -->
 
@@ -2579,7 +3047,6 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            title="Instagram"
           >
 
             <svg
@@ -2632,7 +3099,6 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="TikTok"
-            title="TikTok"
           >
 
             <svg
@@ -2673,7 +3139,6 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Telegram"
-            title="Telegram"
           >
 
             <svg
@@ -2713,13 +3178,11 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
-            title="Facebook"
           >
 
             <svg
               viewBox="0 0 24 24"
               fill="currentColor"
-              aria-hidden="true"
             >
 
               <path
@@ -2745,7 +3208,6 @@
             class="contact-icon"
             href="mailto:ink.theory01@outlook.com"
             aria-label="Email Ink Theory"
-            title="Email"
           >
 
             <svg
@@ -2792,7 +3254,7 @@
 
 
   <!-- =========================================================
-       TERMS & CONDITIONS MODAL
+       TERMS & CONDITIONS
   ========================================================= -->
 
   <div
@@ -2860,8 +3322,8 @@
       <p>
         Clients should communicate as early as possible if they
         need to change or cancel an appointment. Rescheduling,
-        cancellation and down-payment policies may depend on the
-        circumstances and will be communicated before the
+        cancellation and down-payment policies may depend on
+        the circumstances and will be communicated before the
         appointment is finalized.
       </p>
 
@@ -2969,7 +3431,6 @@
         confirming the appointment.
       </p>
 
-
     </div>
 
   </div>
@@ -3013,7 +3474,7 @@
 
 
     /* =========================================================
-       CURRENT YEAR
+       YEAR
     ========================================================= */
 
     document.getElementById("currentYear").textContent =
@@ -3029,7 +3490,6 @@
 
     const navLinks =
       document.getElementById("navLinks");
-
 
     menuToggle.addEventListener(
       "click",
@@ -3080,7 +3540,7 @@
 
 
     /* =========================================================
-       TERMS & CONDITIONS
+       TERMS
     ========================================================= */
 
     const termsModal =
@@ -3092,7 +3552,7 @@
       termsModal.classList.add("show");
 
       document.body.classList.add(
-        "menu-open"
+        "modal-open"
       );
 
     }
@@ -3103,7 +3563,7 @@
       termsModal.classList.remove("show");
 
       document.body.classList.remove(
-        "menu-open"
+        "modal-open"
       );
 
     }
@@ -3143,7 +3603,7 @@
       image.src = imagePath;
 
       image.alt =
-        "Ink Theory portfolio preview";
+        "Ink Theory tattoo portfolio";
 
       lightboxContent.appendChild(
         image
@@ -3215,7 +3675,7 @@
 
 
     /* =========================================================
-       ESCAPE KEY
+       ESCAPE
     ========================================================= */
 
     document.addEventListener(
@@ -3235,7 +3695,7 @@
 
 
     /* =========================================================
-       YES / NO CONDITIONAL FIELDS
+       HEALTH CONDITIONAL FIELDS
     ========================================================= */
 
     document.querySelectorAll(
@@ -3297,7 +3757,7 @@
 
 
     /* =========================================================
-       PREVENT PAST DATES
+       PREVENT PAST APPOINTMENT DATES
     ========================================================= */
 
     const appointmentDate =
@@ -3306,14 +3766,20 @@
       );
 
 
-    const today =
-      new Date()
-        .toISOString()
-        .split("T")[0];
+    const now =
+      new Date();
+
+    const localToday =
+      new Date(
+        now.getTime() -
+        now.getTimezoneOffset() * 60000
+      )
+      .toISOString()
+      .split("T")[0];
 
 
     appointmentDate.min =
-      today;
+      localToday;
 
 
     /* =========================================================
@@ -3343,8 +3809,6 @@
         event.preventDefault();
 
 
-        /* Browser validation */
-
         if (
           !bookingForm.checkValidity()
         ) {
@@ -3356,7 +3820,12 @@
         }
 
 
-        /* Booking reference */
+        /*
+          Client reference.
+
+          The production Code.gs should validate this
+          and preserve the booking reference.
+        */
 
         const bookingId =
           "IT-" +
@@ -3372,12 +3841,10 @@
 
 
         formData.append(
-          "Booking Reference",
+          "bookingReference",
           bookingId
         );
 
-
-        /* Processing */
 
         submitButton.disabled =
           true;
@@ -3387,20 +3854,12 @@
 
 
         formMessage.classList.remove(
-          "show"
-        );
-
-        formMessage.classList.remove(
+          "show",
           "error-message"
         );
 
 
         try {
-
-          /*
-            URL encoded data works with
-            Google Apps Script doPost().
-          */
 
           const encodedData =
             new URLSearchParams();
@@ -3420,11 +3879,14 @@
 
 
           /*
-            Send the COMPLETE booking.
+            The website does NOT generate or download
+            a PDF for the client.
 
-            no-cors is retained because the
-            GitHub Pages frontend and Apps Script
-            endpoint are different origins.
+            The Apps Script backend will:
+            1. Record the booking.
+            2. Create the booking document/PDF.
+            3. Email the client with the PDF attached.
+            4. Notify Ink Theory.
           */
 
           await fetch(
@@ -3445,16 +3907,6 @@
           );
 
 
-          /* Generate client PDF */
-
-          generateBookingPDF(
-            formData,
-            bookingId
-          );
-
-
-          /* Success */
-
           formMessage.innerHTML =
             "<strong>Booking request submitted.</strong><br><br>" +
 
@@ -3466,18 +3918,17 @@
 
             "<br><br>" +
 
-            "Please keep your booking PDF for your records. " +
+            "A confirmation email and booking document " +
+            "will be sent to the email address you provided. " +
 
-            "Ink Theory will review your request and contact you " +
-            "using the information you provided.";
+            "Please keep your booking reference for managing " +
+            "your appointment later.";
 
 
           formMessage.classList.add(
             "show"
           );
 
-
-          /* Reset */
 
           bookingForm.reset();
 
@@ -3505,8 +3956,6 @@
 
           });
 
-
-          /* Scroll */
 
           formMessage.scrollIntoView({
             behavior: "smooth",
@@ -3542,338 +3991,540 @@
 
 
     /* =========================================================
-       PDF GENERATION
+       MANAGE APPOINTMENT
     ========================================================= */
 
-    function generateBookingPDF(
-      formData,
-      bookingId
-    ) {
+    const manageLookupForm =
+      document.getElementById(
+        "manageLookupForm"
+      );
 
-      if (
-        !window.jspdf ||
-        !window.jspdf.jsPDF
-      ) {
+    const manageLookupButton =
+      document.getElementById(
+        "manageLookupButton"
+      );
 
-        console.warn(
-          "jsPDF is not available."
-        );
+    const manageResult =
+      document.getElementById(
+        "manageResult"
+      );
 
-        return;
+    const appointmentSummary =
+      document.getElementById(
+        "appointmentSummary"
+      );
 
-      }
+    const manageRequestBox =
+      document.getElementById(
+        "manageRequestBox"
+      );
 
+    const manageRequestForm =
+      document.getElementById(
+        "manageRequestForm"
+      );
 
-      const {
-        jsPDF
-      } = window.jspdf;
-
-
-      const doc =
-        new jsPDF();
-
-
-      let y = 20;
-
-
-      function addLine(
-        label,
-        value
-      ) {
-
-        const safeValue =
-          value ||
-          "Not provided";
+    const manageMessage =
+      document.getElementById(
+        "manageMessage"
+      );
 
 
-        const text =
-          label +
-          ": " +
-          safeValue;
+    let currentAppointment = null;
 
 
-        const wrapped =
-          doc.splitTextToSize(
-            text,
-            170
-          );
+    /*
+      JSONP is used for the lookup because the website
+      and Google Apps Script are different origins.
+    */
+
+    manageLookupForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
 
 
-        doc.text(
-          wrapped,
-          20,
-          y
-        );
+        const reference =
+          document
+            .getElementById(
+              "manageBookingReference"
+            )
+            .value
+            .trim()
+            .toUpperCase();
 
 
-        y +=
-          7 *
-          wrapped.length +
-          2;
+        const email =
+          document
+            .getElementById(
+              "manageEmail"
+            )
+            .value
+            .trim()
+            .toLowerCase();
 
 
-        if (
-          y > 275
-        ) {
+        if (!reference || !email) {
 
-          doc.addPage();
-
-          y = 20;
+          return;
 
         }
 
+
+        manageLookupButton.disabled =
+          true;
+
+        manageLookupButton.textContent =
+          "Checking...";
+
+
+        manageResult.classList.remove(
+          "show"
+        );
+
+        manageRequestBox.classList.remove(
+          "show"
+        );
+
+        manageMessage.classList.remove(
+          "show",
+          "error-message"
+        );
+
+
+        const callbackName =
+          "inkTheoryLookup_" +
+          Date.now();
+
+
+        window[callbackName] =
+          function(data) {
+
+            try {
+
+              if (
+                !data ||
+                !data.success
+              ) {
+
+                manageMessage.textContent =
+                  data && data.message
+                    ? data.message
+                    : "No matching appointment was found.";
+
+                manageMessage.classList.add(
+                  "show",
+                  "error-message"
+                );
+
+                return;
+
+              }
+
+
+              currentAppointment =
+                data.booking;
+
+
+              appointmentSummary.innerHTML =
+
+                summaryItem(
+                  "Booking Reference",
+                  data.booking.bookingReference
+                ) +
+
+                summaryItem(
+                  "Client",
+                  data.booking.fullName
+                ) +
+
+                summaryItem(
+                  "Tattoo Type",
+                  data.booking.tattooType
+                ) +
+
+                summaryItem(
+                  "Appointment Date",
+                  data.booking.appointmentDate
+                ) +
+
+                summaryItem(
+                  "Status",
+                  data.booking.status || "Under Review"
+                );
+
+
+              manageResult.classList.add(
+                "show"
+              );
+
+
+            } finally {
+
+              delete window[callbackName];
+
+              const script =
+                document.getElementById(
+                  callbackName
+                );
+
+              if (script) {
+                script.remove();
+              }
+
+              manageLookupButton.disabled =
+                false;
+
+              manageLookupButton.textContent =
+                "Find Appointment";
+
+            }
+
+          };
+
+
+        const script =
+          document.createElement("script");
+
+
+        script.id =
+          callbackName;
+
+        script.src =
+          BOOKING_ENDPOINT +
+          "?action=lookup" +
+          "&bookingReference=" +
+          encodeURIComponent(reference) +
+          "&email=" +
+          encodeURIComponent(email) +
+          "&callback=" +
+          encodeURIComponent(callbackName);
+
+
+        script.onerror =
+          function() {
+
+            delete window[callbackName];
+
+            script.remove();
+
+            manageLookupButton.disabled =
+              false;
+
+            manageLookupButton.textContent =
+              "Find Appointment";
+
+
+            manageMessage.textContent =
+              "We could not connect to the appointment service. Please try again.";
+
+            manageMessage.classList.add(
+              "show",
+              "error-message"
+            );
+
+          };
+
+
+        document.body.appendChild(
+          script
+        );
+
+      }
+    );
+
+
+    function summaryItem(
+      label,
+      value
+    ) {
+
+      return (
+        '<div class="summary-item">' +
+          '<small>' +
+            escapeHtml(label) +
+          '</small>' +
+          '<strong>' +
+            escapeHtml(value || "Not provided") +
+          '</strong>' +
+        '</div>'
+      );
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =========================================================
+       MANAGE REQUEST TYPE
+    ========================================================= */
+
+    function showManageRequest(
+      action
+    ) {
+
+      if (!currentAppointment) {
+        return;
       }
 
 
-      doc.setFontSize(18);
-
-      doc.text(
-        "INK THEORY",
-        20,
-        y
-      );
-
-      y += 10;
+      document.getElementById(
+        "manageAction"
+      ).value =
+        action;
 
 
-      doc.setFontSize(11);
-
-      doc.text(
-        "Tattoo Booking Request",
-        20,
-        y
-      );
-
-      y += 10;
+      document.getElementById(
+        "manageRequestReference"
+      ).value =
+        currentAppointment.bookingReference;
 
 
-      addLine(
-        "Booking Reference",
-        bookingId
-      );
+      document.getElementById(
+        "manageRequestEmail"
+      ).value =
+        document
+          .getElementById(
+            "manageEmail"
+          )
+          .value
+          .trim()
+          .toLowerCase();
 
 
-      y += 4;
+      const title =
+        document.getElementById(
+          "manageRequestTitle"
+        );
 
 
-      doc.setFontSize(13);
+      const dateGroup =
+        document.getElementById(
+          "newDateGroup"
+        );
 
-      doc.text(
-        "CLIENT INFORMATION",
-        20,
-        y
-      );
+      const timeGroup =
+        document.getElementById(
+          "newTimeGroup"
+        );
 
-      y += 8;
-
-      doc.setFontSize(11);
-
-
-      addLine(
-        "Full Name",
-        formData.get("Full Name")
-      );
-
-      addLine(
-        "Email",
-        formData.get("Email")
-      );
-
-      addLine(
-        "Phone / Telegram",
-        formData.get("Phone / Telegram")
-      );
-
-      addLine(
-        "Location / Address",
-        formData.get("Location / Address")
-      );
+      const cancelGroup =
+        document.getElementById(
+          "cancelConfirmationGroup"
+        );
 
 
-      y += 4;
+      if (action === "reschedule") {
 
-      doc.setFontSize(13);
+        title.textContent =
+          "Request Appointment Reschedule";
 
-      doc.text(
-        "APPOINTMENT DETAILS",
-        20,
-        y
-      );
+        dateGroup.classList.remove(
+          "hidden"
+        );
 
-      y += 8;
+        timeGroup.classList.remove(
+          "hidden"
+        );
 
-      doc.setFontSize(11);
+        cancelGroup.classList.add(
+          "hidden"
+        );
+
+      } else {
+
+        title.textContent =
+          "Request Appointment Cancellation";
+
+        dateGroup.classList.add(
+          "hidden"
+        );
+
+        timeGroup.classList.add(
+          "hidden"
+        );
+
+        cancelGroup.classList.remove(
+          "hidden"
+        );
+
+      }
 
 
-      addLine(
-        "Tattoo Type",
-        formData.get("Tattoo Type")
-      );
-
-      addLine(
-        "Preferred Appointment Date",
-        formData.get("Preferred Appointment Date")
-      );
-
-      addLine(
-        "Tattoo Description",
-        formData.get("Tattoo Description")
+      manageRequestBox.classList.add(
+        "show"
       );
 
 
-      y += 4;
+      manageRequestBox.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
 
-      doc.setFontSize(13);
-
-      doc.text(
-        "HEALTH & SAFETY",
-        20,
-        y
-      );
-
-      y += 8;
-
-      doc.setFontSize(11);
+    }
 
 
-      const conditionalFields = [
+    /* =========================================================
+       MANAGE REQUEST SUBMISSION
+    ========================================================= */
 
-        [
-          "Medical Condition",
-          "Medical Condition Reason"
-        ],
+    manageRequestForm.addEventListener(
+      "submit",
+      async function(event) {
 
-        [
-          "Allergies or Sensitivities",
-          "Allergies or Sensitivities Reason"
-        ],
-
-        [
-          "Healing or Bleeding Condition",
-          "Healing or Bleeding Condition Reason"
-        ],
-
-        [
-          "Medication or Treatment",
-          "Medication or Treatment Reason"
-        ],
-
-        [
-          "Skin Condition",
-          "Skin Condition Reason"
-        ],
-
-        [
-          "Pregnancy Breastfeeding Medical Treatment",
-          "Pregnancy Breastfeeding Medical Treatment Reason"
-        ]
-
-      ];
+        event.preventDefault();
 
 
-      conditionalFields.forEach(
-        function(pair) {
+        if (
+          !manageRequestForm.checkValidity()
+        ) {
 
-          const answer =
-            formData.get(
-              pair[0]
-            ) || "";
+          manageRequestForm.reportValidity();
+
+          return;
+
+        }
 
 
-          addLine(
-            pair[0],
-            answer
+        const requestButton =
+          document.getElementById(
+            "manageRequestButton"
           );
 
 
-          if (
-            answer === "Yes"
+        const action =
+          document.getElementById(
+            "manageAction"
+          ).value;
+
+
+        const formData =
+          new FormData(
+            manageRequestForm
+          );
+
+
+        formData.append(
+          "action",
+          action
+        );
+
+
+        requestButton.disabled =
+          true;
+
+        requestButton.textContent =
+          "Submitting Request...";
+
+
+        manageMessage.classList.remove(
+          "show",
+          "error-message"
+        );
+
+
+        try {
+
+          const encodedData =
+            new URLSearchParams();
+
+
+          for (
+            const [key, value]
+            of formData.entries()
           ) {
 
-            addLine(
-              pair[1],
-              formData.get(
-                pair[1]
-              )
+            encodedData.append(
+              key,
+              value
             );
 
           }
 
+
+          await fetch(
+            BOOKING_ENDPOINT,
+            {
+              method: "POST",
+
+              mode: "no-cors",
+
+              headers: {
+                "Content-Type":
+                  "application/x-www-form-urlencoded;charset=UTF-8"
+              },
+
+              body:
+                encodedData.toString()
+            }
+          );
+
+
+          manageMessage.innerHTML =
+            "<strong>Request submitted.</strong><br><br>" +
+
+            "Your " +
+            (
+              action === "reschedule"
+                ? "reschedule"
+                : "cancellation"
+            ) +
+            " request has been sent to Ink Theory for review.";
+
+
+          manageMessage.classList.add(
+            "show"
+          );
+
+
+          manageRequestForm.reset();
+
+          manageRequestBox.classList.remove(
+            "show"
+          );
+
+
+          manageMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+
+
+        } catch (error) {
+
+          console.error(error);
+
+
+          manageMessage.textContent =
+            "There was a problem sending your request. Please try again.";
+
+          manageMessage.classList.add(
+            "show",
+            "error-message"
+          );
+
         }
-      );
 
 
-      y += 4;
+        requestButton.disabled =
+          false;
 
-      doc.setFontSize(13);
+        requestButton.textContent =
+          "Submit Request";
 
-      doc.text(
-        "CLIENT DECLARATIONS",
-        20,
-        y
-      );
-
-      y += 8;
-
-      doc.setFontSize(11);
-
-
-      addLine(
-        "Client Health Declaration",
-        formData.get(
-          "Client Health Declaration"
-        )
-      );
-
-      addLine(
-        "Tattoo Risk Declaration",
-        formData.get(
-          "Tattoo Risk Declaration"
-        )
-      );
-
-      addLine(
-        "Booking & Contact Consent",
-        formData.get(
-          "Booking & Contact Consent"
-        )
-      );
-
-      addLine(
-        "Terms & Conditions Acceptance",
-        formData.get(
-          "Terms & Conditions Acceptance"
-        )
-      );
-
-
-      y += 6;
-
-
-      doc.setFontSize(9);
-
-      doc.text(
-        "Ink Theory",
-        20,
-        y
-      );
-
-      y += 5;
-
-      doc.text(
-        "ink.theory01@outlook.com",
-        20,
-        y
-      );
-
-
-      doc.save(
-        "Ink-Theory-Booking-" +
-        bookingId +
-        ".pdf"
-      );
-
-    }
+      }
+    );
 
   </script>
 

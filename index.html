@@ -505,242 +505,35 @@
       letter-spacing: 1.5px;
     }
 
-<!-- =========================================================
-       PORTFOLIO
-  ========================================================= -->
+    .video-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
 
-  <section class="portfolio" id="portfolio">
+      z-index: 3;
 
-    <div class="container">
+      padding: 6px 9px;
 
-      <div class="section-heading">
+      border-radius: 999px;
 
-        <small>Selected Work</small>
+      background: rgba(3,18,45,0.82);
+      border: 1px solid rgba(255,255,255,0.15);
 
-        <h2>Portfolio</h2>
+      font-size: 0.68rem;
+      font-weight: 700;
 
-        <p>
-          Explore completed tattoo artwork and tattoo process videos.
-        </p>
+      color: #ffffff;
+    }
 
-      </div>
+    .portfolio-note {
+      margin-top: 28px;
 
+      text-align: center;
 
-      <!-- =====================================================
-           TATTOO PICTURES
-      ====================================================== -->
+      color: #9fb5cc;
+      font-size: 0.85rem;
+    }
 
-      <div class="portfolio-section-title">
-
-        <div>
-          <h3>Tattoo Pictures</h3>
-          <span>Completed Work</span>
-        </div>
-
-      </div>
-
-
-      <div class="portfolio-album">
-
-        <div
-          class="portfolio-item"
-          onclick="openImageLightbox('images/ink-theory-dog-tags.jpg')"
-        >
-
-          <img
-            src="images/ink-theory-dog-tags.jpg"
-            alt="Military and Marine custom dog tags tattoo design"
-            loading="lazy"
-          >
-
-          <div class="portfolio-label">
-            <span class="portfolio-type">Military / Marine</span>
-            Military / Marine Custom Work
-          </div>
-
-        </div>
-
-
-        <div
-          class="portfolio-item"
-          onclick="openImageLightbox('images/ink-theory-crown-football.jpg')"
-        >
-
-          <img
-            src="images/ink-theory-crown-football.jpg"
-            alt="Crown and football tattoo design"
-            loading="lazy"
-          >
-
-          <div class="portfolio-label">
-            <span class="portfolio-type">Custom</span>
-            Crown &amp; Football
-          </div>
-
-        </div>
-
-
-        <div
-          class="portfolio-item"
-          onclick="openImageLightbox('images/ink-theory-floral-snake.jpg')"
-        >
-
-          <img
-            src="images/ink-theory-floral-snake.jpg"
-            alt="Floral snake tattoo design"
-            loading="lazy"
-          >
-
-          <div class="portfolio-label">
-            <span class="portfolio-type">Custom</span>
-            Floral Snake
-          </div>
-
-        </div>
-
-
-        <div
-          class="portfolio-item"
-          onclick="openImageLightbox('images/ink-theory-compass.jpg')"
-        >
-
-          <img
-            src="images/ink-theory-compass.jpg"
-            alt="Compass tattoo design"
-            loading="lazy"
-          >
-
-          <div class="portfolio-label">
-            <span class="portfolio-type">Custom</span>
-            Compass
-          </div>
-
-        </div>
-
-
-        <div
-          class="portfolio-item"
-          onclick="openImageLightbox('images/ink-theory-impossible-chess.jpg')"
-        >
-
-          <img
-            src="images/ink-theory-impossible-chess.jpg"
-            alt="Impossible chess tattoo design"
-            loading="lazy"
-          >
-
-          <div class="portfolio-label">
-            <span class="portfolio-type">Creative</span>
-            Impossible Chess
-          </div>
-
-        </div>
-
-
-        <div
-          class="portfolio-item"
-          onclick="openImageLightbox('images/ink-theory-rose.jpg')"
-        >
-
-          <img
-            src="images/ink-theory-rose.jpg"
-            alt="Rose tattoo design"
-            loading="lazy"
-          >
-
-          <div class="portfolio-label">
-            <span class="portfolio-type">Fine Detail</span>
-            Rose
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- =====================================================
-           ORIGINAL TATTOO VIDEOS
-      ====================================================== -->
-
-      <div class="portfolio-section-title">
-
-        <div>
-          <h3>Tattoo Videos</h3>
-          <span>Process &amp; Results</span>
-        </div>
-
-      </div>
-
-
-      <div class="portfolio-album">
-
-        <!-- ORIGINAL VIDEO 1 -->
-
-        <div
-          class="portfolio-item"
-          onclick="openVideoLightbox('videos/77270165-0655-4538-a583-91392a0a94f7.mp4')"
-        >
-
-          <video
-            src="videos/77270165-0655-4538-a583-91392a0a94f7.mp4"
-            muted
-            autoplay
-            loop
-            playsinline
-            preload="metadata"
-            aria-label="Ink Theory original portfolio video 1"
-          ></video>
-
-          <div class="video-badge">
-            VIDEO 1
-          </div>
-
-          <div class="portfolio-label">
-            <span class="portfolio-type">Ink Theory Portfolio</span>
-            Tattoo Video
-          </div>
-
-        </div>
-
-
-        <!-- ORIGINAL VIDEO 2 -->
-
-        <div
-          class="portfolio-item"
-          onclick="openVideoLightbox('videos/vdfr_1791454899785.mp4')"
-        >
-
-          <video
-            src="videos/vdfr_1791454899785.mp4"
-            muted
-            autoplay
-            loop
-            playsinline
-            preload="metadata"
-            aria-label="Ink Theory original portfolio video 2"
-          ></video>
-
-          <div class="video-badge">
-            VIDEO 2
-          </div>
-
-          <div class="portfolio-label">
-            <span class="portfolio-type">Ink Theory Portfolio</span>
-            Tattoo Video
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="portfolio-note">
-        Ink Theory portfolio — original tattoo artwork and videos.
-      </div>
-
-    </div>
-
-  </section>
     /* =========================================================
        LIGHTBOX
     ========================================================= */
@@ -3677,7 +3470,7 @@
     ========================================================= */
 
     const BOOKING_ENDPOINT =
-      "https://script.google.com/macros/s/AKfycbyHxno8zjro1ueLvRbFvPdV4Xv7ssYW575JK1cy3wcdYvYF3ht5qJ41QmgvnIk12ccX/exec";
+      "https://script.google.com/macros/s/AKfycbx57WnaV0LZlSJF66ztjyTXP7lW-Pof85XBCE1LAvTk8giQ_0zhnZlpVgd715eB6hmYSw/exec";
 
 
     /* =========================================================
